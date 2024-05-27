@@ -10,6 +10,8 @@ interface Product {
     image: string;
     isActive: boolean;
     category: string;
+    lastUpdated: string;
+    popularity: number;
 }
 
 const ProductItem = ({ name, price, stock, sku, image, isActive, category, checked, onChange, onToggleActive }: Product & { checked: boolean, onChange: () => void, onToggleActive: () => void }) => {
@@ -18,7 +20,7 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 1, flexGrow: 1, border: 1, borderColor: 'divider', borderRadius: 2 }}>
                 <img src={image} alt={name} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
                 <Box sx={{ flexGrow: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 730 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 705 }}>
                         <Typography variant="h6" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</Typography>
                         <Checkbox checked={checked} onChange={onChange} />
                     </Box>
@@ -42,24 +44,24 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
 
 const ProductList = () => {
     const [products, setProducts] = useState<Product[]>([
-        { name: 'KAOS BASIC COTTON KENARI - DUSTY ROSE', price: 55000, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic' },
-        { name: 'KAOS BASIC - FRAGILE SPROUT TOBRUT TOBAT BRUTAL XIXIXIXIXIXIXI', price: 64500, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic' },
-        { name: 'KAOS BASIC POLOS - BUBLE GUM', price: 55000, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic' },
-        { name: 'CREWNECK BASIC - BLACK', price: 180000, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'premium' },
-        { name: 'KAOS BASIC COTTON KENARI - BRONZE GREEN', price: 55000, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic' }
+        { name: 'KAOS BASIC COTTON KENARI - DUSTY ROSE', price: 55000, stock: 15, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic', lastUpdated: '2024-01-01', popularity: 50 },
+        { name: 'KAOS BASIC - FRAGILE SPROUT TOBRUT TOBAT BRUTAL XIXIXIXIXIXIXI', price: 64500, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic', lastUpdated: '2024-02-01', popularity: 30 },
+        { name: 'KAOS BASIC POLOS - BUBLE GUM', price: 55000, stock: 2, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic', lastUpdated: '2024-03-01', popularity: 70 },
+        { name: 'CREWNECK BASIC - BLACK', price: 180000, stock: 29, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'premium', lastUpdated: '2024-01-15', popularity: 90 },
+        { name: 'KAOS BASIC COTTON KENARI - BRONZE GREEN', price: 55000, stock: 25, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic', lastUpdated: '2024-04-01', popularity: 40 }
     ]);
 
     const [checkedItems, setCheckedItems] = useState<boolean[]>(new Array(products.length).fill(false));
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [sortBy, setSortBy] = useState<string>("");
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
+    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filterStatus, setFilterStatus] = useState<'aktif' | 'nonaktif' | 'semua'>('semua');
 
     const handleAllChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
         setIsAllChecked(isChecked);
-        setCheckedItems(new Array(products.length).fill(isChecked));
+        setCheckedItems(new Array(finalProducts.length).fill(isChecked));
     };
 
     const handleItemChecked = (index: number) => {
@@ -73,8 +75,8 @@ const ProductList = () => {
         setSortBy(event.target.value);
     };
 
-    const handleCategoryChange = (event: SelectChangeEvent<string>) => {
-        setSelectedCategory(event.target.value);
+    const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
+        setSelectedCategories(event.target.value as string[]);
     };
 
     const handleSearchTermChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +85,8 @@ const ProductList = () => {
 
     const handleToggleActive = (index: number) => {
         const updatedProducts = [...products];
-        updatedProducts[index].isActive = !updatedProducts[index].isActive;
+        const productIndex = products.indexOf(finalProducts[index]);
+        updatedProducts[productIndex].isActive = !updatedProducts[productIndex].isActive;
         setProducts(updatedProducts);
     };
 
@@ -91,6 +94,7 @@ const ProductList = () => {
         setFilterStatus(status);
     };
 
+    // Filter, Kategori dan Sort
     let filteredProducts = products.filter(product => {
         const searchTermLowerCase = searchTerm.toLowerCase();
         return (
@@ -100,8 +104,8 @@ const ProductList = () => {
         );
     });
 
-    let filteredAndCategorizedProducts = selectedCategory
-        ? filteredProducts.filter(product => product.category === selectedCategory)
+    let filteredAndCategorizedProducts = selectedCategories.length > 0
+        ? filteredProducts.filter(product => selectedCategories.includes(product.category))
         : filteredProducts;
 
     const sortedProducts = [...filteredAndCategorizedProducts].sort((a, b) => {
@@ -110,6 +114,16 @@ const ProductList = () => {
                 return a.price - b.price;
             case "termahal":
                 return b.price - a.price;
+            case "stokterbanyak":
+                return b.stock - a.stock;
+            case "stokterkecil":
+                return a.stock - b.stock;
+            case "terakhirdiubah":
+                return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime();
+            case "terlaris":
+                return b.popularity - a.popularity;
+            case "kurangdiminati":
+                return a.popularity - b.popularity;
             default:
                 return 0;
         }
@@ -156,15 +170,23 @@ const ProductList = () => {
                     <InputLabel>Semua Kategori</InputLabel>
                     <Select
                         label="Semua Kategori"
-                        value={selectedCategory}
+                        multiple
+                        value={selectedCategories}
                         onChange={handleCategoryChange}
+                        renderValue={(selected) => selected.join(', ')}
                     >
-                        <MenuItem value="">
-                            <em>None</em>
+                        <MenuItem value="basic">
+                            <Checkbox checked={selectedCategories.indexOf('basic') > -1} />
+                            <Typography>Basic</Typography>
                         </MenuItem>
-                        <MenuItem value="basic">Basic</MenuItem>
-                        <MenuItem value="premium">Premium</MenuItem>
-                        <MenuItem value="limited">Limited</MenuItem>
+                        <MenuItem value="premium">
+                            <Checkbox checked={selectedCategories.indexOf('premium') > -1} />
+                            <Typography>Premium</Typography>
+                        </MenuItem>
+                        <MenuItem value="limited">
+                            <Checkbox checked={selectedCategories.indexOf('limited') > -1} />
+                            <Typography>Limited</Typography>
+                        </MenuItem>
                     </Select>
                 </FormControl>
                 <FormControl variant="outlined" size='small' sx={{ flex: 1, minWidth: 120 }}>
@@ -177,8 +199,13 @@ const ProductList = () => {
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        <MenuItem value="termurah">Termurah</MenuItem>
+                        <MenuItem value="terakhirdiubah">Terakhir Diubah</MenuItem>
+                        <MenuItem value="terlaris">Terlaris</MenuItem>
+                        <MenuItem value="kurangdiminati">Kurang Diminati</MenuItem>
                         <MenuItem value="termahal">Termahal</MenuItem>
+                        <MenuItem value="termurah">Termurah</MenuItem>
+                        <MenuItem value="stokterbanyak">Stok Terbanyak</MenuItem>
+                        <MenuItem value="stokterkecil">Stok Terkecil</MenuItem>
                     </Select>
                 </FormControl>
             </Box >

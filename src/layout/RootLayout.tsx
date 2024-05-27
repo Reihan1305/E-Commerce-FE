@@ -28,6 +28,8 @@ const RootLayout = () => {
                     flex={3.5}
                     className="product-container"
                     sx={{
+                        bgcolor: "#F8F8F8",
+                        p: 2,
                         borderLeft: "3px solid #gray/50",
                         borderRight: "3px solid #gray/50",
                         overflowY: "auto",

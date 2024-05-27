@@ -3,10 +3,10 @@ import {
     HomeOutlined,
     PersonSearch,
     PersonSearchOutlined,
-    Favorite,
-    FavoriteBorder,
-    AccountCircle,
-    AccountCircleOutlined,
+    ShoppingBagOutlined,
+    ShoppingBagRounded,
+    SettingsOutlined,
+    SettingsRounded,
 } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
@@ -16,33 +16,32 @@ const MENU = [
         name: "Dashboard",
         path: "/",
         icon: {
-            active: <Home />,
-            nonActive: <HomeOutlined />,
+            active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <HomeOutlined fontSize="large" />,
         },
-        //   icons: [<Home />, <HomeOutlined />],
     },
     {
         name: "Product",
         path: "/product",
         icon: {
-            active: <PersonSearch />,
-            nonActive: <PersonSearchOutlined />,
+            active: <PersonSearch fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <PersonSearchOutlined fontSize="large" />,
         },
     },
     {
         name: "Order",
         path: "/order",
         icon: {
-            active: <Favorite />,
-            nonActive: <FavoriteBorder />,
+            active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <ShoppingBagOutlined fontSize="large" />,
         },
     },
     {
         name: "Setting",
         path: "/setting",
         icon: {
-            active: <AccountCircle />,
-            nonActive: <AccountCircleOutlined />,
+            active: <SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <SettingsOutlined fontSize="large" />,
         },
     },
 ];
@@ -60,7 +59,15 @@ const MenuItem = () => {
                             sx={{ gap: 2 }}
                         >
                             {isActive ? item.icon.active : item.icon.nonActive}{" "}
-                            <Typography fontSize={20}>{item.name}</Typography>
+                            <Typography 
+                                sx={{
+                                    fontSize: "20px",
+                                    color: isActive ? "#0086B4" : "black",
+                                    fontWeight: isActive ? "700" : "400"
+                                }}
+                            >
+                                {item.name}
+                            </Typography>
                         </Box>
                     )}
                 </NavLink>

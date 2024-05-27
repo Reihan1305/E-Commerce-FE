@@ -25,11 +25,11 @@ const RootLayout = () => {
                     <Sidebar />
                 </Box>
                 <Box
-                    flex={2.5}
-                    className="thread-container"
+                    flex={3.5}
+                    className="product-container"
                     sx={{
-                        borderLeft: "3px solid #3f3f3f",
-                        borderRight: "3px solid #3f3f3f",
+                        borderLeft: "3px solid #gray/50",
+                        borderRight: "3px solid #gray/50",
                         overflowY: "auto",
                     }}
                 >

@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Order from "../pages/Order";
 import Setting from "../pages/Setting";
+import NewProduct from "../pages/Product/newProduct";
 
 const router: RouteObject[] = [
     {
@@ -16,7 +17,16 @@ const router: RouteObject[] = [
             },
             {
                 path: "product",
-                element: <Product />,
+                children: [
+                    {
+                        index: true,
+                        element: <Product />
+                    },
+                    {
+                        path: "newProduct",
+                        element: <NewProduct />
+                    }
+                ]
             },
             {
                 path: "order",

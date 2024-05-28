@@ -50,7 +50,17 @@ const router: RouteObject[] = [
             },
             {
                 path: "setting",
-                element: <Setting />
+                children:[
+                    {
+                        path:"store",
+                        element: <Setting />
+                    },{
+                        path:"shiping"
+                    },{
+                        path:"paymentMetode"
+                    }
+
+                ]
             }
         ],
     },

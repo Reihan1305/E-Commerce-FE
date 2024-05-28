@@ -7,8 +7,11 @@ import {
     ShoppingBagRounded,
     SettingsOutlined,
     SettingsRounded,
+    ArrowDropDownCircle,
 } from "@mui/icons-material";
-import { Box, Typography } from "@mui/material";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import CircleIcon from '@mui/icons-material/Circle';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const MENU = [
@@ -66,27 +69,100 @@ const MenuItem = () => {
                     )}
                 </NavLink>
             ))}
-            <NavLink to={"/setting"} style={{textDecoration:"none"}}>
+            <Accordion sx={{boxShadow:"none",left:"-15px"}}>
+                <AccordionSummary
+                
+                expandIcon={<ArrowDropDownIcon />}
+                >
+            <NavLink to={"/setting/store"} style={{textDecoration:"none"}}>
                 {({isActive}) =>(
                     <Box
+                    
                     color={"#000"}
                     display={"flex"}
                     alignItems={"center"}
                     sx={{ gap: 2 }}
                     >
-                        {isActive ? <SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />:<SettingsOutlined fontSize="large" />}
-                                <Typography 
-                                    sx={{
-                                        fontSize: "20px",
-                                        color: isActive ? "#0086B4" : "black",
-                                        fontWeight: isActive ? "700" : "400"
-                                    }}
-                                >
-                                    Setting
-                                </Typography>
-                    </Box>
+                    {isActive ? <SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />:<SettingsOutlined fontSize="large" />}
+                            <Typography 
+                                sx={{
+                                    fontSize: "20px",
+                                    color: isActive ? "#0086B4" : "black",
+                                    fontWeight: isActive ? "700" : "400"
+                                }}
+                            >
+                                Setting
+                            </Typography>
+                </Box>
                 )}
             </NavLink>
+            </AccordionSummary>
+            <AccordionDetails>
+                <NavLink to={"/setting/store"} style={{textDecoration:"none"}}>
+                    {({isActive}) =>(
+                        <Box
+                        color={"#000"}
+                        marginBottom={"20px"}
+                        display={"flex"}
+                        alignItems={"center"}
+                        sx={{ gap: 2 }}>
+                            {isActive ?<CircleIcon fontSize="small" style={{ fill: "#0086B4" }}/>:<CircleIcon fontSize="small" style={{ fill: "white" }}/>}
+                        <Typography 
+                                    sx={{
+                                        fontSize: "15px",
+                                        color: isActive ? "#0086B4" : "black",
+                                        fontWeight: isActive ? "700" : "500"
+                                    }}
+                                >
+                                    Atur Toko
+                                </Typography>
+                        </Box>
+                    )}
+                </NavLink>
+                <NavLink to={"/setting/shiping"} style={{textDecoration:"none"}}>
+                    {({isActive}) =>(
+                        <Box
+                        color={"#000"}
+                        marginBottom={"20px"}
+                        display={"flex"}
+                        alignItems={"center"}
+                        sx={{ gap: 2 }}>
+                            {isActive ?<CircleIcon fontSize="small" style={{ fill: "#0086B4" }}/>:<CircleIcon fontSize="small" style={{ fill: "white" }}/>}
+                        <Typography 
+                                    sx={{
+                                        fontSize: "15px",
+                                        color: isActive ? "#0086B4" : "black",
+                                        fontWeight: isActive ? "700" : "500"
+                                    }}
+                                >
+                                    Pengiriman
+                                </Typography>
+                        </Box>
+                    )}
+                </NavLink>
+                <NavLink to={"/setting/paymentMetode"} style={{textDecoration:"none"}}>
+                    {({isActive}) =>(
+                        <Box
+                        color={"#000"}
+                        display={"flex"}
+                        marginBottom={"20px"}
+                        alignItems={"center"}
+                        sx={{ gap: 2 }}>
+                            {isActive ?<CircleIcon fontSize="small" style={{ fill: "#0086B4" }}/>:<CircleIcon fontSize="small" style={{ fill: "white" }}/>}
+                        <Typography 
+                                    sx={{
+                                        fontSize: "15px",
+                                        color: isActive ? "#0086B4" : "black",
+                                        fontWeight: isActive ? "700" : "500"
+                                    }}
+                                >
+                                    Metode Pembayaran
+                                </Typography>
+                        </Box>
+                    )}
+                </NavLink>
+            </AccordionDetails>
+            </Accordion>
         </Box>
     );
 };

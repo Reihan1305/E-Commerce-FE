@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Button, Checkbox, Box, TextField, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, InputAdornment, Switch } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
     name: string;
@@ -43,6 +45,7 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
 };
 
 const ProductList = () => {
+    const navigate = useNavigate();
     const [products, setProducts] = useState<Product[]>([
         { name: 'KAOS BASIC COTTON KENARI - DUSTY ROSE', price: 55000, stock: 15, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic', lastUpdated: '2024-01-01', popularity: 50 },
         { name: 'KAOS BASIC - FRAGILE SPROUT TOBRUT TOBAT BRUTAL XIXIXIXIXIXIXI', price: 64500, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic', lastUpdated: '2024-02-01', popularity: 30 },
@@ -57,6 +60,11 @@ const ProductList = () => {
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filterStatus, setFilterStatus] = useState<'aktif' | 'nonaktif' | 'semua'>('semua');
+
+    useEffect(() => {
+        setCheckedItems(new Array(products.length).fill(false));
+        setIsAllChecked(false);
+    }, [products, filterStatus, selectedCategories, searchTerm]);
 
     const handleAllChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
         const isChecked = event.target.checked;
@@ -143,12 +151,40 @@ const ProductList = () => {
         }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
                 <Typography variant="h5">Daftar Produk</Typography>
-                <Button variant="contained" color="primary">Tambah</Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{ borderRadius: 50 }}
+                    onClick={() => navigate('/product/newProduct')}
+                >
+                    <AddCircleOutlineOutlinedIcon /> Tambah Produk
+                </Button>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <Button variant="text" color="primary" onClick={() => handleFilterStatusChange('semua')}>Semua</Button>
-                <Button variant="text" color="primary" onClick={() => handleFilterStatusChange('aktif')}>Aktif</Button>
-                <Button variant="text" color="primary" onClick={() => handleFilterStatusChange('nonaktif')}>Nonaktif</Button>
+                <Button
+                    variant="text"
+                    color="primary"
+                    onClick={() => handleFilterStatusChange('semua')}
+                    sx={{ borderBottom: filterStatus === 'semua' ? '2px solid' : 'none' }}
+                >
+                    Semua
+                </Button>
+                <Button
+                    variant="text"
+                    color="primary"
+                    onClick={() => handleFilterStatusChange('aktif')}
+                    sx={{ borderBottom: filterStatus === 'aktif' ? '2px solid' : 'none' }}
+                >
+                    Aktif
+                </Button>
+                <Button
+                    variant="text"
+                    color="primary"
+                    onClick={() => handleFilterStatusChange('nonaktif')}
+                    sx={{ borderBottom: filterStatus === 'nonaktif' ? '2px solid' : 'none' }}
+                >
+                    Nonaktif
+                </Button>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
                 <TextField

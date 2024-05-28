@@ -4,6 +4,10 @@ import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Order from "../pages/Order";
 import Setting from "../pages/Setting";
+import NewProduct from "../pages/Product/newProduct";
+import AllOrder from "../pages/Order/component/allOrder";
+import Unpaid from "../pages/Order/component/unpaid";
+import NewOrder from "../pages/Order/component/newOrder";
 
 const router: RouteObject[] = [
     {
@@ -16,7 +20,16 @@ const router: RouteObject[] = [
             },
             {
                 path: "product",
-                element: <Product />,
+                children: [
+                    {
+                        index: true,
+                        element: <Product />
+                    },
+                    {
+                        path: "newProduct",
+                        element: <NewProduct />
+                    }
+                ]
             },
             {
                 path: "order",
@@ -24,15 +37,15 @@ const router: RouteObject[] = [
                 children: [
                     {
                         path: "all",
-                        element: "all"
+                        element: <AllOrder />
                     },
                     {
                         path: "unpaid",
-                        element: "unpaid"
+                        element: <Unpaid />
                     },
                     {
                         path: "new_order",
-                        element: "new order"
+                        element: <NewOrder />
                     },
                     {
                         path: "ready_send",

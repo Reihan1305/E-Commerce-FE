@@ -47,8 +47,8 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, p: 1, flexGrow: 1, border: 1, borderColor: 'divider', borderRadius: 2 }}>
                 <img src={image} alt={name} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
                 <Box sx={{ flexGrow: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 705 }}>
-                        <Typography variant="h6" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <Typography variant="h6" sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '35rem' }}>{name}</Typography>
                         <Checkbox checked={checked} onChange={onChange} />
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>

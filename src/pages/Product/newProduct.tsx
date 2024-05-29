@@ -203,6 +203,7 @@ const NewProduct = () => {
                     variant="outlined"
                     size="small"
                     fullWidth
+                    type="number"
                     sx={{ flex: 1, mr: 1, mb: 3 }}
                     InputProps={{
                         startAdornment: <InputAdornment position="start">Rp</InputAdornment>,
@@ -214,6 +215,7 @@ const NewProduct = () => {
                     variant="outlined"
                     size="small"
                     fullWidth
+                    type="number"
                     sx={{ flex: 1, mr: 1, mb: 3 }}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">Produk</InputAdornment>,
@@ -247,6 +249,7 @@ const NewProduct = () => {
                             variant="outlined"
                             size="small"
                             fullWidth
+                            type="number"
                         />
                     </Box>
                     <Box sx={{ flex: 1 }}>
@@ -256,6 +259,7 @@ const NewProduct = () => {
                             variant="outlined"
                             size="small"
                             fullWidth
+                            type="number"
                         />
                     </Box>
                 </Box>
@@ -284,6 +288,7 @@ const NewProduct = () => {
                     variant="outlined"
                     size="small"
                     fullWidth
+                    type="number"
                     sx={{ flex: 1, mr: 1, mb: 3 }}
                     InputProps={{
                         endAdornment: <InputAdornment position="end">gram</InputAdornment>,
@@ -297,6 +302,7 @@ const NewProduct = () => {
                             variant="outlined"
                             size="small"
                             fullWidth
+                            type="number"
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                             }}
@@ -308,6 +314,7 @@ const NewProduct = () => {
                             variant="outlined"
                             size="small"
                             fullWidth
+                            type="number"
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                             }}
@@ -319,6 +326,7 @@ const NewProduct = () => {
                             variant="outlined"
                             size="small"
                             fullWidth
+                            type="number"
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">cm</InputAdornment>,
                             }}

@@ -21,7 +21,7 @@ const RootLayout = () => {
                     color: "#fff",
                 }}
             >
-                <Box flex={1} sx={{}}>
+                <Box flex={1.5} sx={{}}>
                     <Sidebar />
                 </Box>
                 <Box

@@ -8,6 +8,7 @@ import NewProduct from "../pages/Product/newProduct";
 import AllOrder from "../pages/Order/component/allOrder";
 import Unpaid from "../pages/Order/component/unpaid";
 import NewOrder from "../pages/Order/component/newOrder";
+import DetailOrder from "../pages/Order/component/detailOrder";
 
 const router: RouteObject[] = [
     {
@@ -59,7 +60,15 @@ const router: RouteObject[] = [
                         path: "order_completed",
                         element: "order completed"
                     },
+
+                    
                 ]
+
+            },
+
+            {
+                path : "detailorder",
+                element: <DetailOrder/>
             },
             {
                 path: "setting",

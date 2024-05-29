@@ -1,8 +1,8 @@
-import React from "react";
+
 import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Home = () => {
-    // Data simulasi
     const summaryData = {
         totalProdukTerjual: 1500,
         totalProdukDiUpload: 200,
@@ -14,65 +14,65 @@ const Home = () => {
         { name: "Seller 1", sales: 150, avatar: "https://via.placeholder.com/150" },
         { name: "Seller 2", sales: 120, avatar: "https://via.placeholder.com/150" },
         { name: "Seller 3", sales: 100, avatar: "https://via.placeholder.com/150" },
-        // Tambahkan data top seller lainnya sesuai kebutuhan
     ];
 
     const topBuyerData = [
         { name: "Buyer 1", purchases: 20, avatar: "https://via.placeholder.com/150" },
         { name: "Buyer 2", purchases: 15, avatar: "https://via.placeholder.com/150" },
         { name: "Buyer 3", purchases: 10, avatar: "https://via.placeholder.com/150" },
-        // Tambahkan data top buyer lainnya sesuai kebutuhan
     ];
 
     return (
-        <Box p={3} >
+        <Box p={3}>
             <Typography variant="h4" align="center">
                 Summary
             </Typography>
-            <Grid container spacing={3} justifyContent="center">
+            <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
                 {Object.entries(summaryData).map(([key, value]) => (
                     <Grid key={key} item xs={12} sm={6} md={3}>
-                        <Card>
+                        <Card sx={{ backgroundColor: "#f0f0f0", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}>
                             <CardContent>
-                                <Typography variant="h6" gutterBottom>
+                                <Typography variant="h6" gutterBottom sx={{ fontSize: 16, color: "#333" }}>
                                     {key.replace(/([A-Z])/g, " $1").toUpperCase()}
                                 </Typography>
-                                <Typography variant="h4">{value}</Typography>
+                                <Typography variant="h4" sx={{ fontSize: 24, fontWeight: "bold" }}>{value}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
                 ))}
             </Grid>
 
-            <Grid container spacing={3} justifyContent="center">
+            <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
                 <Grid item xs={12} sm={6}>
                     <Typography variant="h4" gutterBottom align="center">
                         Top Seller
                     </Typography>
-                    {topSellerData.map((seller, index) => (
-                        <Card key={index} style={{ marginBottom: "10px", textAlign: "center" }}>
-                            <CardContent>
-                                <img src={seller.avatar} alt={seller.name} style={{ width: "100px", borderRadius: "50%" }} />
-                                <Typography variant="h6">{seller.name}</Typography>
-                                <Typography variant="subtitle1">Total Sales: {seller.sales}</Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={topSellerData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="sales" fill="#8884d8" />
+                        </BarChart>
+                    </ResponsiveContainer>
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
                     <Typography variant="h4" gutterBottom align="center">
                         Top Buyer
                     </Typography>
-                    {topBuyerData.map((buyer, index) => (
-                        <Card key={index} style={{ marginBottom: "10px", textAlign: "center" }}>
-                            <CardContent>
-                                <img src={buyer.avatar} alt={buyer.name} style={{ width: "100px", borderRadius: "50%" }} />
-                                <Typography variant="h6">{buyer.name}</Typography>
-                                <Typography variant="subtitle1">Total Purchases: {buyer.purchases}</Typography>
-                            </CardContent>
-                        </Card>
-                    ))}
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={topBuyerData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="purchases" fill="#82ca9d" />
+                        </BarChart>
+                    </ResponsiveContainer>
                 </Grid>
             </Grid>
         </Box>

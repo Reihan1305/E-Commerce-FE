@@ -129,8 +129,8 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({ open, handleClose }
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        <Box sx={{ width: '100%', height: '300px', marginTop: 2 }}>
-          <MapContainer style={{ width: '100%', height: '100%' }} center={markerPosition} zoom={13} scrollWheelZoom={false}>
+        <Box sx={{ width: '100%' }}>
+          <MapContainer style={{ width: '100%',height:"200px" }} center={markerPosition} zoom={13} scrollWheelZoom={false}>
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

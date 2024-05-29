@@ -49,7 +49,7 @@ function Location() {
           </Typography>
         </Box>
         <Box>
-        <Button variant="contained" onClick={handleOpen} size='small' sx={{alignItems:"center", height:"100%", bgcolor:"white",color:"black",paddingY:"none",padding:"10px 10px", border:"1px solid black", borderRadius:"20px"}}>
+        <Button variant="contained" onClick={handleOpen} size='large' sx={{ backgroundColor: "#0086B4", color: "white", borderRadius: "20px", paddingX: "20px" }}>
         Tambah Lokasi Baru
       </Button>
       <AddLocationModal open={open} handleClose={handleClose} />

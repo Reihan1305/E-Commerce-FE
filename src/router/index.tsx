@@ -5,9 +5,12 @@ import Product from "../pages/Product";
 import Order from "../pages/Order";
 import Setting from "../pages/Setting";
 import NewProduct from "../pages/Product/newProduct";
+import ButtonVarian from "../pages/Product/buttonVarian";
 import AllOrder from "../pages/Order/component/allOrder";
 import Unpaid from "../pages/Order/component/unpaid";
 import NewOrder from "../pages/Order/component/newOrder";
+import ModalVarian from "../pages/Product/atom/modalVarian";
+import ButtonSize from "../pages/Product/atom/sizeButton";
 
 const router: RouteObject[] = [
     {
@@ -28,7 +31,20 @@ const router: RouteObject[] = [
                     {
                         path: "newProduct",
                         element: <NewProduct />
-                    }
+                    },
+                    {
+                        path: "buttonVarian",
+                        element: <ButtonVarian />
+                    },
+                    {
+                        path: "modalVarian",
+                        element: <ModalVarian />
+                    },
+                    {
+                        path: "buttonSize",
+                        element: <ButtonSize />
+                    },
+
                 ]
             },
             {

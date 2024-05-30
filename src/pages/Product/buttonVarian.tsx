@@ -11,75 +11,29 @@ import {
   TextField,
   Typography,
   IconButton,
-  FormControlLabel,
-  Switch,
   Autocomplete,
+  Switch,
+  FormControlLabel,
+  ToggleButton,
 } from "@mui/material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+// import AddIcon from "@mui/icons-material/Add";
+import { DeleteOutlineOutlined, TextSnippet } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import ModalVarian from "./atom/modalVarian";
-import { TextSnippet } from "@mui/icons-material";
+import ButtonSize from "./atom/sizeButton";
+
+import React from "react";
 
 const NewProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [variantType, setVariantType] = useState<string>("");
-  const [variants, setVariants] = useState<
-    {
-      id: number;
-      name: string;
-      type: string;
-      price: number;
-      stock: number;
-      sku: string;
-      weight: number;
-    }[]
-  >([]);
-  const [showVariants, setShowVariants] = useState(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenSize, setIsOpenSize] = useState<boolean>(false);
-
+  const [selected, setSelected] = React.useState(false);
+ 
   const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
     setSelectedCategories(event.target.value as string[]);
-  };
-
-  const addVariant = () => {
-    const newId =
-      variants.length > 0 ? variants[variants.length - 1].id + 1 : 1;
-    setVariants([
-      ...variants,
-      {
-        id: newId,
-        name: "",
-        type: variantType,
-        price: 0,
-        stock: 0,
-        sku: "",
-        weight: 0,
-      },
-    ]);
-  };
-
-  const removeVariant = (id: number) => {
-    setVariants(variants.filter((variant) => variant.id !== id));
-  };
-
-  const handleVariantChange = (id: number, field: string, value: any) => {
-    setVariants(
-      variants.map((variant) =>
-        variant.id === id ? { ...variant, [field]: value } : variant
-      )
-    );
-  };
-
-  const handleToggleVariants = () => {
-    setShowVariants(!showVariants);
-    if (!showVariants) {
-      setVariantType(""); // Reset the variant type when hiding the variant options
-    } else {
-      setVariants([]); // Clear variants when hiding the variant options
-    }
   };
   return (
     <>
@@ -348,7 +302,6 @@ const NewProduct = () => {
           </Box>
         </Box>
       </Box>
-
       <Box
         sx={{
           bgcolor: "white",
@@ -361,7 +314,7 @@ const NewProduct = () => {
         <Typography
           sx={{
             fontWeight: 600,
-            mb: 1,
+            mb: 2,
           }}
         >
           Varian Produk
@@ -370,62 +323,197 @@ const NewProduct = () => {
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            gap: 1,
-            mt: 2,
+            alignItems: "center",
           }}
         >
-          <Typography variant="body2" sx={{ mb: 1 }}>
-            Tambah varian agar pembeli dapat memilih produk yang sesuai, yuk!
-          </Typography>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleToggleVariants}
-          >
-            {showVariants ? "Hapus Varian" : "Tambah Varian"}
-          </Button>
-        </Box>
-        {showVariants && (
-          <>
-            <Box sx={{ display: "flex", gap: 1, mt: 2 }}>
+          <Box sx={{ flex: 1, mr: 2 }}>
+            <Typography variant="body2" sx={{ mb: 1 }}>
+              Nama Produk
+            </Typography>
+            <Typography
+              variant="body2"
+              sx={{ mb: 1, color: "gray", fontSize: 12 }}
+            >
+              Tambah varian agar pembeli dapat memilih produk yang sesuai, yuk!
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1 }}>
               <Button
-                variant="outlined"
-                sx={{ borderRadius: "20px", color: "black" }}
+                sx={{
+                  borderRadius: "20px",
+                  color: "black",
+                  bgcolor: "white",
+                  border: "1px solid gray",
+                  paddingY: 1,
+                  fontSize: "10px",
+                }}
                 onClick={() => setIsOpen(!isOpen)}
               >
                 {isOpen ? "Warna" : "Warna"}
               </Button>
+
+
+
               <Button
-                variant="outlined"
-                sx={{ borderRadius: "20px", color: "black" }}
+                sx={{
+                  borderRadius: "20px",
+                  color: "black",
+                  bgcolor: "white",
+                  border: "1px solid gray",
+                  paddingY: 1,
+                  fontSize: "10px",
+                }}
                 onClick={() => setIsOpenSize(!isOpenSize)}
               >
-                Ukuran
                 {isOpenSize ? "" : ""}
+                Ukuran
               </Button>
               <Button
-                variant="outlined"
-                sx={{ borderRadius: "20px", color: "black" }}
-                onClick={() => setVariantType("Ukuran Kemasan")}
+                sx={{
+                  borderRadius: "20px",
+                  color: "black",
+                  bgcolor: "white",
+                  border: "1px solid gray",
+                  paddingY: 1,
+                  fontSize: "10px",
+                }}
               >
                 Ukuran Kemasan
               </Button>
               <Button
-                variant="outlined"
-                sx={{ borderRadius: "20px", color: "black" }}
-                onClick={() => setVariantType("Tipe Lain")}
+                sx={{
+                  borderRadius: "20px",
+                  color: "black",
+                  bgcolor: "white",
+                  border: "1px solid black",
+                  paddingY: 1,
+                }}
               >
+                <AddIcon />
                 Buat Tipe Varian
               </Button>
             </Box>
-          </>
-        )}
+          </Box>
 
-{/* Button Warna */}
-        <Box
-          display={isOpen ? "block" : "none"}
+          <Box>
+            <Button
+              variant="outlined"
+              sx={{
+                flex: 1,
+                borderRadius: 20,
+                color: "black",
+                borderColor: "black",
+              }}
+            >
+              <DeleteOutlineOutlined />
+              Hapus Varian
+            </Button>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* button warna */}
+
+      <Box
+        display={isOpen ? "block" : "none"}
+        sx={{
+          bgcolor: isOpen ? "white" : "blue",
+          borderRadius: "10px",
+          p: 2,
+          fontWeight: "bold",
+          mb: 3,
+        }}
+      >
+        <Typography
           sx={{
-            bgcolor: isOpen ? "white" : "blue",
+            fontWeight: 600,
+            mb: 2,
+          }}
+        >
+          Warna <span style={{ color: "red" }}> * </span>
+        </Typography>
+        <Autocomplete
+          multiple
+          id="multiple-limit-tags"
+          options={top100Films}
+          getOptionLabel={(option) => option.color}
+          renderInput={(params) => (
+            <TextField {...params} placeholder="Pilih Warna" />
+          )}
+          sx={{ width: "820px" }}
+        />
+
+        <FormControlLabel
+          control={<Switch sx={{ m: 1 }} defaultChecked />}
+          label="Gunakan foto Varian"
+        />
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              border: 1,
+              borderColor: "divider",
+              borderRadius: 2,
+              borderStyle: "dashed",
+              width: 150,
+              height: 150,
+            }}
+          >
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <input hidden accept="image/*" type="file" />
+              <PhotoCamera sx={{ color: "gray" }} />
+              <Typography variant="body2" sx={{ mb: 1, color: "gray" }}>
+                Foto Sage
+              </Typography>
+            </IconButton>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 1,
+              border: 1,
+              borderColor: "divider",
+              borderRadius: 2,
+              borderStyle: "dashed",
+              width: 150,
+              height: 150,
+            }}
+          >
+            <IconButton
+              color="primary"
+              aria-label="upload picture"
+              component="label"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                height: "100%",
+              }}
+            >
+              <input hidden accept="image/*" type="file" />
+              <PhotoCamera sx={{ color: "gray" }} />
+              <Typography variant="body2" sx={{ mb: 1, color: "gray" }}>
+                Foto Hitam
+              </Typography>
+            </IconButton>
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            bgcolor: "white",
             borderRadius: "10px",
             p: 2,
             fontWeight: "bold",
@@ -438,357 +526,261 @@ const NewProduct = () => {
               mb: 2,
             }}
           >
-            Warna <span style={{ color: "red" }}> * </span>
+            Daftar Varian
           </Typography>
-          <Autocomplete
-            multiple
-            id="multiple-limit-tags"
-            options={top100Films}
-            getOptionLabel={(option) => option.color}
-            renderInput={(params) => (
-              <TextField {...params} placeholder="Pilih Warna" />
-            )}
-            sx={{ width: "820px" }}
-          />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              p: 1,
+            }}
+          >
+            <Typography variant="body2" sx={{}}>
+              Kamu dapat mengatur harga, stok,SKU sekaligus
+            </Typography>
+           
+              <TextSnippet />
+              Atur Sekaligus
+            <ModalVarian  />
+          </Box>
+          
 
-          <FormControlLabel
-            control={<Switch sx={{ m: 1 }} defaultChecked />}
-            label="Gunakan foto Varian"
-          />
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                border: 1,
-                borderColor: "divider",
-                borderRadius: 2,
-                borderStyle: "dashed",
-                width: 150,
-                height: 150,
-              }}
-            >
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="label"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                  height: "100%",
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+            }}
+          >
+            <Typography variant="h6" sx={{ color: "black" }}>
+              Sage{" "}
+            </Typography>
+            <FormControlLabel
+              control={<Switch sx={{ m: 1 }} defaultChecked />}
+              label="Aktif"
+            />
+            {/* <span style={{ color: "red" }}> * </span>  */}
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "between",
+              gap: 59,
+              p: 1,
+            }}
+          >
+            <Typography>
+              Harga <span style={{ color: "red" }}> * </span>
+            </Typography>
+            <Typography>
+              Stok Produk <span style={{ color: "red" }}> * </span>
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2.5,
+              p: 1,
+              mb: 2,
+            }}
+          >
+            <Box sx={{ flex: 1 }}>
+              <TextField
+                placeholder="Rp"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start"></InputAdornment>
+                  ),
                 }}
-              >
-                <input hidden accept="image/*" type="file" />
-                <PhotoCamera sx={{ color: "gray" }} />
-                <Typography variant="body2" sx={{ mb: 1, color: "gray" }}>
-                  Foto Sage
-                </Typography>
-              </IconButton>
+              />
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                border: 1,
-                borderColor: "divider",
-                borderRadius: 2,
-                borderStyle: "dashed",
-                width: 150,
-                height: 150,
-              }}
-            >
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="label"
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                  height: "100%",
+
+            <Box sx={{ flex: 0.5 }}>
+              <TextField
+                placeholder="masukkan jumlah stok"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end"></InputAdornment>
+                  ),
                 }}
-              >
-                <input hidden accept="image/*" type="file" />
-                <PhotoCamera sx={{ color: "gray" }} />
-                <Typography variant="body2" sx={{ mb: 1, color: "gray" }}>
-                  Foto Hitam
-                </Typography>
-              </IconButton>
+              />
             </Box>
           </Box>
 
           <Box
             sx={{
-              bgcolor: "white",
-              borderRadius: "10px",
-              p: 2,
-              fontWeight: "bold",
-              mb: 3,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "between",
+              gap: 44,
+              p: 1,
             }}
           >
-            <Typography
-              sx={{
-                fontWeight: 600,
-                mb: 2,
-              }}
-            >
-              Daftar Varian
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                p: 1,
-              }}
-            >
-              <Typography variant="body2" sx={{}}>
-                Kamu dapat mengatur harga, stok,SKU sekaligus
-              </Typography>
-              <TextSnippet />
-              Atur Sekaligus
-              <ModalVarian />
-            </Box>
+            <Typography>SKU (Stok Keeping Unit)</Typography>
+            <Typography>Berat Produk</Typography>
+          </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-              }}
-            >
-              <Typography variant="h6" sx={{ color: "black" }}>
-                Sage{" "}
-              </Typography>
-              <FormControlLabel
-                control={<Switch sx={{ m: 1 }} defaultChecked />}
-                label="Aktif"
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+            <Box sx={{ flex: 1 }}>
+              <TextField
+                placeholder="Rp"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start">Gram</InputAdornment>
+                  ),
+                }}
               />
-              {/* <span style={{ color: "red" }}> * </span>  */}
             </Box>
 
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "between",
-                gap: 59,
-                p: 1,
-              }}
-            >
-              <Typography>
-                Harga <span style={{ color: "red" }}> * </span>
-              </Typography>
-              <Typography>
-                Stok Produk <span style={{ color: "red" }}> * </span>
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2.5,
-                p: 1,
-                mb: 2,
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <TextField
-                  placeholder="Rp"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-
-              <Box sx={{ flex: 0.5 }}>
-                <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "between",
-                gap: 44,
-                p: 1,
-              }}
-            >
-              <Typography>SKU (Stok Keeping Unit)</Typography>
-              <Typography>Berat Produk</Typography>
-            </Box>
-
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-              <Box sx={{ flex: 1 }}>
-                <TextField
-                  placeholder="Rp"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start">Gram</InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-
-              <Box sx={{ flex: 0.5 }}>
-                <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-              }}
-            >
-              <Typography variant="h6" sx={{ color: "black" }}>
-                Hitam{" "}
-              </Typography>
-              <FormControlLabel
-                control={<Switch sx={{ m: 1 }} defaultChecked />}
-                label="Aktif"
+            <Box sx={{ flex: 0.5 }}>
+              <TextField
+                placeholder="masukkan jumlah stok"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end"></InputAdornment>
+                  ),
+                }}
               />
-              {/* <span style={{ color: "red" }}> * </span>  */}
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "between",
-                gap: 59,
-                p: 1,
-              }}
-            >
-              <Typography>
-                Harga <span style={{ color: "red" }}> * </span>
-              </Typography>
-              <Typography>
-                Stok Produk <span style={{ color: "red" }}> * </span>
-              </Typography>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2.5,
-                p: 1,
-                mb: 2,
-              }}
-            >
-              <Box sx={{ flex: 1 }}>
-                <TextField
-                  placeholder="Rp"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-
-              <Box sx={{ flex: 0.5 }}>
-                <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "between",
-                gap: 44,
-                p: 1,
-              }}
-            >
-              <Typography>SKU (Stok Keeping Unit)</Typography>
-              <Typography>Berat Produk</Typography>
-            </Box>
-
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-              <Box sx={{ flex: 1 }}>
-                <TextField
-                  placeholder="Rp"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start"></InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
-
-              <Box sx={{ flex: 0.5 }}>
-                <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">Gram</InputAdornment>
-                    ),
-                  }}
-                />
-              </Box>
             </Box>
           </Box>
-        </Box>        
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+            }}
+          >
+            <Typography variant="h6" sx={{ color: "black" }}>
+              Hitam{" "}
+            </Typography>
+            <FormControlLabel
+              control={<Switch sx={{ m: 1 }} defaultChecked />}
+              label="Aktif"
+            />
+            {/* <span style={{ color: "red" }}> * </span>  */}
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "between",
+              gap: 59,
+              p: 1,
+            }}
+          >
+            <Typography>
+              Harga <span style={{ color: "red" }}> * </span>
+            </Typography>
+            <Typography>
+              Stok Produk <span style={{ color: "red" }}> * </span>
+            </Typography>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: 2.5,
+              p: 1,
+              mb: 2,
+            }}
+          >
+            <Box sx={{ flex: 1 }}>
+              <TextField
+                placeholder="Rp"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start"></InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+
+            <Box sx={{ flex: 0.5 }}>
+              <TextField
+                placeholder="masukkan jumlah stok"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end"></InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "between",
+              gap: 44,
+              p: 1,
+            }}
+          >
+            <Typography>SKU (Stok Keeping Unit)</Typography>
+            <Typography>Berat Produk</Typography>
+          </Box>
+
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+            <Box sx={{ flex: 1 }}>
+              <TextField
+                placeholder="Rp"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="start"></InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+
+            <Box sx={{ flex: 0.5 }}>
+              <TextField
+                placeholder="masukkan jumlah stok"
+                variant="outlined"
+                size="small"
+                fullWidth
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">Gram</InputAdornment>
+                  ),
+                }}
+              />
+            </Box>
+          </Box>
+        </Box>
       </Box>
 
+{/* button Size */}
 
-{/* size */}
-      <Box
+  <Box
         display={isOpenSize ? "block" : "none"}
         sx={{
           bgcolor: isOpenSize ? "white" : "blue",
@@ -1648,6 +1640,40 @@ const NewProduct = () => {
           </Box>
   </Box>
 
+      <Box
+        sx={{
+          bgcolor: "white",
+          borderRadius: "10px",
+          p: 2,
+          fontWeight: "bold",
+          mb: 3,
+        }}
+      >
+        <Typography
+          sx={{
+            fontWeight: 600,
+            mb: 2,
+          }}
+        >
+          Minimal Pembelian
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 1 }}>
+          Minimal Pembelian
+        </Typography>
+
+        <TextField
+          placeholder="1"
+          variant="outlined"
+          size="small"
+          fullWidth
+          sx={{ flex: 1, mr: 1, mb: 3 }}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">Produk</InputAdornment>
+            ),
+          }}
+        />
+      </Box>
 
       <Box
         sx={{
@@ -1664,118 +1690,8 @@ const NewProduct = () => {
             mb: 2,
           }}
         >
-          Harga
+          Ukuran Produk
         </Typography>
-        <Typography variant="body2" sx={{ mb: 1 }}>
-          Harga
-        </Typography>
-        <TextField
-          placeholder="Masukkan harga barang"
-          variant="outlined"
-          size="small"
-          fullWidth
-          sx={{ flex: 1, mr: 1, mb: 3 }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">Rp</InputAdornment>
-            ),
-          }}
-        />
-        <Typography variant="body2" sx={{ mb: 1 }}>
-          Minimal Pembelian
-        </Typography>
-        <TextField
-          placeholder="1"
-          variant="outlined"
-          size="small"
-          fullWidth
-          sx={{ flex: 1, mr: 1, mb: 3 }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">Produk</InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-      <Box
-        sx={{
-          bgcolor: "white",
-          borderRadius: "10px",
-          p: 2,
-          fontWeight: "bold",
-          mb: 3,
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: 600,
-            mb: 2,
-          }}
-        >
-          Pengelolaan Produk
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: 2,
-          }}
-        >
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              Stok Produk
-            </Typography>
-            <TextField
-              placeholder="Masukkan jumlah stok"
-              variant="outlined"
-              size="small"
-              fullWidth
-            />
-          </Box>
-          <Box sx={{ flex: 1 }}>
-            <Typography variant="body2" sx={{ mb: 1 }}>
-              SKU (Stock Keeping Unit)
-            </Typography>
-            <TextField
-              placeholder="Masukkan SKU"
-              variant="outlined"
-              size="small"
-              fullWidth
-            />
-          </Box>
-        </Box>
-      </Box>
-      <Box
-        sx={{
-          bgcolor: "white",
-          borderRadius: "10px",
-          p: 2,
-          fontWeight: "bold",
-          mb: 3,
-        }}
-      >
-        <Typography
-          sx={{
-            fontWeight: 600,
-            mb: 2,
-          }}
-        >
-          Berat dan Pengiriman
-        </Typography>
-        <Typography variant="body2" sx={{ mb: 1 }}>
-          Berat Produk
-        </Typography>
-        <TextField
-          placeholder="Masukan berat produk!"
-          variant="outlined"
-          size="small"
-          fullWidth
-          sx={{ flex: 1, mr: 1, mb: 3 }}
-          InputProps={{
-            endAdornment: <InputAdornment position="end">gram</InputAdornment>,
-          }}
-        />
         <Typography variant="body2" sx={{ mb: 1 }}>
           Ukuran Produk
         </Typography>
@@ -1827,35 +1743,44 @@ const NewProduct = () => {
             />
           </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          bgcolor: "white",
-          borderRadius: "10px",
-          p: 2,
-          fontWeight: "bold",
-          mb: 3,
-        }}
-      >
+        //buttonsimpan
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            bgcolor: "white",
+            borderRadius: "10px",
+            p: 2,
+            fontWeight: "bold",
+            mb: 3,
           }}
         >
-          <Box sx={{ flex: 1, mr: 2 }}>
-            <Button variant="contained" color="primary" sx={{ flex: 1 }}>
-              Preview
-            </Button>
-          </Box>
-          <Box>
-            <Button variant="outlined" color="primary" sx={{ flex: 1, mr: 1 }}>
-              Batal
-            </Button>
-            <Button variant="contained" color="primary" sx={{ flex: 1 }}>
-              Simpan
-            </Button>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Box sx={{ flex: 1, mr: 2 }}>
+              {/* <Button variant="contained" color="primary" hidden sx={{ flex: 1 }}>
+                Preview
+              </Button> */}
+            </Box>
+            <Box>
+              <Button
+                variant="outlined"
+                color="primary"
+                sx={{ flex: 1, mr: 1, borderRadius: "20px" }}
+              >
+                Batal
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ flex: 1, borderRadius: "20px" }}
+              >
+                Simpan
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -1872,10 +1797,11 @@ const top100Films = [
   { color: "Green" },
 ];
 
+
 const size = [
-    { size: "S" },
-    { size: "L" },
-    { size: "M" },
-    { size: "XL" },
-    { size: "XXL" },
-  ];
+  { size: "S" },
+  { size: "L" },
+  { size: "M" },
+  { size: "XL" },
+  { size: "XXL" },
+];

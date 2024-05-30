@@ -2,21 +2,17 @@ import { RouteObject } from "react-router-dom";
 import RootLayout from "../layout/RootLayout";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
-import Order from "../pages/Order";
+import OrderPage from "../pages/Order";
 import Setting from "../pages/Setting";
 import NewProduct from "../pages/Product/newProduct";
+import OrderList from "../pages/Order/component/orderList";
 import ButtonVarian from "../pages/Product/buttonVarian";
-import AllOrder from "../pages/Order/component/allOrder";
-import Unpaid from "../pages/Order/component/unpaid";
-import NewOrder from "../pages/Order/component/newOrder";
 import ModalVarian from "../pages/Product/atom/modalVarian";
 import DetailOrder from "../pages/Order/component/detailOrder";
 import BuyerLayout from "../layout/BuyerLayout";
-import { buyerRoutes } from "./buyerRoute";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
-
 
 const router: RouteObject[] = [
     {
@@ -50,34 +46,12 @@ const router: RouteObject[] = [
             },
             {
                 path: "order",
-                element: <Order />,
+                element: <OrderPage />,
                 children: [
                     {
-                        path: "all",
-                        element: <AllOrder />
+                        path: "order_list",
+                        element: <OrderList />
                     },
-                    {
-                        path: "unpaid",
-                        element: <Unpaid />
-                    },
-                    {
-                        path: "new_order",
-                        element: <NewOrder />
-                    },
-                    {
-                        path: "ready_send",
-                        element: "ready send"
-                    },
-                    {
-                        path: "on_delivery",
-                        element: "on delivery"
-                    },
-                    {
-                        path: "order_completed",
-                        element: "order completed"
-                    },
-
-
                 ]
 
             },

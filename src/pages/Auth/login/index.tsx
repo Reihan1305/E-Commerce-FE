@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -82,9 +81,9 @@ export default function Login() {
                             Sign In
                         </Button>
                         <Grid container>
-                            <Grid item xs>
+                            {/* <Grid item xs>
                                 <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Forgot Password</Typography></Button>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
                             </Grid>

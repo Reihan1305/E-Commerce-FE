@@ -7,11 +7,10 @@ import {
     ShoppingBagRounded,
     SettingsOutlined,
     SettingsRounded,
-    ArrowDropDownCircle,
 } from "@mui/icons-material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CircleIcon from '@mui/icons-material/Circle';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const MENU = [
@@ -162,6 +161,9 @@ const MenuItem = () => {
                     </NavLink>
                 </AccordionDetails>
             </Accordion>
+            <Box>
+                <Button><Typography>Logout</Typography></Button>
+            </Box>
         </Box>
     );
 };

@@ -36,55 +36,61 @@ const Home = () => {
 
     return (
         <>
-            <Box p={3}>
-                <Typography variant="h4" align="center">
-                    Summary
-                </Typography>
-                <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
-                    {Object.entries(summaryData).map(([key, value]) => (
-                        <Grid key={key} item xs={12} sm={6} md={3}>
-                            <Card sx={{ backgroundColor: "#f0f0f0", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}>
-                                <CardContent>
-                                    <Typography variant="h6" gutterBottom sx={{ fontSize: 16, color: "#333" }}>
-                                        {key.replace(/([A-Z])/g, " $1").toUpperCase()}
-                                    </Typography>
-                                    <Typography variant="h4" sx={{ fontSize: 24, fontWeight: "bold" }}>{value}</Typography>
-                                </CardContent>
-                            </Card>
+            <Box sx={{
+                bgcolor: "white",
+                borderRadius: "10px", p: 3
+            }}>
+
+                <Box p={3}>
+                    <Typography variant="h4" align="center">
+                        Summary
+                    </Typography>
+                    <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
+                        {Object.entries(summaryData).map(([key, value]) => (
+                            <Grid key={key} item xs={12} sm={6} md={3}>
+                                <Card sx={{ backgroundColor: "#f0f0f0", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)" }}>
+                                    <CardContent>
+                                        <Typography variant="h6" gutterBottom sx={{ fontSize: 16, color: "#333" }}>
+                                            {key.replace(/([A-Z])/g, " $1").toUpperCase()}
+                                        </Typography>
+                                        <Typography variant="h4" sx={{ fontSize: 24, fontWeight: "bold" }}>{value}</Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        ))}
+                    </Grid>
+
+                    <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
+                        <Grid item xs={12} sm={6}>
+                            <Typography variant="h4" gutterBottom align="center">
+                                Top Seller
+                            </Typography>
+                            <BarChart
+                                dataset={topSellerData}
+                                xAxis={[{ scaleType: 'band', dataKey: 'name' }]}
+                                series={[
+                                    { dataKey: 'sales', label: 'sales', valueFormatter },
+                                ]}
+                                {...chartSetting}
+                            />
                         </Grid>
-                    ))}
-                </Grid>
 
-                <Grid container spacing={3} justifyContent="center" sx={{ marginTop: 3 }}>
-                    <Grid item xs={12} sm={6}>
-                        <Typography variant="h4" gutterBottom align="center">
-                            Top Seller
-                        </Typography>
-                        <BarChart
-                            dataset={topSellerData}
-                            xAxis={[{ scaleType: 'band', dataKey: 'name' }]}
-                            series={[
-                                { dataKey: 'sales', label: 'sales', valueFormatter },
-                            ]}
-                            {...chartSetting}
-                        />
+                        <Grid item xs={12} sm={6}>
+                            <Typography variant="h4" gutterBottom align="center">
+                                Top Buyer
+                            </Typography>
+                            <BarChart
+                                colors={["#0086B4", "#0086B4", "#0086B4"]}
+                                dataset={topBuyerData}
+                                xAxis={[{ scaleType: 'band', dataKey: 'name' }]}
+                                series={[
+                                    { dataKey: 'purchases', label: 'purchases', valueFormatter },
+                                ]}
+                                {...chartSetting}
+                            />
+                        </Grid>
                     </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                        <Typography variant="h4" gutterBottom align="center">
-                            Top Buyer
-                        </Typography>
-                        <BarChart
-                            colors={["#0086B4", "#0086B4", "#0086B4"]}
-                            dataset={topBuyerData}
-                            xAxis={[{ scaleType: 'band', dataKey: 'name' }]}
-                            series={[
-                                { dataKey: 'purchases', label: 'purchases', valueFormatter },
-                            ]}
-                            {...chartSetting}
-                        />
-                    </Grid>
-                </Grid>
+                </Box>
             </Box>
         </>
     );

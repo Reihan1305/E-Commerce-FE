@@ -43,7 +43,6 @@ const router: RouteObject[] = [
                         path: "modalVarian",
                         element: <ModalVarian />
                     },
-
                 ]
             },
             {
@@ -75,34 +74,35 @@ const router: RouteObject[] = [
                         element: "order completed"
                     },
 
-                    
+
                 ]
 
             },
 
             {
-                path : "detailorder",
-                element: <DetailOrder/>
+                path: "detailorder",
+                element: <DetailOrder />
             },
             {
                 path: "setting",
-                children:[
+                children: [
                     {
-                        path:"store",
+                        path: "store",
                         element: <Setting />
-                    },{
-                        path:"shiping"
-                    },{
-                        path:"paymentMetode"
+                    }, {
+                        path: "shiping"
+                    }, {
+                        path: "paymentMetode"
                     }
 
                 ]
             },
-            {
-                path: "/buyer",
-                element: <BuyerLayout />,
-                children: buyerRoutes,
-             },
+        ],
+    },
+    {
+        path: "/buyer",
+        element: <BuyerLayout />,
+        children: [
         ],
     },
 ];

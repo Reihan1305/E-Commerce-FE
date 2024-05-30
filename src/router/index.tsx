@@ -5,14 +5,14 @@ import Product from "../pages/Product";
 import OrderPage from "../pages/Order";
 import Setting from "../pages/Setting";
 import NewProduct from "../pages/Product/newProduct";
-// import Unpaid from "../pages/Order/atom/unpaid";
-// import NewOrder from "../pages/Order/atom/newOrder";
 import OrderList from "../pages/Order/component/orderList";
-// import AllOrder from "../pages/Order/atom/allOrder";
-// import ReadySend from "../pages/Order/atom/readySend";
-// import OnDelivery from "../pages/Order/atom/onDelivery";
-// import OrderCompleted from "../pages/Order/atom/orderCompleted";
-// import Canceled from "../pages/Order/atom/canceled";
+import ButtonVarian from "../pages/Product/buttonVarian";
+import ModalVarian from "../pages/Product/atom/modalVarian";
+import DetailOrder from "../pages/Order/component/detailOrder";
+import BuyerLayout from "../layout/BuyerLayout";
+import AuthLayout from "../layout/AuthLayout";
+import Login from "../pages/Auth/login";
+import Register from "../pages/Auth/register";
 
 const router: RouteObject[] = [
     {
@@ -33,7 +33,15 @@ const router: RouteObject[] = [
                     {
                         path: "newProduct",
                         element: <NewProduct />
-                    }
+                    },
+                    {
+                        path: "buttonVarian",
+                        element: <ButtonVarian />
+                    },
+                    {
+                        path: "modalVarian",
+                        element: <ModalVarian />
+                    },
                 ]
             },
             {
@@ -44,15 +52,55 @@ const router: RouteObject[] = [
                         path: "order_list",
                         element: <OrderList />
                     },
-                    {
-                        path: "detail_order",
-                        element: "p",
-                    }
                 ]
+
+            },
+
+            {
+                path: "detailorder",
+                element: <DetailOrder />
             },
             {
                 path: "setting",
-                element: <Setting />
+                children: [
+                    {
+                        path: "store",
+                        element: <Setting />
+                    }, {
+                        path: "shiping"
+                    }, {
+                        path: "paymentMetode"
+                    }
+
+                ]
+            },
+        ],
+    },
+    {
+        path: "/buyer",
+        element: <BuyerLayout />,
+        children: [
+            // {
+            //     index: true,
+            //     element: <Login />,
+            // },
+            // {
+            //     path: "Register",
+            //     element: <Register />
+            // }
+        ],
+    },
+    {
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "Register",
+                element: <Register />
             }
         ],
     },

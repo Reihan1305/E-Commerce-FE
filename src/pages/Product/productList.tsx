@@ -181,7 +181,7 @@ const ProductList = () => {
                     </Select>
                 </FormControl>
             </Box >
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, mr: 1 }}>
                 <Typography variant="h5">{finalProducts.length} Produk</Typography>
                 <Typography variant="body1">
                     Pilih Semua

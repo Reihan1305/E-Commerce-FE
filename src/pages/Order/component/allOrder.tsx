@@ -3,7 +3,7 @@ import { Box, Button, Typography } from "@mui/material"
 const AllOrder = () => {
     const data = [
         {
-            invoice : "INV/20230809/MPL/00000239",
+            invoice: "INV/20230809/MPL/00000239",
             status: "Belum Bayar",
             name: "CREWNECK BASIC - BLACK | sweter polos hoodie polos crewneck",
             totalPrice: 190000,
@@ -11,7 +11,7 @@ const AllOrder = () => {
             image: "https://via.placeholder.com/150"
         },
         {
-            invoice : "INV/20230809/MPL/00000239",
+            invoice: "INV/20230809/MPL/00000239",
             status: "Selesai",
             name: "CREWNECK BASIC - BLACK | sweter polos hoodie polos crewneck",
             totalPrice: 120000,
@@ -19,7 +19,7 @@ const AllOrder = () => {
             image: "https://via.placeholder.com/150"
         },
         {
-            invoice : "INV/20230809/MPL/00000239",
+            invoice: "INV/20230809/MPL/00000239",
             status: "Siap Dikirim",
             name: "CREWNECK BASIC - BLACK | sweter polos hoodie polos crewneck",
             totalPrice: 90000,
@@ -27,7 +27,7 @@ const AllOrder = () => {
             image: "https://via.placeholder.com/150"
         },
         {
-            invoice : "INV/20230809/MPL/00000239",
+            invoice: "INV/20230809/MPL/00000239",
             status: "Sedang Dikirim",
             name: "CREWNECK BASIC - BLACK | sweter polos hoodie polos crewneck",
             totalPrice: 150000,
@@ -35,7 +35,7 @@ const AllOrder = () => {
             image: "https://via.placeholder.com/150"
         },
         {
-            invoice : "INV/20230809/MPL/00000239",
+            invoice: "INV/20230809/MPL/00000239",
             status: "Pesanan Baru",
             name: "CREWNECK BASIC - BLACK | sweter polos hoodie polos crewneck",
             totalPrice: 230000,
@@ -54,7 +54,7 @@ const AllOrder = () => {
             }}
         >
             {data.map((item, index) => (
-                <Box 
+                <Box
                     key={index}
                     sx={{
                         display: "flex",
@@ -94,13 +94,13 @@ const AllOrder = () => {
                             paddingTop: 1
                         }}
                     >
-                        <Box 
+                        <Box
                             sx={{
                                 display: "flex",
                                 gap: 1
                             }}
                         >
-                            <img 
+                            <img
                                 src={item.image}
                                 alt="ProductImage"
                                 width={"8%"}

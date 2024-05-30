@@ -10,7 +10,8 @@ import AllOrder from "../pages/Order/component/allOrder";
 import Unpaid from "../pages/Order/component/unpaid";
 import NewOrder from "../pages/Order/component/newOrder";
 import ModalVarian from "../pages/Product/atom/modalVarian";
-import ButtonSize from "../pages/Product/atom/sizeButton";
+import DetailOrder from "../pages/Order/component/detailOrder";
+
 
 const router: RouteObject[] = [
     {
@@ -75,11 +76,29 @@ const router: RouteObject[] = [
                         path: "order_completed",
                         element: "order completed"
                     },
+
+                    
                 ]
+
+            },
+
+            {
+                path : "detailorder",
+                element: <DetailOrder/>
             },
             {
                 path: "setting",
-                element: <Setting />
+                children:[
+                    {
+                        path:"store",
+                        element: <Setting />
+                    },{
+                        path:"shiping"
+                    },{
+                        path:"paymentMetode"
+                    }
+
+                ]
             }
         ],
     },

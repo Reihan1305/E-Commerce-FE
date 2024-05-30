@@ -713,29 +713,29 @@ const NewProduct = () => {
             >
               <Box sx={{ flex: 1 }}>
                 <TextField
-                  placeholder="Rp"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="start"></InputAdornment>
-                    ),
-                  }}
+                    placeholder="Masukkan harga barang"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    type="number"
+                    sx={{ flex: 1, mr: 1, mb: 3 }}
+                    InputProps={{
+                        startAdornment: <InputAdornment position="start">Rp</InputAdornment>,
+                    }}
                 />
               </Box>
 
               <Box sx={{ flex: 0.5 }}>
                 <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end"></InputAdornment>
-                    ),
-                  }}
+                    placeholder="1"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    type="number"
+                    sx={{ flex: 1, mr: 1, mb: 3 }}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">Produk</InputAdornment>,
+                    }}
                 />
               </Box>
             </Box>
@@ -749,8 +749,37 @@ const NewProduct = () => {
                 p: 1,
               }}
             >
-              <Typography>SKU (Stok Keeping Unit)</Typography>
-              <Typography>Berat Produk</Typography>
+                <Typography
+                    sx={{
+                        fontWeight: 600,
+                        mb: 2
+                    }}
+                >
+                    Pengelolaan Produk
+
+                </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+                    <Box sx={{ flex: 1 }}>
+                        <Typography variant="body2" sx={{ mb: 1 }}>Stok Produk</Typography>
+                        <TextField
+                            placeholder="Masukkan jumlah stok"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            type="number"
+                        />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                        <Typography variant="body2" sx={{ mb: 1 }}>SKU (Stock Keeping Unit)</Typography>
+                        <TextField
+                            placeholder="Masukkan SKU"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            type="number"
+                        />
+                    </Box>
+                </Box>
             </Box>
 
             <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
@@ -770,17 +799,55 @@ const NewProduct = () => {
 
               <Box sx={{ flex: 0.5 }}>
                 <TextField
-                  placeholder="masukkan jumlah stok"
-                  variant="outlined"
-                  size="small"
-                  fullWidth
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">Gram</InputAdornment>
-                    ),
-                  }}
+                    placeholder="Masukan berat produk!"
+                    variant="outlined"
+                    size="small"
+                    fullWidth
+                    type="number"
+                    sx={{ flex: 1, mr: 1, mb: 3 }}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end">gram</InputAdornment>,
+                    }}
                 />
-              </Box>
+                <Typography variant="body2" sx={{ mb: 1 }}>Ukuran Produk</Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 2 }}>
+                    <Box sx={{ flex: 1 }}>
+                        <TextField
+                            placeholder="Panjang"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            type="number"
+                            InputProps={{
+                                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                            }}
+                        />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                        <TextField
+                            placeholder="Lebar"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            type="number"
+                            InputProps={{
+                                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                            }}
+                        />
+                    </Box>
+                    <Box sx={{ flex: 1 }}>
+                        <TextField
+                            placeholder="Tinggi"
+                            variant="outlined"
+                            size="small"
+                            fullWidth
+                            type="number"
+                            InputProps={{
+                                endAdornment: <InputAdornment position="end">cm</InputAdornment>,
+                            }}
+                        />
+                    </Box>
+                </Box>
             </Box>
           </Box>
         </Box>        

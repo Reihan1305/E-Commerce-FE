@@ -11,6 +11,8 @@ import Unpaid from "../pages/Order/component/unpaid";
 import NewOrder from "../pages/Order/component/newOrder";
 import ModalVarian from "../pages/Product/atom/modalVarian";
 import DetailOrder from "../pages/Order/component/detailOrder";
+import BuyerLayout from "../layout/BuyerLayout";
+import { buyerRoutes } from "./buyerRoute";
 
 
 const router: RouteObject[] = [
@@ -94,7 +96,13 @@ const router: RouteObject[] = [
                     }
 
                 ]
-            }
+            },
+        ],
+    },
+    {
+        path: "/buyer",
+        element: <BuyerLayout />,
+        children: [
         ],
     },
 ];

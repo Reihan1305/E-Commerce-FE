@@ -41,11 +41,6 @@ const router: RouteObject[] = [
                         path: "modalVarian",
                         element: <ModalVarian />
                     },
-                    {
-                        path: "buttonSize",
-                        element: <ButtonSize />
-                    },
-
                 ]
             },
             {
@@ -77,25 +72,25 @@ const router: RouteObject[] = [
                         element: "order completed"
                     },
 
-                    
+
                 ]
 
             },
 
             {
-                path : "detailorder",
-                element: <DetailOrder/>
+                path: "detailorder",
+                element: <DetailOrder />
             },
             {
                 path: "setting",
-                children:[
+                children: [
                     {
-                        path:"store",
+                        path: "store",
                         element: <Setting />
-                    },{
-                        path:"shiping"
-                    },{
-                        path:"paymentMetode"
+                    }, {
+                        path: "shiping"
+                    }, {
+                        path: "paymentMetode"
                     }
 
                 ]

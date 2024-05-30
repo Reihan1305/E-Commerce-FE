@@ -82,9 +82,9 @@ export default function Login() {
                             Sign In
                         </Button>
                         <Grid container>
-                            <Grid item xs>
+                            {/* <Grid item xs>
                                 <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Forgot Password</Typography></Button>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
                             </Grid>

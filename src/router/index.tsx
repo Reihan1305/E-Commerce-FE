@@ -13,6 +13,9 @@ import ModalVarian from "../pages/Product/atom/modalVarian";
 import DetailOrder from "../pages/Order/component/detailOrder";
 import BuyerLayout from "../layout/BuyerLayout";
 import { buyerRoutes } from "./buyerRoute";
+import AuthLayout from "../layout/AuthLayout";
+import Login from "../pages/Auth/login";
+import Register from "../pages/Auth/register";
 
 
 const router: RouteObject[] = [
@@ -103,6 +106,28 @@ const router: RouteObject[] = [
         path: "/buyer",
         element: <BuyerLayout />,
         children: [
+            // {
+            //     index: true,
+            //     element: <Login />,
+            // },
+            // {
+            //     path: "Register",
+            //     element: <Register />
+            // }
+        ],
+    },
+    {
+        path: "/auth",
+        element: <AuthLayout />,
+        children: [
+            {
+                path: "login",
+                element: <Login />,
+            },
+            {
+                path: "Register",
+                element: <Register />
+            }
         ],
     },
 ];

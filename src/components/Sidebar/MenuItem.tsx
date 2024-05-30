@@ -33,7 +33,7 @@ const MENU = [
     },
     {
         name: "Order",
-        path: "/order",
+        path: "/order/order_list",
         icon: {
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,

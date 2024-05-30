@@ -1,37 +1,76 @@
 import { Box, Typography } from "@mui/material"
 import { NavLink } from "react-router-dom"
+import dataOrder from "../data/data"
 
 const SortButton = () => {
+    // ! Count
+    const unpaid = []
+    const newOrder = []
+    const readySend = []
+    const onDelivery = []
+    const orderCompleted = []
+    const canceled = []
+    const countAll = []
+
+    {
+        dataOrder.map((item) => {
+            if (item.status === "Belum Dibayar") {
+                unpaid.push(item.status)
+            }
+            if (item.status === "Pesanan Baru") {
+                newOrder.push(item.status)
+            }
+            if (item.status === "Siap Dikirim") {
+                readySend.push(item.status)
+            }
+            if (item.status === "Dalam Pengiriman") {
+                onDelivery.push(item.status)
+            }
+            if (item.status === "Pesanan Selesai") {
+                orderCompleted.push(item.status)
+            }
+            if (item.status === "Dibatalkan") {
+                canceled.push(item.status)
+            }
+            countAll.push(item.status)
+        })
+    }
+
     const buttonList = [
         {
             name: "Semua",
-            total: 10,
+            total: `${countAll.length}`,
             path: "/all"
         },
         {
             name: "Belum Dibayar",
-            total: 3,
+            total: `${unpaid.length}`,
             path: "/unpaid"
         },
         {
             name: "Pesanan Baru",
-            total: 1,
+            total: `${newOrder.length}`,
             path: "/new_order"
         },
         {
             name: "Siap Dikirim",
-            total: 2,
+            total: `${readySend.length}`,
             path: "/ready_send"
         },
         {
             name: "Dalam Pengiriman",
-            total: 3,
+            total: `${onDelivery.length}`,
             path: "/on_delivery"
         },
         {
             name: "Pesanan Selesai",
-            total: 1,
+            total: `${orderCompleted.length}`,
             path: "/order_completed"
+        },
+        {
+            name: "Dibatalkan",
+            total: `${canceled.length}`,
+            path: "/canceled"
         },
     ]
 
@@ -45,7 +84,7 @@ const SortButton = () => {
             }}
         >
             {buttonList.map((item) => (
-                <NavLink to={"/order" + item.path} key={item.name} style={{ textDecoration: "none" }}>
+                <NavLink to={"/order/order_list" + item.path} key={item.name} style={{ textDecoration: "none" }}>
                     {({ isActive }) => (
                         <Box
                             sx={{

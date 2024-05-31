@@ -13,6 +13,7 @@ import BuyerLayout from "../layout/BuyerLayout";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
+import Profile from "../pages/Profile";
 
 const router: RouteObject[] = [
     {
@@ -97,6 +98,10 @@ const router: RouteObject[] = [
             {
                 path: "login",
                 element: <Login />,
+            },
+            {
+                path: "profile",
+                element: <Profile />,
             },
             {
                 path: "Register",

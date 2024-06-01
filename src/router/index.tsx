@@ -52,13 +52,11 @@ const router: RouteObject[] = [
                         path: "order_list",
                         element: <OrderList />
                     },
+                    {
+                        path: "detail_order",
+                        element: <DetailOrder />
+                    },
                 ]
-
-            },
-
-            {
-                path: "detailorder",
-                element: <DetailOrder />
             },
             {
                 path: "setting",

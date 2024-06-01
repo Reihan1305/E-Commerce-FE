@@ -6,4 +6,6 @@ interface IOrder {
     qty: number
     image: string
     courier: string
+    createdAt: string
+    responsTime: number
 }

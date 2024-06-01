@@ -16,16 +16,36 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
         canceled: "#EA3829"
     }
 
-    const handleContactBuyer = () => {
-
+    const handleContactBuyer = (buyerInfo: string, invoice: string, status: string) => {
+        switch (status) {
+            case "Belum Dibayar":
+                console.log("belum dibayar" + buyerInfo + invoice)
+                break
+            
+            case "Pesanan Selesai":
+                console.log("pesanan selesai" + buyerInfo + invoice)
+                break
+            
+            case "Dibatalkan":
+                console.log("pesanan dibatalkan" + buyerInfo + invoice)
+                break
+            
+            default:
+                break
+        }
     }
 
     const handleProcessOrder = (invoice: string) => {
-        const processOrder = dataOrder.invoice.includes(invoice)
+        const processOrder = dataOrder.invoice.match(invoice)
+        console.log("proses order" + processOrder)
     }
 
     const handleTrackingShipment = (invoice: string) => {
+        console.log("tracking" + invoice)
+    }
 
+    const handleInformBuyer = (buyerInfo: string, invoice: string) => {
+        console.log("inform buyer" + buyerInfo + invoice)
     }
 
     return (
@@ -35,7 +55,8 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
                 flexDirection: "column",
                 border: "1px solid #E6E6E6",
                 borderRadius: "10px",
-                padding: 1
+                padding: 2,
+                boxShadow: 3
             }}
         >
             <Box
@@ -81,13 +102,18 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
                         borderColor: "#D5D5D5",
                         color: "black"
                     }}
+                    onClick={
+                        dataOrder.status === "Pesanan Baru" ? () => handleProcessOrder(dataOrder.invoice) 
+                        : dataOrder.status === "Siap Dikirim" ? () => handleInformBuyer(dataOrder.buyer, dataOrder.invoice)
+                        : dataOrder.status === "Dalam Pengiriman" ? () => handleTrackingShipment(dataOrder.invoice)
+                        : () => handleContactBuyer(dataOrder.buyer, dataOrder.invoice, dataOrder.status)
+                    }
                 >
                     {
-                        dataOrder.status === "Belum Dibayar" || dataOrder.status === "Pesanan Selesai" || dataOrder.status === "Dibatalkan" ? "Hubungi Pembeli"
-                        : dataOrder.status === "Pesanan Baru" ? "Proses Pesanan"
+                        dataOrder.status === "Pesanan Baru" ? "Proses Pesanan"
                         : dataOrder.status === "Siap Dikirim" ? "Kabari Pembeli"
                         : dataOrder.status === "Dalam Pengiriman" ? "Lihat Rincian Pengiriman"
-                        : "Error"
+                        : "Hubungi Pembeli"
                     }
                 </Button>
             </Box>
@@ -109,7 +135,7 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
                         <img
                             src={dataOrder.image}
                             alt="ProductImage"
-                            width={"8%"}
+                            width={"65rem"}
                             style={{
                                 borderRadius: "5px"
                             }}

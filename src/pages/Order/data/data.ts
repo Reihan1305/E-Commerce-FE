@@ -8,7 +8,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "JNE",
         createdAt: "2024-05-25",
-        responsTime: 5
+        responsTime: 5,
+        buyer: "Reza"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -19,7 +20,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "JNE",
         createdAt: "2024-03-25",
-        responsTime: 2
+        responsTime: 2,
+        buyer: "Bella"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -30,7 +32,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "JNT",
         createdAt: "2024-05-18",
-        responsTime: 7
+        responsTime: 7,
+        buyer: "Haland"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -41,7 +44,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "Sicepat",
         createdAt: "2024-05-01",
-        responsTime: 3
+        responsTime: 3,
+        buyer: "Teuku"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -52,7 +56,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "Ninja Express",
         createdAt: "2024-04-30",
-        responsTime: 5
+        responsTime: 5,
+        buyer: "Marco"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -63,7 +68,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "Sicepat",
         createdAt: "2024-04-23",
-        responsTime: 4
+        responsTime: 4,
+        buyer: "Putri"
     },
     {
         invoice: "INV/20230809/MPL/00000239",
@@ -74,7 +80,8 @@ const dataOrder: IOrder[] = [
         image: "https://via.placeholder.com/150",
         courier: "Anteraja",
         createdAt: "2024-05-12",
-        responsTime: 1
+        responsTime: 1,
+        buyer: "Jhon"
     },
 ]
 

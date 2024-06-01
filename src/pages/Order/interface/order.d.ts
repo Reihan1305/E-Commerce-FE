@@ -1,4 +1,5 @@
 interface IOrder {
+    buyer: string
     invoice: string
     status: string
     name: string

@@ -7,7 +7,6 @@ import {
     ShoppingBagRounded,
     SettingsOutlined,
     SettingsRounded,
-    ArrowDropDownCircle,
 } from "@mui/icons-material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -33,7 +32,7 @@ const MENU = [
     },
     {
         name: "Order",
-        path: "/order/order_list",
+        path: "/order",
         icon: {
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,

@@ -335,9 +335,17 @@ const OrderList = () => {
                 </FormControl>
             </Box>
 
-            {datas.map((item) => (
-                <OrderCard dataOrder={item} />
-            ))}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 1
+                }}
+            >
+                {datas.map((item) => (
+                    <OrderCard dataOrder={item} />
+                ))}
+            </Box>
         </Box>
     )
 }

@@ -49,7 +49,7 @@ const router: RouteObject[] = [
                 element: <OrderPage />,
                 children: [
                     {
-                        path: "order_list",
+                        index: true,
                         element: <OrderList />
                     },
                     {

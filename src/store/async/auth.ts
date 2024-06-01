@@ -15,26 +15,41 @@ interface IRegisterForm {
 }
 
 
-export const loginAsync = createAsyncThunk<
-   string,
-   ILoginForm,
-   { rejectValue: string }
->("auth/login", async (props, { rejectWithValue }) => {
+// export const loginAsync = createAsyncThunk<
+//    string,
+//    ILoginForm,
+//    { rejectValue: string }
+// >("auth/login", async (props, { rejectWithValue }) => {
+//    try {
+//       console.log("props", props);
+//       const { data } = await API.post("/auth/login", props);
+
+//       console.log("data", data);
+
+//       const token = data.access_token;
+//       setAuthToken(token);
+//       localStorage.setItem("token", token);
+//       return token;
+//    } catch (error) {
+//       return rejectWithValue("error");
+//    }
+// });
+
+export const loginAsync = createAsyncThunk("auth/login", async (props: ILoginForm, { rejectWithValue }) => {
    try {
       console.log("props", props);
-      const { data } = await API.post("/auth/login", props);
+      const response = await API.post("/auth/login", props);
 
-      console.log("data", data);
+      const token = response.data.access_token;
+      const profile = response.data.profile;
 
-      const token = data.access_token;
       setAuthToken(token);
       localStorage.setItem("token", token);
-      return token;
+      return { token: token, profile: profile };
    } catch (error) {
       return rejectWithValue("error");
    }
 });
-
 
 export const registerAsync = createAsyncThunk<
    IRegisterForm,
@@ -52,21 +67,40 @@ export const registerAsync = createAsyncThunk<
    }
 });
 
-export const authCheckAsync = createAsyncThunk<
-   string,
-   string,
-   { rejectValue: string }
->("auth/authCheck", async (token, { rejectWithValue }) => {
+// export const authCheckAsync = createAsyncThunk<
+//    string,
+//    string,
+//    { rejectValue: string }
+// >("auth/authCheck", async (token, { rejectWithValue }) => {
+//    try {
+//       const { data } = await API.get("/profileLogin", {
+//          headers: {
+//             Authorization: `Bearer ${token}`,
+//          },
+//       });
+
+//       setAuthToken(token);
+//       console.log("data", data);
+//       return token;
+//    } catch (error) {
+//       setAuthToken();
+//       // console.log(setAuthToken + `dsadsadsa`)
+//       localStorage.removeItem("token");
+//       return rejectWithValue("error");
+//    }
+// });
+
+export const authCheckAsync = createAsyncThunk("auth/authCheck", async (token: string, { rejectWithValue }) => {
    try {
-      const { data } = await API.get("/profile", {
+      const response = await API.get("/profileLogin", {
          headers: {
             Authorization: `Bearer ${token}`,
          },
       });
-
+      const profile = response.data.profile;
       setAuthToken(token);
-      console.log("data", data);
-      return token;
+
+      return { token: token, profile: profile };
    } catch (error) {
       setAuthToken();
       // console.log(setAuthToken + `dsadsadsa`)

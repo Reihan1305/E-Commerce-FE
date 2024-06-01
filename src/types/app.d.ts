@@ -21,10 +21,10 @@ interface IUser {
     rolesId: number;
 }
 
-interface IProfile {
-    username?: string;
-    bio?: string;
-    avatar?: string;
-    cover?: string;
-    user?: IUser;
+export interface IProfile {
+    email: string;
+    name: string;
+    password: string;
+    phone: string;
+    rolesId: number;
 }

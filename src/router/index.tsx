@@ -101,7 +101,7 @@ const router: RouteObject[] = [
             },
             {
                 path: "profile",
-                element: <Profile />,
+                element: <Profile email={""} name={""} password={""} phone={""} rolesId={0} />,
             },
             {
                 path: "Register",

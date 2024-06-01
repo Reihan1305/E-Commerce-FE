@@ -6,7 +6,7 @@ export const getProfileAsync = createAsyncThunk<
     IProfile,
     void,
     { rejectValue: string }
->("profile/getProfile", async (_, { rejectWithValue }) => {
+>("users/profileLogin", async (_, { rejectWithValue }) => {
     try {
         const { data } = await getProfile();
         console.log("data", data);

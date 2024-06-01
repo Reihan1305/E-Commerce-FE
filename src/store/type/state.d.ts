@@ -1,8 +1,8 @@
-import { Iuser } from "../../types/app";
+import { IProfile } from "../../types/app";
 
 interface IAuthState {
-   profile: any;
+   // profile: any;
    isLogin: boolean;
    token: string;
-   user: Iuser;
+   profile: IProfile;
 }

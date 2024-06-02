@@ -9,7 +9,7 @@ function FooterItem() {
                 py: 3,
                 px: 2,
                 mt: 'auto',
-                backgroundColor: "#F8F8F8",
+                backgroundColor: "gray",
                 textAlign: 'center',
             }}
         >

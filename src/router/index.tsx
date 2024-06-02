@@ -14,6 +14,7 @@ import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
 import DetailProduct from "../pages/Buyer/DetailProduct";
+import Cart from "../pages/Buyer/Cart";
 
 const router: RouteObject[] = [
     {
@@ -87,6 +88,10 @@ const router: RouteObject[] = [
             {
                 path: "detailproduct",
                 element: <DetailProduct />
+            },
+            {
+                path: "cart",
+                element: <Cart />
             }
         ],
     },

@@ -5,9 +5,11 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Add, Remove } from '@mui/icons-material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import Footer from '../../../components/Footer';
+import { useNavigate } from 'react-router-dom';
 
 const DetailProduct = () => {
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     const handleIncrement = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
@@ -29,6 +31,10 @@ const DetailProduct = () => {
     const handleIntervalChange = (event: SelectChangeEvent) => {
         setDeliveryInterval(event.target.value);
     };
+
+    const handleClick = () => {
+        navigate('/buyer/cart');
+    }
 
     return (
         <>
@@ -100,7 +106,7 @@ const DetailProduct = () => {
                                     </Box>
                                 </RadioGroup>
                             </FormControl>
-                            <Button variant="contained" color="success" fullWidth sx={{ mt: 5, gap: 1 }}>
+                            <Button variant="contained" color="success" fullWidth sx={{ mt: 5, gap: 1 }} onClick={handleClick}>
                                 <ShoppingCartOutlinedIcon />
                                 <Typography variant="body2" color={"white"}> + Add to cart</Typography>
                             </Button>
@@ -136,7 +142,9 @@ const DetailProduct = () => {
                     </Box>
                 </Box>
             </Box >
-            <Footer />
+            <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+                <Footer />
+            </Box>
         </>
     )
 }

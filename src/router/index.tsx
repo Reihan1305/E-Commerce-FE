@@ -13,6 +13,7 @@ import BuyerLayout from "../layout/BuyerLayout";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
+import DetailProduct from "../pages/Buyer/DetailProduct";
 
 const router: RouteObject[] = [
     {
@@ -78,16 +79,15 @@ const router: RouteObject[] = [
     },
     {
         path: "/buyer",
-        element: <BuyerLayout />,
         children: [
-            // {
-            //     index: true,
-            //     element: <Login />,
-            // },
-            // {
-            //     path: "Register",
-            //     element: <Register />
-            // }
+            {
+                index: true,
+                element: <BuyerLayout />,
+            },
+            {
+                path: "detailproduct",
+                element: <DetailProduct />
+            }
         ],
     },
     {

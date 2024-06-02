@@ -8,8 +8,9 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 
-function NavbarItem() {
+const NavbarItem = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [categoryAnchorEl, setCategoryAnchorEl] = React.useState(null);
     const [subCategoryAnchorEl, setSubCategoryAnchorEl] = React.useState(null);
@@ -38,14 +39,21 @@ function NavbarItem() {
         setAnchorEl(null);
     };
 
+    const navigate = useNavigate();
+    const handleClick = () => {
+        navigate('/buyer');
+    };
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent" elevation={0} sx={{ paddingLeft: 25, paddingRight: 25 }}>
                 <Toolbar>
-                    <img src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?size=338&ext=jpg&ga=GA1.1.2082370165.1717027200&semt=ais_user" alt="Candleaf Logo" style={{ height: '40px', marginRight: '10px' }} />
-                    <Typography variant="h6">
-                        Candleaf
-                    </Typography>
+                    <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
+                        <img src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?size=338&ext=jpg&ga=GA1.1.2082370165.1717027200&semt=ais_user" alt="Candleaf Logo" style={{ height: '40px', marginRight: '10px' }} />
+                        <Typography variant="h6">
+                            Candleaf
+                        </Typography>
+                    </Box>
                     <Box sx={{ flexGrow: 8, display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
                         <Typography
                             variant="body1"

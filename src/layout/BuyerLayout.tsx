@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import Hero from "../pages/Buyer/Hero";
-import Products from "../pages/Buyer/Products";
-import Testimonial from "../pages/Buyer/Testimonial";
-import Popular from "../pages/Buyer/Popular";
+import Hero from "../pages/Buyer/components/Hero";
+import Products from "../pages/Buyer/components/Products";
+import Testimonial from "../pages/Buyer/components/Testimonial";
+import Popular from "../pages/Buyer/components/Popular";
 import Footer from "../components/Footer";
 
 const BuyerLayout = () => {

@@ -1,6 +1,5 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Link } from 'react-router-dom';
 
 function FooterItem() {
     return (
@@ -10,7 +9,7 @@ function FooterItem() {
                 py: 3,
                 px: 2,
                 mt: 'auto',
-                backgroundColor: "#F8F8F8",
+                backgroundColor: "gray",
                 textAlign: 'center',
             }}
         >

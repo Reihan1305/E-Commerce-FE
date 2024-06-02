@@ -1,23 +1,16 @@
 import { Box } from "@mui/material";
 import FooterItem from "./FooterItem";
 
-
 const Footer = () => {
-
     return (
-
         <Box
             sx={{
-                display: "flex",
-                flexDirection: "column",
-                height: "100%",
                 bgcolor: "gray",
-                marginTop: 5
+                padding: 2,
+                marginTop: "auto"
             }}
         >
-            <Box>
-                <FooterItem />
-            </Box>
+            <FooterItem />
         </Box>
     );
 };

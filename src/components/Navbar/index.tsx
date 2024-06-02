@@ -13,7 +13,7 @@ const Navbar = () => {
                 height: "100%",
             }}
         >
-            <Box>
+            <Box borderBottom={1} borderColor="divider">
                 <NavbarItem />
             </Box>
         </Box>

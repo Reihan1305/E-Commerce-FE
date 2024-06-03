@@ -10,8 +10,9 @@ import {
 } from "@mui/icons-material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CircleIcon from '@mui/icons-material/Circle';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MENU = [
     {
@@ -41,6 +42,14 @@ const MENU = [
 ];
 
 const MenuItem = () => {
+
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // localStorage.clear();
+        // window.location.reload();
+        navigate("/auth/login");
+    }
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -161,6 +170,9 @@ const MenuItem = () => {
                     </NavLink>
                 </AccordionDetails>
             </Accordion>
+            <Box>
+                <Button onClick={handleLogout}><Typography>Logout</Typography></Button>
+            </Box>
         </Box>
     );
 };

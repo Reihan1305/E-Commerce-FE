@@ -8,39 +8,23 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
     const [newPrice, setNewPrice] = useState(price);
     const [newStock, setNewStock] = useState(stock);
 
-    const handleOpenPriceModal = () => {
-        setIsPriceModalOpen(true);
-    };
-
-    const handleClosePriceModal = () => {
-        setIsPriceModalOpen(false);
-    };
-
-    const handleOpenStockModal = () => {
-        setIsStockModalOpen(true);
-    };
-
-    const handleCloseStockModal = () => {
-        setIsStockModalOpen(false);
-    };
+    const handleOpenPriceModal = () => setIsPriceModalOpen(true);
+    const handleOpenStockModal = () => setIsStockModalOpen(true);
+    const handleClosePriceModal = () => setIsPriceModalOpen(false);
+    const handleCloseStockModal = () => setIsStockModalOpen(false);
 
     const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newPriceValue = parseInt(event.target.value);
+        const newPriceValue = parseInt(event.target.value, 10);
         setNewPrice(newPriceValue);
     };
 
     const handleChangeStock = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const newStockValue = parseInt(event.target.value);
+        const newStockValue = parseInt(event.target.value, 10);
         setNewStock(newStockValue);
     };
 
-    const handleSavePrice = () => {
-        handleClosePriceModal();
-    };
-
-    const handleSaveStock = () => {
-        handleCloseStockModal();
-    };
+    const handleSavePrice = () => handleClosePriceModal();
+    const handleSaveStock = () => handleCloseStockModal();
 
     return (
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderColor: 'divider', py: 1 }}>
@@ -65,7 +49,7 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
                     </Box>
                 </Box>
             </Box>
-            {/* Modal untuk mengubah harga */}
+
             <Modal open={isPriceModalOpen} onClose={handleClosePriceModal}>
                 <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
                     <Typography variant="h6" gutterBottom>Ubah Harga</Typography>
@@ -81,6 +65,7 @@ const ProductItem = ({ name, price, stock, sku, image, isActive, category, check
                     </Box>
                 </Box>
             </Modal>
+
             <Modal open={isStockModalOpen} onClose={handleCloseStockModal}>
                 <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', bgcolor: 'background.paper', boxShadow: 24, p: 4 }}>
                     <Typography variant="h6" gutterBottom>Ubah Stok</Typography>

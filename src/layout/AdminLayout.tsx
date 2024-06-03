@@ -10,7 +10,7 @@ const SellerLayout = () => {
     }))
 
     if (!isLogin) {
-        <Navigate to="/auth/login" />;
+        return <Navigate to="/auth/login" />;
     }
     return (
         <>

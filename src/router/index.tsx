@@ -17,6 +17,8 @@ import DetailProduct from "../pages/Buyer/DetailProduct";
 import Cart from "../pages/Buyer/Cart";
 import Order from "../pages/Buyer/Order";
 import DetailsOrder from "../pages/Buyer/DetailsOrder";
+import Payment from "../pages/Buyer/Payment";
+import Thanks from "../pages/Buyer/Thanks";
 
 const router: RouteObject[] = [
     {
@@ -99,6 +101,14 @@ const router: RouteObject[] = [
             {
                 path: "order",
                 element: <Order />
+            },
+            {
+                path: "payment",
+                element: <Payment />
+            },
+            {
+                path: "thanks",
+                element: <Thanks />
             }
         ],
     },

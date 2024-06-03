@@ -13,8 +13,8 @@ import Home from "../pages/Home";
 
 export const sellerRoutes: RouteObject[] = [
     {
-        // index: true,
-        // element: <SellerLayout />,
+        index: true,
+        element: <Home />,
     },
     {
         path: "product",
@@ -45,14 +45,14 @@ export const sellerRoutes: RouteObject[] = [
                 path: "order_list",
                 element: <OrderList />
             },
+            {
+                path: "detailorder",
+                element: <DetailOrder />
+            },
         ]
 
     },
 
-    {
-        path: "detailorder",
-        element: <DetailOrder />
-    },
     {
         path: "setting",
         children: [

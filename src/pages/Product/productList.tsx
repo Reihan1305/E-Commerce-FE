@@ -89,7 +89,7 @@ const ProductList = () => {
                     variant="contained"
                     color="primary"
                     sx={{ borderRadius: 50 }}
-                    onClick={() => navigate('/product/newProduct')}
+                    onClick={() => navigate('/seller/product/newProduct')}
                 >
                     <AddCircleOutlineOutlinedIcon /> Tambah Produk
                 </Button>

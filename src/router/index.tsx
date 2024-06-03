@@ -15,6 +15,8 @@ import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
 import DetailProduct from "../pages/Buyer/DetailProduct";
 import Cart from "../pages/Buyer/Cart";
+import Order from "../pages/Buyer/Order";
+import DetailsOrder from "../pages/Buyer/DetailsOrder";
 
 const router: RouteObject[] = [
     {
@@ -92,6 +94,14 @@ const router: RouteObject[] = [
             {
                 path: "cart",
                 element: <Cart />
+            },
+            {
+                path: "detailsorder",
+                element: <DetailsOrder />
+            },
+            {
+                path: "order",
+                element: <Order />
             }
         ],
     },

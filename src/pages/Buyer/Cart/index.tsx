@@ -3,10 +3,12 @@ import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 import { Box, Button, Divider, Typography } from '@mui/material'
 import { Add, Remove } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
 
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     const handleIncrement = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
@@ -17,6 +19,10 @@ const Cart = () => {
             setQuantity(prevQuantity => prevQuantity - 1);
         }
     };
+
+    const handleCheckout = () => {
+        navigate('/buyer/detailsorder');
+    }
     return (
         <>
             <Navbar />
@@ -82,7 +88,7 @@ const Cart = () => {
                     <Typography variant="h6">$99.9</Typography>
                 </Box>
                 <Box sx={{ flex: 1, gap: 2, textAlign: "right" }}>
-                    <Button variant='contained' color='success'>Checkout</Button>
+                    <Button variant='contained' color='success' onClick={handleCheckout}>Checkout</Button>
                 </Box>
             </Box>
             <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>

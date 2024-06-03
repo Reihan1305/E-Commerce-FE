@@ -9,10 +9,11 @@ const SellerLayout = () => {
         isLogin: state.auth.isLogin,
         profile: state.auth.profile
     }))
-
+    console.log(isLogin)
     if (!isLogin) {
         <Navigate to="/auth/login" />;
     }
+
     return (
         <>
             <Box className="container">

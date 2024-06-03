@@ -20,16 +20,16 @@ const MENU = [
         },
     },
     {
-        name: "Product",
-        path: "/product",
+        name: "Category",
+        path: "/admin/category",
         icon: {
             active: <PersonSearch fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <PersonSearchOutlined fontSize="large" />,
         },
     },
     {
-        name: "Order",
-        path: "/order/order_list",
+        name: "Courier",
+        path: "/admin/courier",
         icon: {
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,

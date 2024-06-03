@@ -1,5 +1,4 @@
 import { RouteObject } from "react-router-dom";
-import RootLayout from "../layout/RootLayout";
 import Home from "../pages/Home";
 import Product from "../pages/Product";
 import OrderPage from "../pages/Order";
@@ -22,7 +21,6 @@ import DetailsOrder from "../pages/Buyer/DetailsOrder";
 const router: RouteObject[] = [
     {
         path: "/",
-        element: <RootLayout />,
         children: [
             {
                 index: true,

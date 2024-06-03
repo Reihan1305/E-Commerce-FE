@@ -97,14 +97,6 @@ export default function Login() {
                                 </Button>
                             </Box>
                         </form>
-                        {/* <Grid container> */}
-                        {/* <Grid item xs>
-                                <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Forgot Password</Typography></Button>
-                            </Grid> */}
-                        {/* <Grid item>
-                                <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
-                            </Grid> */}
-                        {/* </Grid> */}
                     </Box>
                 </Container >
             </ThemeProvider >

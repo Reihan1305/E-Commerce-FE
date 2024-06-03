@@ -107,6 +107,7 @@ const Register = () => {
                                                 >
                                                     <MenuItem value={1}>Buyer</MenuItem>
                                                     <MenuItem value={2}>Seller</MenuItem>
+                                                    {/* <MenuItem value={3}>Admin</MenuItem> */}
                                                 </Select>
                                                 {fieldState.error && (
                                                     <FormHelperText>{fieldState.error.message}</FormHelperText>

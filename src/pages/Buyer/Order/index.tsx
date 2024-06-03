@@ -12,6 +12,10 @@ const Order = () => {
         navigate('/buyer/detailsorder');
     }
 
+    const handlePayment = () => {
+        navigate('/buyer/payment');
+    }
+
     return (
         <>
             <Navbar />
@@ -74,7 +78,7 @@ const Order = () => {
                     </Box>
                     <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
                         <Button variant="text" onClick={handleBack} >Back to details</Button>
-                        <Button variant="contained" >Go to payment</Button>
+                        <Button variant="contained" onClick={handlePayment}>Go to payment</Button>
                     </Box>
                 </Box>
 

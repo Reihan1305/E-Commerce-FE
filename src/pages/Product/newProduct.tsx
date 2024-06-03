@@ -400,7 +400,7 @@ const NewProduct = () => {
         {showVariants && (
           <>
             <Box sx={{ display: "flex", gap: 1, mt: 2 }}>
-              
+
               <Button
                 variant="outlined"
                 sx={{
@@ -1785,8 +1785,5 @@ const size = [
   { size: "M" },
   { size: "XL" },
   { size: "XXL" },
-<<<<<<< HEAD
+
 ];
-=======
-];
->>>>>>> 94ef878da498476b31697576dc53c01ee7b8cef2

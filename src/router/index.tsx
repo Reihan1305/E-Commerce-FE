@@ -56,16 +56,14 @@ const router: RouteObject[] = [
                 element: <OrderPage />,
                 children: [
                     {
-                        path: "order_list",
+                        index: true,
                         element: <OrderList />
                     },
+                    {
+                        path: "detail_order",
+                        element: <DetailOrder />
+                    },
                 ]
-
-            },
-
-            {
-                path: "detailorder",
-                element: <DetailOrder />
             },
             {
                 path: "setting",

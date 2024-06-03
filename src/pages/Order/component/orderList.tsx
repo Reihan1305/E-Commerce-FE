@@ -6,36 +6,69 @@ import { useState } from "react"
 import OrderCard from "../atom/orderCard"
 
 const OrderList = () => {
-    const [datas, setDatas] = useState<IOrder[]>(dataOrder)
+    // ! Count
+    const countUnpaid = []
+    const countNewOrder = []
+    const countReadySend = []
+    const countOnDelivery = []
+    const countOrderCompleted = []
+    const countCanceled = []
+    const countAll = []
 
-    const handleSearch = (props: string) => {
-        const filteredData = dataOrder.filter((item) => {
-            const orderName = item.name.toLowerCase()
-            return orderName.match(props.toLowerCase())
+    // ! Count Function
+    {
+        dataOrder.map((item) => {
+            if (item.status === "Belum Dibayar") {
+                countUnpaid.push(item.status)
+            }
+            if (item.status === "Pesanan Baru") {
+                countNewOrder.push(item.status)
+            }
+            if (item.status === "Siap Dikirim") {
+                countReadySend.push(item.status)
+            }
+            if (item.status === "Dalam Pengiriman") {
+                countOnDelivery.push(item.status)
+            }
+            if (item.status === "Pesanan Selesai") {
+                countOrderCompleted.push(item.status)
+            }
+            if (item.status === "Dibatalkan") {
+                countCanceled.push(item.status)
+            }
+            countAll.push(item.status)
         })
-
-        setDatas(filteredData)
     }
 
-    const handleChange = (e: any) => {
-        handleSearch(e.target.value)
-    }
+    // ! Button list
+    const buttonList = [
+        {
+            name: "Belum Dibayar",
+            total: `${countUnpaid.length}`
+        },
+        {
+            name: "Pesanan Baru",
+            total: `${countNewOrder.length}`
+        },
+        {
+            name: "Siap Dikirim",
+            total: `${countReadySend.length}`
+        },
+        {
+            name: "Dalam Pengiriman",
+            total: `${countOnDelivery.length}`
+        },
+        {
+            name: "Pesanan Selesai",
+            total: `${countOrderCompleted.length}`
+        },
+        {
+            name: "Dibatalkan",
+            total: `${countCanceled.length}`
+        },
+    ]
 
-    const handleSearchCourier = (courierProps: string) => {
-        const filteredData = dataOrder.filter((item) => {
-            const courier = item.courier.toLowerCase()
-            return courier.match(courierProps.toLowerCase())
-        })
-
-        setDatas(filteredData)
-    }
-
-    const handleSelectCourier = (e: any) => {
-        handleSearchCourier(e.target.value)
-    }
-
-    console.log(datas)
-
+    // ! Data Courier
     const dataCourier = [
         {
             name: "JNE"
@@ -54,67 +87,11 @@ const OrderList = () => {
         },
     ]
 
-    // ! Count
-    const unpaid = []
-    const newOrder = []
-    const readySend = []
-    const onDelivery = []
-    const orderCompleted = []
-    const canceled = []
-    const countAll = []
+    // ! All Data
+    const [datas, setDatas] = useState<IOrder[]>(dataOrder)
 
-    {
-        dataOrder.map((item) => {
-            if (item.status === "Belum Dibayar") {
-                unpaid.push(item.status)
-            }
-            if (item.status === "Pesanan Baru") {
-                newOrder.push(item.status)
-            }
-            if (item.status === "Siap Dikirim") {
-                readySend.push(item.status)
-            }
-            if (item.status === "Dalam Pengiriman") {
-                onDelivery.push(item.status)
-            }
-            if (item.status === "Pesanan Selesai") {
-                orderCompleted.push(item.status)
-            }
-            if (item.status === "Dibatalkan") {
-                canceled.push(item.status)
-            }
-            countAll.push(item.status)
-        })
-    }
-
-    const buttonList = [
-        {
-            name: "Belum Dibayar",
-            total: `${unpaid.length}`
-        },
-        {
-            name: "Pesanan Baru",
-            total: `${newOrder.length}`
-        },
-        {
-            name: "Siap Dikirim",
-            total: `${readySend.length}`
-        },
-        {
-            name: "Dalam Pengiriman",
-            total: `${onDelivery.length}`
-        },
-        {
-            name: "Pesanan Selesai",
-            total: `${orderCompleted.length}`
-        },
-        {
-            name: "Dibatalkan",
-            total: `${canceled.length}`
-        },
-    ]
-
-    const handleSort = (status: string) => {
+    // ! Handle Status
+    const handleSortStatus = (status: string) => {
         const filteredData = dataOrder.filter((item) => {
             const statusOrder = item.status.toLowerCase()
             return statusOrder.includes(status.toLowerCase())
@@ -125,6 +102,67 @@ const OrderList = () => {
 
     const handleAll = () => {
         setDatas(dataOrder)
+    }
+
+    // ! Handle Search
+    const handleSearch = (props: string) => {
+        const filteredData = dataOrder.filter((item) => {
+            const orderName = item.name.toLowerCase()
+            return orderName.match(props.toLowerCase())
+        })
+
+        setDatas(filteredData)
+    }
+
+    const handleChange = (e: any) => {
+        handleSearch(e.target.value)
+    }
+
+    // ! Handle Courier
+    const handleSearchCourier = (courierProps: string) => {
+        const filteredData = dataOrder.filter((item) => {
+            const courier = item.courier.toLowerCase()
+            return courier.match(courierProps.toLowerCase())
+        })
+
+        setDatas(filteredData)
+    }
+
+    const handleSelectCourier = (e: any) => {
+        handleSearchCourier(e.target.value)
+    }
+
+    // ! Handle Sort
+    const handleSort = (sortTerm: string) => {
+        const data = [...dataOrder]
+        switch (sortTerm) {
+            case "Paling Lama":
+                data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                setDatas(data)
+                break
+
+            case "Paling Baru":
+                data.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+                setDatas(data)
+                break
+
+            case "Respons Terlama":
+                data.sort((a, b) => b.responsTime - a.responsTime)
+                setDatas(data)
+                break
+
+            case "Respons Tercepat":
+                data.sort((a, b) => a.responsTime - b.responsTime)
+                setDatas(data)
+                break
+
+            default:
+                break
+        }
+    }
+
+    const handleChangeSort = (e: any) => {
+        handleSort(e.target.value)
     }
 
     return (
@@ -231,7 +269,7 @@ const OrderList = () => {
                         <Button
                             size="small"
                             variant="outlined"
-                            onClick={() => handleSort(item.name)}
+                            onClick={() => handleSortStatus(item.name)}
                             sx={{
                                 width: "250px"
                             }}
@@ -284,23 +322,30 @@ const OrderList = () => {
                     <InputLabel>Urutkan</InputLabel>
                     <Select
                         label="Urutkan"
-                    // value={sortBy}
-                    // onChange={handleSortByChange}
+                        onChange={handleChangeSort}
                     >
                         <MenuItem value="">
                             <em>None</em>
                         </MenuItem>
-                        <MenuItem value="baru">Paling Baru</MenuItem>
-                        <MenuItem value="lama">Paling Lama</MenuItem>
-                        <MenuItem value="tercepat">Respons Tercepat</MenuItem>
-                        <MenuItem value="terlama">Respons Terlama</MenuItem>
+                        <MenuItem value="Paling Baru">Paling Baru</MenuItem>
+                        <MenuItem value="Paling Lama">Paling Lama</MenuItem>
+                        <MenuItem value="Respons Tercepat">Respons Tercepat</MenuItem>
+                        <MenuItem value="Respons Terlama">Respons Terlama</MenuItem>
                     </Select>
                 </FormControl>
             </Box>
 
-            {datas.map((item) => (
-                <OrderCard dataOrder={item} />
-            ))}
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 1
+                }}
+            >
+                {datas.map((item) => (
+                    <OrderCard dataOrder={item} />
+                ))}
+            </Box>
         </Box>
     )
 }

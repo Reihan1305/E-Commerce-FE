@@ -1,4 +1,5 @@
 interface IOrder {
+    buyer: string
     invoice: string
     status: string
     name: string
@@ -6,4 +7,6 @@ interface IOrder {
     qty: number
     image: string
     courier: string
+    createdAt: string
+    responsTime: number
 }

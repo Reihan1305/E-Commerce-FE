@@ -109,11 +109,14 @@ export default function Login() {
                                 </Button>
                             </Box>
                         </form>
+<<<<<<< HEAD
                         <Grid container justifyContent="flex-end">
                             <Grid item>
                                 <Button onClick={handleButton}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
                             </Grid>
                         </Grid>
+=======
+>>>>>>> b9d212dc1c3d552621bff38dee03790a4c91a08f
                     </Box>
                 </Container >
             </ThemeProvider >

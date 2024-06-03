@@ -12,11 +12,13 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CircleIcon from '@mui/icons-material/Circle';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { SET_LOGOUT } from "../../store/slice/auth";
+import { useAppDispatch } from "../../store";
 
 const MENU = [
     {
         name: "Dashboard",
-        path: "/",
+        path: "/seller",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
@@ -24,7 +26,7 @@ const MENU = [
     },
     {
         name: "Product",
-        path: "/product",
+        path: "/seller/product",
         icon: {
             active: <PersonSearch fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <PersonSearchOutlined fontSize="large" />,
@@ -32,7 +34,7 @@ const MENU = [
     },
     {
         name: "Order",
-        path: "/order/order_list",
+        path: "/seller/order/order_list",
         icon: {
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,
@@ -41,6 +43,11 @@ const MENU = [
 ];
 
 const MenuItem = () => {
+    const dispatch = useAppDispatch();
+
+    const handleLogout = () => {
+        dispatch(SET_LOGOUT());
+    }
 
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
@@ -72,7 +79,7 @@ const MenuItem = () => {
 
                     expandIcon={<ArrowDropDownIcon />}
                 >
-                    <NavLink to={"/setting/store"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
 
@@ -96,7 +103,7 @@ const MenuItem = () => {
                     </NavLink>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <NavLink to={"/setting/store"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}
@@ -117,7 +124,7 @@ const MenuItem = () => {
                             </Box>
                         )}
                     </NavLink>
-                    <NavLink to={"/setting/shiping"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/shiping"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}
@@ -138,7 +145,7 @@ const MenuItem = () => {
                             </Box>
                         )}
                     </NavLink>
-                    <NavLink to={"/setting/paymentMetode"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/paymentMetode"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}
@@ -162,7 +169,7 @@ const MenuItem = () => {
                 </AccordionDetails>
             </Accordion>
             <Box>
-                <Button><Typography>Logout</Typography></Button>
+                <Button onClick={handleLogout}><Typography>Logout</Typography></Button>
             </Box>
         </Box>
     );

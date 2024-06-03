@@ -1,4 +1,3 @@
-
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../store";
 import Navbar from "../components/Navbar";
@@ -7,7 +6,6 @@ import Products from "../pages/Buyer/components/Products";
 import Testimonial from "../pages/Buyer/components/Testimonial";
 import Popular from "../pages/Buyer/components/Popular";
 import Footer from "../components/Footer";
-
 
 const BuyerLayout = () => {
 
@@ -22,12 +20,6 @@ const BuyerLayout = () => {
    }
    return (
       <>
-         <Navbar />
-         <Hero />
-         <Products />
-         <Testimonial />
-         <Popular />
-         <Footer />
          <Outlet />
       </>
    );

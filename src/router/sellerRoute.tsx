@@ -44,14 +44,14 @@ export const sellerRoutes: RouteObject[] = [
                 path: "order_list",
                 element: <OrderList />
             },
+            {
+                path: "detailorder",
+                element: <DetailOrder />
+            },
         ]
 
     },
 
-    {
-        path: "detailorder",
-        element: <DetailOrder />
-    },
     {
         path: "setting",
         children: [

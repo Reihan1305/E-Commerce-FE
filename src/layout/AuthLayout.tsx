@@ -26,6 +26,7 @@ const AuthLayout = () => {
             return <Navigate to={"/"} />
         }
     }
+
     return (
         <Box className="container" sx={{ color: "white", height: "100vh" }}>
             <Container className="container">

@@ -65,6 +65,15 @@ export const authSlice = createSlice({
          state.token = action.payload.token;
          state.profile = action.payload.profile;
       },
+      SET_LOGOUT: (state) => {
+         localStorage.removeItem("token");
+         state.isLogin = false;
+         state.token = "";
+      },
+      REGISTER: (state, action) => {
+         console.log("FROM REGISTER ACTION", action.payload);
+         state.isLogin = false;
+      }
    },
    extraReducers: (builder) => {
       builder
@@ -99,6 +108,6 @@ export const authSlice = createSlice({
    },
 });
 
-export const { LOGIN } = authSlice.actions;
+export const { LOGIN, SET_LOGOUT, REGISTER } = authSlice.actions;
 
 export default authSlice.reducer;

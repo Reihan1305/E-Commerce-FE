@@ -12,7 +12,8 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CircleIcon from '@mui/icons-material/Circle';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { SET_LOGOUT } from "../../store/slice/auth";
+import { useAppDispatch } from "../../store";
 
 const MENU = [
     {
@@ -42,13 +43,10 @@ const MENU = [
 ];
 
 const MenuItem = () => {
-
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const handleLogout = () => {
-        // localStorage.clear();
-        // window.location.reload();
-        navigate("/auth/login");
+        dispatch(SET_LOGOUT());
     }
 
     return (

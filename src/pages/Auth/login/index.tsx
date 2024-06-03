@@ -14,11 +14,14 @@ import { Controller } from 'react-hook-form';
 import { useAppSelector } from '../../../store';
 import useLoginValidation from '../../../lib/api/validation/useLoginValidation';
 import { useLoginFunction } from './functions/loginFunction';
+import { Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
 export default function Login() {
     const authState = useAppSelector((state) => state.auth);
+    const navigate = useNavigate();
 
     const { control, reset, handleSubmit } = useLoginValidation();
     const { onErrorSubmit, onSubmit } = useLoginFunction({ reset });
@@ -27,9 +30,9 @@ export default function Login() {
         console.log(authState);
     }, [authState]);
 
-    // function handleClick(event: MouseEvent<HTMLButtonElement, MouseEvent>): void {
-    //     throw new Error('Function not implemented.');
-    // }
+    const handleButton = () => {
+        navigate('/auth/register');
+    }
 
     return (
         <>
@@ -47,8 +50,8 @@ export default function Login() {
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlinedIcon />
                         </Avatar>
-                        <Typography component="h1" variant="h5">
-                            Sign in
+                        <Typography component="h1" variant="h5" sx={{ color: "black" }}>
+                            Sign in Lakoe
                         </Typography>
                         <form>
 
@@ -58,12 +61,14 @@ export default function Login() {
                                     name="email"
                                     render={({ field, fieldState }) => (
                                         <TextField
+                                            fullWidth
                                             label="Email"
                                             color="success"
                                             sx={{ borderColor: "white" }}
                                             {...field}
                                             helperText={fieldState.error?.message}
                                             error={Boolean(fieldState.error)}
+                                            style={{ marginBottom: "10px" }}
                                         />
                                     )}
                                 />
@@ -72,6 +77,7 @@ export default function Login() {
                                     name="password"
                                     render={({ field, fieldState }) => (
                                         <TextField
+                                            fullWidth
                                             label="Password"
                                             color="success"
                                             type="password"
@@ -82,10 +88,16 @@ export default function Login() {
                                         />
                                     )}
                                 />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
-                                />
+                                <Box>
+
+                                    <Box>
+                                        <FormControlLabel
+                                            control={<Checkbox value="remember" color="primary" />}
+                                            label="Remember me"
+                                            sx={{ color: "black" }}
+                                        />
+                                    </Box>
+                                </Box>
                                 <Button
                                     type="submit"
                                     fullWidth
@@ -97,14 +109,11 @@ export default function Login() {
                                 </Button>
                             </Box>
                         </form>
-                        {/* <Grid container> */}
-                        {/* <Grid item xs>
-                                <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Forgot Password</Typography></Button>
-                            </Grid> */}
-                        {/* <Grid item>
-                                <Button onClick={handleClick}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
-                            </Grid> */}
-                        {/* </Grid> */}
+                        <Grid container justifyContent="flex-end">
+                            <Grid item>
+                                <Button onClick={handleButton}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
+                            </Grid>
+                        </Grid>
                     </Box>
                 </Container >
             </ThemeProvider >

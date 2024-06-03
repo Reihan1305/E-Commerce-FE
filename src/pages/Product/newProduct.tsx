@@ -400,6 +400,7 @@ const NewProduct = () => {
         {showVariants && (
           <>
             <Box sx={{ display: "flex", gap: 1, mt: 2 }}>
+              
               <Button
                 variant="outlined"
                 sx={{
@@ -447,6 +448,7 @@ const NewProduct = () => {
         )}
 
         {/* Button Warna */}
+
         <Box
           display={isOpen ? "block" : "none"}
           sx={{
@@ -455,8 +457,7 @@ const NewProduct = () => {
             p: 2,
             fontWeight: "bold",
             mb: 3,
-          }}
-        >
+          }} >
           <Typography
             sx={{
               fontWeight: 600,
@@ -473,7 +474,7 @@ const NewProduct = () => {
             renderInput={(params) => (
               <TextField {...params} placeholder="Pilih Warna" />
             )}
-            sx={{ width: "820px" }}
+            sx={{ width: "700px" }}
           />
 
           <FormControlLabel
@@ -838,7 +839,7 @@ const NewProduct = () => {
           renderInput={(params) => (
             <TextField {...params} placeholder="Pilih Size" />
           )}
-          sx={{ width: "820px" }}
+          sx={{ width: "700px" }}
         />
 
         <Box
@@ -1784,4 +1785,8 @@ const size = [
   { size: "M" },
   { size: "XL" },
   { size: "XXL" },
+<<<<<<< HEAD
 ];
+=======
+];
+>>>>>>> 94ef878da498476b31697576dc53c01ee7b8cef2

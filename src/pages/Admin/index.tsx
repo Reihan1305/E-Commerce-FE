@@ -7,11 +7,9 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
-
 import { BarChart } from '@mui/x-charts/BarChart';
-import { LineChart } from '@mui/x-charts/LineChart';
-import { ScatterChart } from '@mui/x-charts/ScatterChart';
 import { PieChart } from '@mui/x-charts/PieChart';
+import { Typography } from '@mui/material';
 
 const barChartsParams = {
     series: [
@@ -99,11 +97,21 @@ export default function ElementHighlights() {
     };
 
     return (
+
+
         <Stack
             direction={{ xs: 'column', xl: 'row' }}
             spacing={1}
             sx={{ width: '100%' }}
         >
+            <Box>
+                <Typography
+                    variant="h6"
+                    sx={{ mb: 2 }}
+                >
+                    Element Highlights
+                </Typography>
+            </Box>
             <Box sx={{ flexGrow: 1 }}>
                 <ToggleButtonGroup
                     value={chartType}
@@ -160,7 +168,7 @@ export default function ElementHighlights() {
                 >
                     <MenuItem value={'none'}>none</MenuItem>
                     <MenuItem value={'week'}>week</MenuItem>
-                    <MenuItem value={''}></MenuItem>
+                    <MenuItem value={'month'}> month</MenuItem>
                 </TextField>
                 <TextField
                     select

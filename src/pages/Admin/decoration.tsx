@@ -1,15 +1,15 @@
 import { Typography, Box, TextField, Button } from '@mui/material'
 
 
-const category = () => {
+const decoration = () => {
     return (
         <>
             <Box sx={{ display: "flex", flexDirection: "column", alignItems: "start", marginY: 4 }}>
                 <Typography variant="h6">
-                    Add Category
+                    Add decoration
                 </Typography>
                 <Box sx={{ display: "flex", flexDirection: "row", alignItems: "start", marginY: 4 }}>
-                    <TextField label="Name Category" sx={{ width: "400px" }} />
+                    <TextField label="Type Decoration" sx={{ width: "400px" }} />
                     <Button
                         type="submit" variant="contained" sx={{ marginX: 2, width: "100px", mt: 1 }}>
                         Submit
@@ -20,5 +20,5 @@ const category = () => {
     )
 }
 
-export default category
+export default decoration
 

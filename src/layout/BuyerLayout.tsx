@@ -20,12 +20,6 @@ const BuyerLayout = () => {
    }
    return (
       <>
-         <Navbar />
-         <Hero />
-         <Products />
-         <Testimonial />
-         <Popular />
-         <Footer />
          <Outlet />
       </>
    );

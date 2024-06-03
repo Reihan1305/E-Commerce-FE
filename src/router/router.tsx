@@ -11,9 +11,14 @@ import { sellerRoutes } from "./sellerRoute";
 import { buyerRoutes } from "./buyerRoute";
 import { authRoutes } from "../router/authRoute";
 import AuthLayout from "../layout/AuthLayout";
+import IndexLayout from "../layout/IndexLayout";
 
 
 const routes: RouteObject[] = [
+    {
+        path: "/",
+        element: <IndexLayout />,
+    },
     {
         path: "/seller",
         element: <SellerLayout />,

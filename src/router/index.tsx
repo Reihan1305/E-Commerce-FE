@@ -13,8 +13,12 @@ import BuyerLayout from "../layout/BuyerLayout";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
+<<<<<<< HEAD
+import Profile from "../pages/Profile";
+=======
 import DetailProduct from "../pages/Buyer/DetailProduct";
 import Cart from "../pages/Buyer/Cart";
+>>>>>>> 94ef878da498476b31697576dc53c01ee7b8cef2
 
 const router: RouteObject[] = [
     {
@@ -102,6 +106,10 @@ const router: RouteObject[] = [
             {
                 path: "login",
                 element: <Login />,
+            },
+            {
+                path: "profile",
+                element: <Profile email={""} name={""} password={""} phone={""} rolesId={0} />,
             },
             {
                 path: "Register",

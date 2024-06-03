@@ -3,8 +3,9 @@ import {
     HomeOutlined,
     PersonSearch,
     PersonSearchOutlined,
-    ShoppingBagOutlined,
-    ShoppingBagRounded,
+    LocalShipping,
+    CreateNewFolder,
+    Event,
 } from "@mui/icons-material";
 
 import { Box, Button, Typography } from "@mui/material";
@@ -15,26 +16,34 @@ import { useAppDispatch } from "../../store";
 const MENU = [
     {
         name: "Dashboard",
-        path: "/admin",
+        path: "/admin/",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
         },
     },
     {
-        name: "Product",
-        path: "/product",
+        name: "Category",
+        path: "/admin/category",
         icon: {
-            active: <PersonSearch fontSize="large" style={{ fill: "#0086B4" }} />,
-            nonActive: <PersonSearchOutlined fontSize="large" />,
+            active: <CreateNewFolder fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <CreateNewFolder fontSize="large" />,
         },
     },
     {
-        name: "Order",
-        path: "/order/order_list",
+        name: "Courier",
+        path: "/admin/courier",
         icon: {
-            active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
-            nonActive: <ShoppingBagOutlined fontSize="large" />,
+            active: <LocalShipping fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <LocalShipping fontSize="large" />,
+        },
+    },
+    {
+        name: "Decoration",
+        path: "/admin/decoration",
+        icon: {
+            active: <Event fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <Event fontSize="large" />,
         },
     },
 ];

@@ -1,5 +1,4 @@
 import { RouteObject } from "react-router-dom";
-import SellerLayout from "../layout/SellerLayout";
 import Product from "../pages/Product";
 import NewProduct from "../pages/Product/newProduct";
 import ButtonVarian from "../pages/Product/buttonVarian";

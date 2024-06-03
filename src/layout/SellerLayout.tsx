@@ -9,7 +9,7 @@ const SellerLayout = () => {
         isLogin: state.auth.isLogin,
         profile: state.auth.profile
     }))
-
+    console.log(isLogin)
     if (!isLogin) {
         return <Navigate to="/auth/login" />;
     }

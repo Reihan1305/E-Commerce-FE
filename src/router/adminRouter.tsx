@@ -1,17 +1,24 @@
 import { RouteObject } from "react-router-dom";
-
+import Category from "../pages/Admin/category";
+import Admin from "../pages/Admin/index";
+import Courier from "../pages/Admin/courier";
+import Decoration from "../pages/Admin/decoration";
 
 export const adminRoutes: RouteObject[] = [
     {
         index: true,
-        element: <div>public</div>,
+        element: < Admin />,
     },
     {
-        path: "profile",
-        element: <div>profile</div>,
+        path: "category",
+        element: <Category />,
     },
     {
-        path: "setting",
-        element: <div>setting</div>,
+        path: "courier",
+        element: <Courier />,
+    },
+    {
+        path: "decoration",
+        element: <Decoration />,
     },
 ];

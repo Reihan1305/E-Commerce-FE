@@ -40,6 +40,7 @@ const MENU = [
             nonActive: <ShoppingBagOutlined fontSize="large" />,
         },
     },
+
 ];
 
 const MenuItem = () => {

@@ -2,6 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar/admin";
 import { useAppSelector } from "../store";
+import Chart from "../pages/Admin";
 
 const SellerLayout = () => {
     const { isLogin } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({

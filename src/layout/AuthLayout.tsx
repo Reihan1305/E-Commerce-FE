@@ -1,9 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../store";
+import { useAppSelector } from "../store";
 import { Container, Box } from "@mui/material";
-import { useEffect } from "react";
-import { getProfileAsync } from "../store/async/profileAsync";
-import { number } from "yup";
+
 
 const AuthLayout = () => {
     // const isLogin = useAppSelector((state) => state.auth.isLogin);

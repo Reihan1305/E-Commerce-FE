@@ -14,18 +14,19 @@ const AuthLayout = () => {
     // }, []);
 
     // console.log(userLogin);
-    const { isLogin, profile } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
-        isLogin: state.auth.isLogin,
-        profile: state.auth.profile
-    }))
+    // const { isLogin, profile } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+    //     isLogin: state.auth.isLogin,
+    //     profile: state.auth.profile
+    // }))
 
-    if (isLogin) {
-        if (profile.rolesId === 1) {
-            return <Navigate to={"/buyer"} />;
-        } else if (profile.rolesId === 2) {
-            return <Navigate to={"/"} />
-        }
-    }
+    // if (isLogin) {
+    //     if (profile.rolesId === 1) {
+    //         return <Navigate to={"/buyer"} />;
+    //     } else if (profile.rolesId === 2) {
+    //         return <Navigate to={"/"} />
+    //     }
+    // }
+
     return (
         <Box className="container" sx={{ color: "white", height: "100vh" }}>
             <Container className="container">

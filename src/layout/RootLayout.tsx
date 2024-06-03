@@ -8,9 +8,10 @@ import { useAppSelector } from "../store";
 const RootLayout = () => {
     const isLogin = useAppSelector((state) => state.auth.isLogin);
 
-    if (!isLogin) {
-        return <Navigate to="/auth/login" />;
-    }
+    // if (!isLogin) {
+    //     return <Navigate to="/auth/login" />;
+    // }
+
     return (
         <Box className="container">
             <Container

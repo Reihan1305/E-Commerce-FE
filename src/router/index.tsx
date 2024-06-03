@@ -13,12 +13,11 @@ import BuyerLayout from "../layout/BuyerLayout";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/login";
 import Register from "../pages/Auth/register";
-<<<<<<< HEAD
 import Profile from "../pages/Profile";
-=======
 import DetailProduct from "../pages/Buyer/DetailProduct";
 import Cart from "../pages/Buyer/Cart";
->>>>>>> 94ef878da498476b31697576dc53c01ee7b8cef2
+import Order from "../pages/Buyer/Order";
+import DetailsOrder from "../pages/Buyer/DetailsOrder";
 
 const router: RouteObject[] = [
     {
@@ -96,6 +95,14 @@ const router: RouteObject[] = [
             {
                 path: "cart",
                 element: <Cart />
+            },
+            {
+                path: "detailsorder",
+                element: <DetailsOrder />
+            },
+            {
+                path: "order",
+                element: <Order />
             }
         ],
     },

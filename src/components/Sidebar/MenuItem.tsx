@@ -18,7 +18,7 @@ import { useAppDispatch } from "../../store";
 const MENU = [
     {
         name: "Dashboard",
-        path: "/",
+        path: "/seller",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
@@ -26,7 +26,7 @@ const MENU = [
     },
     {
         name: "Product",
-        path: "/product",
+        path: "/seller/product",
         icon: {
             active: <PersonSearch fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <PersonSearchOutlined fontSize="large" />,
@@ -34,7 +34,7 @@ const MENU = [
     },
     {
         name: "Order",
-        path: "/order",
+        path: "/seller/order/order_list",
         icon: {
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,
@@ -79,7 +79,7 @@ const MenuItem = () => {
 
                     expandIcon={<ArrowDropDownIcon />}
                 >
-                    <NavLink to={"/setting/store"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
 
@@ -103,7 +103,7 @@ const MenuItem = () => {
                     </NavLink>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <NavLink to={"/setting/store"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}
@@ -124,7 +124,7 @@ const MenuItem = () => {
                             </Box>
                         )}
                     </NavLink>
-                    <NavLink to={"/setting/shiping"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/shiping"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}
@@ -145,7 +145,7 @@ const MenuItem = () => {
                             </Box>
                         )}
                     </NavLink>
-                    <NavLink to={"/setting/paymentMetode"} style={{ textDecoration: "none" }}>
+                    <NavLink to={"/seller/setting/paymentMetode"} style={{ textDecoration: "none" }}>
                         {({ isActive }) => (
                             <Box
                                 color={"#000"}

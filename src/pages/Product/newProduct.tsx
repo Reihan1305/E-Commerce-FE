@@ -1785,8 +1785,5 @@ const size = [
   { size: "M" },
   { size: "XL" },
   { size: "XXL" },
-<<<<<<< HEAD
 
-=======
->>>>>>> b9d212dc1c3d552621bff38dee03790a4c91a08f
 ];

@@ -9,6 +9,8 @@ import {
 
 import { Box, Button, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { SET_LOGOUT } from "../../store/slice/auth";
+import { useAppDispatch } from "../../store";
 
 const MENU = [
     {
@@ -39,6 +41,12 @@ const MENU = [
 
 const MenuItem = () => {
 
+    const dispatch = useAppDispatch();
+
+    const handleLogout = () => {
+        dispatch(SET_LOGOUT());
+    }
+
     return (
         <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             {MENU.map((item) => (
@@ -65,7 +73,7 @@ const MenuItem = () => {
                 </NavLink>
             ))}
             <Box>
-                <Button><Typography>Logout</Typography></Button>
+                <Button onClick={handleLogout}><Typography>Logout</Typography></Button>
             </Box>
         </Box>
     );

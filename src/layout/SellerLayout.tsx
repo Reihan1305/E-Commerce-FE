@@ -11,8 +11,9 @@ const SellerLayout = () => {
     }))
 
     if (!isLogin) {
-        <Navigate to="/auth/login" />;
+        return <Navigate to="/auth/login" />;
     }
+
     return (
         <>
             <Box className="container">
@@ -27,7 +28,6 @@ const SellerLayout = () => {
                 >
                     <Box flex={1.5}>
                         <Sidebar />
-
                     </Box>
                     <Box
                         flex={3.5}
@@ -41,7 +41,6 @@ const SellerLayout = () => {
                         }}
                     >
                         <Outlet />
-                        <Home />
                     </Box>
                 </Container>
             </Box>

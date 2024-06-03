@@ -1,20 +1,16 @@
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import React, { useEffect } from 'react';
+import {
+    Button, CssBaseline, TextField, Select, Grid, Box, Typography, Container,
+    Avatar, FormControl, FormHelperText, InputLabel, MenuItem
+} from '@mui/material';
 import { Controller } from "react-hook-form";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar, FormControl, FormHelperText, InputLabel, MenuItem } from '@mui/material';
 import { useRegisterFunction } from "./functions/registerFunction";
 import { useAppSelector } from "../../../store";
-import useRegisterValidation from "../../../lib/api/validation/useRegisterValidation";
-import { useEffect } from 'react';
+import useRegisterValidation, { IRegisterForm } from "../../../lib/api/validation/useRegisterValidation";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const defaultTheme = createTheme();
 const Register = () => {
@@ -32,6 +28,26 @@ const Register = () => {
         navigate('/auth/login');
     }
 
+    const handleSuccess = () => {
+        Swal.fire({
+            title: 'Success!',
+            text: 'Register Success',
+            icon: 'success',
+            confirmButtonText: 'Login'
+        }).then(() => {
+            navigate('/auth/login');
+        });
+    }
+
+    const handleSubmitForm = async (data: IRegisterForm) => {
+        try {
+            await onSubmit(data);
+            handleSuccess();
+        } catch (error) {
+            onErrorSubmit(error as any);
+        }
+    }
+
     return (
         <>
             <ThemeProvider theme={defaultTheme}>
@@ -45,17 +61,14 @@ const Register = () => {
                             alignItems: 'center',
                         }}
                     >
-
                         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             <LockOutlinedIcon />
                         </Avatar>
                         <Typography component="h1" variant="h5" sx={{ color: "black" }}>
                             Sign Up Lakoe
                         </Typography>
-
-                        <Box component="form" noValidate sx={{ mt: 3 }} >
+                        <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(handleSubmitForm)}>
                             <Grid container spacing={2} gap={2}>
-
                                 <Controller
                                     control={control}
                                     name="name"
@@ -69,8 +82,8 @@ const Register = () => {
                                             helperText={fieldState.error?.message}
                                             error={Boolean(fieldState.error)}
                                         />
-                                    )}>
-                                </Controller>
+                                    )}
+                                />
                                 <Controller
                                     control={control}
                                     name="email"
@@ -84,8 +97,8 @@ const Register = () => {
                                             helperText={fieldState.error?.message}
                                             error={Boolean(fieldState.error)}
                                         />
-                                    )}>
-                                </Controller>
+                                    )}
+                                />
                                 <Controller
                                     control={control}
                                     name="phone"
@@ -94,13 +107,14 @@ const Register = () => {
                                             label="phone"
                                             color="success"
                                             fullWidth
+                                            type='number'
                                             sx={{ borderColor: "white" }}
                                             {...field}
                                             helperText={fieldState.error?.message}
                                             error={Boolean(fieldState.error)}
                                         />
-                                    )}>
-                                </Controller>
+                                    )}
+                                />
                                 <Controller
                                     name="rolesId"
                                     control={control}
@@ -116,6 +130,7 @@ const Register = () => {
                                             >
                                                 <MenuItem value={1}>Buyer</MenuItem>
                                                 <MenuItem value={2}>Seller</MenuItem>
+                                                <MenuItem value={3}>Admin</MenuItem>
                                             </Select>
                                             {fieldState.error && (
                                                 <FormHelperText>{fieldState.error.message}</FormHelperText>
@@ -137,28 +152,30 @@ const Register = () => {
                                             helperText={fieldState.error?.message}
                                             error={Boolean(fieldState.error)}
                                         />
-                                    )}>
-                                </Controller>
+                                    )}
+                                />
                                 <Button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
-                                    onClick={handleSubmit(onSubmit, onErrorSubmit)}
                                 >
                                     Sign Up
                                 </Button>
                             </Grid>
-
                             <Grid container justifyContent="flex-end">
                                 <Grid item>
-                                    <Button onClick={handleButton}><Typography variant="body2" fontSize={10}>Already have an account? Sign in</Typography></Button>
+                                    <Button onClick={handleButton}>
+                                        <Typography variant="body2" fontSize={10}>
+                                            Already have an account? Sign in
+                                        </Typography>
+                                    </Button>
                                 </Grid>
                             </Grid>
                         </Box>
                     </Box>
                 </Container>
-            </ThemeProvider >
+            </ThemeProvider>
         </>
     );
 };

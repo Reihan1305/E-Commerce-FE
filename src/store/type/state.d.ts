@@ -6,3 +6,4 @@ interface IAuthState {
    token: string;
    profile: IProfile;
 }
+

@@ -18,6 +18,7 @@ const BuyerLayout = () => {
    if (!isLogin) {
       return <Navigate to="/auth/login" />;
    }
+   
    return (
       <>
          <Outlet />

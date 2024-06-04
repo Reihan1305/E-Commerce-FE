@@ -21,15 +21,15 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
             case "Belum Dibayar":
                 console.log("belum dibayar" + buyerInfo + invoice)
                 break
-            
+
             case "Pesanan Selesai":
                 console.log("pesanan selesai" + buyerInfo + invoice)
                 break
-            
+
             case "Dibatalkan":
                 console.log("pesanan dibatalkan" + buyerInfo + invoice)
                 break
-            
+
             default:
                 break
         }
@@ -79,13 +79,13 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
                     <Typography
                         sx={{
                             paddingX: 1,
-                            bgcolor : dataOrder.status === "Belum Dibayar" ? `${color.unpaid}`
-                                    : dataOrder.status === "Pesanan Baru" ? `${color.newOrder}`
+                            bgcolor: dataOrder.status === "Belum Dibayar" ? `${color.unpaid}`
+                                : dataOrder.status === "Pesanan Baru" ? `${color.newOrder}`
                                     : dataOrder.status === "Siap Dikirim" ? `${color.ready_send}`
-                                    : dataOrder.status === "Dalam Pengiriman" ? `${color.ondelivery}`
-                                    : dataOrder.status === "Pesanan Selesai" ? `${color.order_completed}`
-                                    : dataOrder.status === "Dibatalkan" ? `${color.canceled}`
-                                    : "white",
+                                        : dataOrder.status === "Dalam Pengiriman" ? `${color.ondelivery}`
+                                            : dataOrder.status === "Pesanan Selesai" ? `${color.order_completed}`
+                                                : dataOrder.status === "Dibatalkan" ? `${color.canceled}`
+                                                    : "white",
                             color: dataOrder.status === "Pesanan Selesai" ? "black" : "white",
                             borderRadius: "5px"
                         }}
@@ -103,22 +103,22 @@ const OrderCard: React.FC<IProps> = ({ dataOrder }) => {
                         color: "black"
                     }}
                     onClick={
-                        dataOrder.status === "Pesanan Baru" ? () => handleProcessOrder(dataOrder.invoice) 
-                        : dataOrder.status === "Siap Dikirim" ? () => handleInformBuyer(dataOrder.buyer, dataOrder.invoice)
-                        : dataOrder.status === "Dalam Pengiriman" ? () => handleTrackingShipment(dataOrder.invoice)
-                        : () => handleContactBuyer(dataOrder.buyer, dataOrder.invoice, dataOrder.status)
+                        dataOrder.status === "Pesanan Baru" ? () => handleProcessOrder(dataOrder.invoice)
+                            : dataOrder.status === "Siap Dikirim" ? () => handleInformBuyer(dataOrder.buyer, dataOrder.invoice)
+                                : dataOrder.status === "Dalam Pengiriman" ? () => handleTrackingShipment(dataOrder.invoice)
+                                    : () => handleContactBuyer(dataOrder.buyer, dataOrder.invoice, dataOrder.status)
                     }
                 >
                     {
                         dataOrder.status === "Pesanan Baru" ? "Proses Pesanan"
-                        : dataOrder.status === "Siap Dikirim" ? "Kabari Pembeli"
-                        : dataOrder.status === "Dalam Pengiriman" ? "Lihat Rincian Pengiriman"
-                        : "Hubungi Pembeli"
+                            : dataOrder.status === "Siap Dikirim" ? "Kabari Pembeli"
+                                : dataOrder.status === "Dalam Pengiriman" ? "Lihat Rincian Pengiriman"
+                                    : "Hubungi Pembeli"
                     }
                 </Button>
             </Box>
 
-            <Link to={"/order/detail_order"} style={{ textDecoration: "none" }}>
+            <Link to={"/seller/order/detailorder"} style={{ textDecoration: "none" }}>
                 <Box
                     sx={{
                         display: "flex",

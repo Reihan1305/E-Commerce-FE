@@ -124,11 +124,11 @@ const DetailOrder = () => {
                     <Typography>
                         {data.status === "Belum Dibayar" ? `Pesanan akan dibatalkan bila pembayaran tidak dilakukan sampai ${data.maxPay}. Silakan tunggu sampai pembayaran terkonfirmasi sebelum mengirimkan barang.`
                             : data.status === "Pesanan Baru" ? "Segera proses pesanan yang telah masuk. Jangan membuat pembeli menunggu terlalu lama."
-                            : data.status === "Siap Dikirim" ? "Pesanan telah di-pickup oleh Kurir dan siap untuk dikirim."
-                            : data.status === "Dalam Pengiriman" ? "Pesanan sudah dalam proses pengiriman. Silakan tunggu penerimaan barang oleh pembeli."
-                            : data.status === "Pesanan Selesai" ? "Produk telah diterima oleh pembeli dan pesanan ini diselesaikan."
-                            : data.status === "Dibatalkan" ? "Pesanan dibatalkan karena pembeli tidak melakukan pembayaran tepat waktu."
-                            : "error"
+                                : data.status === "Siap Dikirim" ? "Pesanan telah di-pickup oleh Kurir dan siap untuk dikirim."
+                                    : data.status === "Dalam Pengiriman" ? "Pesanan sudah dalam proses pengiriman. Silakan tunggu penerimaan barang oleh pembeli."
+                                        : data.status === "Pesanan Selesai" ? "Produk telah diterima oleh pembeli dan pesanan ini diselesaikan."
+                                            : data.status === "Dibatalkan" ? "Pesanan dibatalkan karena pembeli tidak melakukan pembayaran tepat waktu."
+                                                : "error"
                         }
                     </Typography>
                 </Box>
@@ -356,7 +356,7 @@ const DetailOrder = () => {
             </Box>
 
             {/* box 5 */}
-            <Box 
+            <Box
                 sx={{
                     width: "100%",
                     bgcolor: "white",
@@ -364,63 +364,63 @@ const DetailOrder = () => {
                     borderRadius: "10px"
                 }}
             >
-                <Box 
+                <Box
                     sx={{
                         width: "100%",
                         display: "flex",
                         gap: 2
-                    }} 
+                    }}
                 >
                     <AccountBalanceWalletOutlined style={{ fill: "#0086B4" }} fontSize="large" />
                     <Box
                         sx={{ width: "100%", }}
                     >
                         <Typography sx={{ fontWeight: 600 }}>Rincian Pembayaran</Typography>
-                        <Box 
+                        <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center"
-                            }} 
+                            }}
                         >
                             <Typography> Total Harga ({data.qty} barang) </Typography>
                             <Typography> {data.totalPrice}</Typography>
                         </Box>
 
-                        <Box 
+                        <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center"
-                            }} 
+                            }}
                         >
                             <Typography>Total Ongkos Kirim ({data.weight} Kg) </Typography>
                             <Typography>Rp {data.ongkir}</Typography>
                         </Box>
 
-                        <Box 
+                        <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center"
-                            }} 
+                            }}
                         >
                             <Typography>Diskon</Typography>
                             <Typography>Rp {data.diskon}</Typography>
                         </Box>
 
-                        <Box 
+                        <Box
                             sx={{
                                 display: "flex",
                                 justifyContent: "space-between",
                                 alignItems: "center"
-                            }} 
+                            }}
                         >
                             <Typography>Biaya Layanan</Typography>
                             <Typography>Rp {data.BiayaLayanan}</Typography>
                         </Box>
 
-                        <Box 
+                        <Box
                             sx={{
                                 justifyContent: "space-between",
                                 alignItems: "center",
@@ -428,7 +428,7 @@ const DetailOrder = () => {
                                 borderTop: "1px solid grey",
                                 mt: 1,
                                 paddingTop: 1
-                            }} 
+                            }}
                         >
                             <Typography sx={{ fontWeight: 600 }}>Total Penjualan</Typography>
                             <Typography sx={{ fontWeight: 600 }}>Rp {data.totalPenjualan}</Typography>
@@ -443,31 +443,31 @@ const DetailOrder = () => {
                     display: data.status === "Pesanan Baru" ? "block" : "none"
                 }}
             >
-                <Box 
+                <Box
                     sx={{
-                        padding: 2, 
-                        bgcolor: "white", 
-                        display: "flex", 
+                        padding: 2,
+                        bgcolor: "white",
+                        display: "flex",
                         justifyContent: "space-between",
                         borderRadius: "10px"
-                    }} 
+                    }}
                 >
                     <Button
                         onClick={() => handleRejectOrder(data.invoice)}
-                        sx={{ 
-                            border: "1px solid red", 
-                            color: "red", 
+                        sx={{
+                            border: "1px solid red",
+                            color: "red",
                             borderRadius: 5
                         }}
                     >
                         Tolak Pesanan
                     </Button>
-                    <Button 
+                    <Button
                         variant="contained"
-                        onClick={() => handleProcessOrder(data.invoice)} 
-                        sx={{ 
-                            border: "none", 
-                            borderRadius: 8 
+                        onClick={() => handleProcessOrder(data.invoice)}
+                        sx={{
+                            border: "none",
+                            borderRadius: 8
                         }}
                     >
                         Proses Pesanan

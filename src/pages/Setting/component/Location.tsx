@@ -13,7 +13,8 @@ const DummyLocation = [
     "alamat": "Jl. Elang, No. 4, Sawah lama, Ciputat, Tangerang Selatan",
     "kotaKecamatan": "Kota Tangerang Selatan, Kec. Ciputat",
     "kodePos": "15413",
-    "pinpoint":true
+    "latitude":"102222",
+    "longitude":"1021212"
   },
   {
     "namaLokasi": "Fesyen Store 2",
@@ -21,15 +22,15 @@ const DummyLocation = [
     "alamat": "Jl. Elang, No. 4, Sawah lama, Ciputat, Tangerang Selatan",
     "kotaKecamatan": "Kota Tangerang Selatan, Kec. Ciputat",
     "kodePos": "15413",
-    "pinpoint": false
+    "latitude":"102222",
+    "longitude":"1021212"
   },
   {
     "namaLokasi": "Fesyen Store 3",
     "alamatUtama": false,
     "alamat": "Jl. Elang, No. 4, Sawah lama, Ciputat, Tangerang Selatan",
     "kotaKecamatan": "Kota Tangerang Selatan, Kec. Ciputat",
-    "kodePos": "15413",
-    "pinpoint": false
+    "kodePos": "15413"
   }
 ]
 
@@ -114,7 +115,7 @@ function Location() {
                       </Typography>
                       <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
                       <Typography  fontWeight={500}>
-                        {item.pinpoint ? 
+                        {item.latitude && item.longitude ? 
                         <Box sx={{display:"flex"}}>
                           <LocationOnIcon style={{ fill: "#0086B4" }} /> <Typography color={"#0086B4"}> Sudah Pinpoint</Typography>
                         </Box>

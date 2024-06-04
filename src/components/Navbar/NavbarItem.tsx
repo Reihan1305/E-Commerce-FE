@@ -9,6 +9,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
+import { SET_LOGOUT } from "../../store/slice/auth";
+import { useAppDispatch } from "../../store";
 
 const NavbarItem = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,6 +45,12 @@ const NavbarItem = () => {
     const handleClick = () => {
         navigate('/buyer');
     };
+
+    const dispatch = useAppDispatch();
+
+    const handleLogout = () => {
+        dispatch(SET_LOGOUT());
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -140,6 +148,7 @@ const NavbarItem = () => {
                     >
                         <MenuItem onClick={handleClose}>Profile</MenuItem>
                         <MenuItem onClick={handleClose}>My account</MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

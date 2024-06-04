@@ -8,20 +8,18 @@ import Popular from "../pages/Buyer/components/Popular";
 import Footer from "../components/Footer";
 
 const BuyerLayout = () => {
-   const isLogin = useAppSelector((state) => state.auth.isLogin);
-   console.log(isLogin);
+
+   // const isLogin = useAppSelector((state) => state.auth.isLogin);
+   // console.log(isLogin);
+   const { isLogin } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+      isLogin: state.auth.isLogin,
+   }))
 
    if (!isLogin) {
       return <Navigate to="/auth/login" />;
    }
    return (
       <>
-         <Navbar />
-         <Hero />
-         <Products />
-         <Testimonial />
-         <Popular />
-         <Footer />
          <Outlet />
       </>
    );

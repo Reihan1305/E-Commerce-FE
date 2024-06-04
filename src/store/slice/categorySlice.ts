@@ -14,10 +14,10 @@ export const categorySlice = createSlice({
         builder.addCase(getCategoryAsync.fulfilled, (state, action) => {
             state.category = action.payload;
         });
-        builder.addCase(getCategoryAsync.rejected, (state, action) => {
+        builder.addCase(getCategoryAsync.rejected, (_, action) => {
             console.log("rejected", action);
         })
-        builder.addCase(getCategoryAsync.pending, (state, action) => {
+        builder.addCase(getCategoryAsync.pending, (_, action) => {
             console.log("pending", action);
         })
     },

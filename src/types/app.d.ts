@@ -28,3 +28,8 @@ export interface IProfile {
     phone: string;
     rolesId: number;
 }
+
+export interface ICategory {
+    name: string;
+    product: IProduct[]
+}

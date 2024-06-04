@@ -57,6 +57,7 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({ open, handleClose }
     console.log('Location Name:', locationName);
     console.log('Selected Option:', selectedOption?.value);
     console.log('Address:', address);
+    console.log(`latitude:${markerPosition[0]} longitude:${markerPosition[1]}`)
     handleClose();
   };
 
@@ -137,7 +138,7 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({ open, handleClose }
             />
             <Marker position={markerPosition} draggable={true} eventHandlers={{ dragend: handleMarkerDragEnd }}>
               <Popup>
-                A pretty CSS3 popup. <br /> Easily customizable.
+                Pilih Lokasi Anda
               </Popup>
             </Marker>
             <ChangeView center={markerPosition} />

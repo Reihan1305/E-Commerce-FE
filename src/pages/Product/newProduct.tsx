@@ -1784,9 +1784,5 @@ const size = [
   { size: "L" },
   { size: "M" },
   { size: "XL" },
-  { size: "XXL" },
-<<<<<<< HEAD
+  { size: "XXL" }
 ];
-=======
-];
->>>>>>> 94ef878da498476b31697576dc53c01ee7b8cef2

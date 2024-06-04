@@ -1,8 +1,10 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, IconButton, Typography } from '@mui/material'
 import React from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import LocationOffIcon from '@mui/icons-material/LocationOff';
 import AddLocationModal from './atom/LocationModal';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import EditLocationAltRoundedIcon from '@mui/icons-material/EditLocationAltRounded';
 
 const DummyLocation = [
   {
@@ -58,73 +60,84 @@ function Location() {
       <Box mt={"30px"}>
           {DummyLocation.map((item)=>(
             <Box mb={"20px"} sx={{border:"1px solid grey",padding:"20px",borderRadius:"10px"}}>
-              <Box sx={{width:"80%"}}>
-                <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                  <Typography fontWeight={500}>
-                    Nama Lokasi 
-                  </Typography>
-                  <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
-                  <Typography variant='body1' fontWeight={700}>
-                    {item.namaLokasi}
-                  </Typography>
-                  {item.alamatUtama ? 
-                  <Typography bgcolor={"#008F5D"} paddingX={"5px"} color={"white"} borderRadius={"5px"}>
-                      Alamat Utama
-                  </Typography>:
-                    ""
-                  }
-                  </Box>
-                </Box>
-                <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                  <Typography fontWeight={500}>
-                    Alamat 
-                  </Typography>
-                  <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
-                  <Typography  fontWeight={500}>
-                    {item.alamat}
-                  </Typography>
-                  </Box>
-                </Box>
-                <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                  <Typography fontWeight={500}>
-                    Kota/Kecamatan 
-                  </Typography>
-                  <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
-                  <Typography  fontWeight={500}>
-                    {item.kotaKecamatan}
-                  </Typography>
-                  </Box>
-                </Box>
-                <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                  <Typography fontWeight={500}>
-                    Kode Post 
-                  </Typography>
-                  <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
-                  <Typography  fontWeight={500}>
-                    {item.kodePos}
-                  </Typography>
-                  </Box>
-                </Box>
-                <Box sx={{display:"flex", justifyContent:"space-between"}}>
-                  <Typography fontWeight={500}>
-                    PinPoint 
-                  </Typography>
-                  <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
-                  <Typography  fontWeight={500}>
-                    {item.pinpoint ? 
-                    <Box sx={{display:"flex"}}>
-                      <LocationOnIcon style={{ fill: "#0086B4" }} /> <Typography color={"#0086B4"}> Sudah Pinpoint</Typography>
+                <Box display={"flex"} justifyContent={"space-between"}>
+                  <Box sx={{width:"80%"}}>
+                    <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                      <Typography fontWeight={500}>
+                        Nama Lokasi 
+                      </Typography>
+                      <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
+                      <Typography variant='body1' fontWeight={700}>
+                        {item.namaLokasi}
+                      </Typography>
+                      {item.alamatUtama ? 
+                      <Typography bgcolor={"#008F5D"} paddingX={"5px"} color={"white"} borderRadius={"5px"}>
+                          Alamat Utama
+                      </Typography>:
+                        ""
+                      }
+                      </Box>
                     </Box>
-                  :
-                  <Box sx={{display:"flex"}}>
-                    <LocationOffIcon /> <Typography>Belum Pinpoint</Typography>
+                    <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                      <Typography fontWeight={500}>
+                        Alamat 
+                      </Typography>
+                      <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
+                      <Typography  fontWeight={500}>
+                        {item.alamat}
+                      </Typography>
+                      </Box>
+                    </Box>
+                    <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                      <Typography fontWeight={500}>
+                        Kota/Kecamatan 
+                      </Typography>
+                      <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
+                      <Typography  fontWeight={500}>
+                        {item.kotaKecamatan}
+                      </Typography>
+                      </Box>
+                    </Box>
+                    <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                      <Typography fontWeight={500}>
+                        Kode Post 
+                      </Typography>
+                      <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
+                      <Typography  fontWeight={500}>
+                        {item.kodePos}
+                      </Typography>
+                      </Box>
+                    </Box>
+                    <Box sx={{display:"flex", justifyContent:"space-between"}}>
+                      <Typography fontWeight={500}>
+                        PinPoint 
+                      </Typography>
+                      <Box sx={{display:"flex",width:"350px" ,gap:"10px"}}>
+                      <Typography  fontWeight={500}>
+                        {item.pinpoint ? 
+                        <Box sx={{display:"flex"}}>
+                          <LocationOnIcon style={{ fill: "#0086B4" }} /> <Typography color={"#0086B4"}> Sudah Pinpoint</Typography>
+                        </Box>
+                      :
+                      <Box sx={{display:"flex"}}>
+                        <LocationOffIcon /> <Typography>Belum Pinpoint</Typography>
+                      </Box>
+                      }
+                      </Typography>
+                      </Box>
+                    </Box>
                   </Box>
-                  }
-                  </Typography>
+                  <Box>
+                      <IconButton>
+                        <DeleteRoundedIcon/>
+                      </IconButton>
+                      <IconButton>
+                        <EditLocationAltRoundedIcon/>
+                      </IconButton>
+
                   </Box>
-                </Box>
               </Box>
-            </Box>
+          </Box>
           ))}
         </Box>
     </Box>

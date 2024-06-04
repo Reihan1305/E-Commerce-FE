@@ -4,17 +4,18 @@ import Footer from '../../../components/Footer'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Box, Button, Divider, FormControlLabel, Radio, RadioGroup, TextField, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
+import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 
-const Payment = () => {
+const Thanks = () => {
 
     const navigate = useNavigate();
 
-    const handleBack = () => {
-        navigate('/buyer/cart');
+    const handleHome = () => {
+        navigate('/buyer/');
     }
 
     const handlePayment = () => {
-        navigate('/buyer/thanks');
+        navigate('/buyer/order');
     }
     return (
         <>
@@ -32,61 +33,22 @@ const Payment = () => {
             </Box >
             <Box sx={{ display: "flex", justifyContent: "space-between", width: "1200px", margin: "0 auto", gap: 5 }}>
                 <Box sx={{ flex: 1, gap: 2 }}>
-                    <Box border={1} borderColor="grey.300" borderRadius={2} p={2} mb={5}>
-                        <Box display="flex" justifyContent="space-between" alignItems="center">
-                            <Typography variant="subtitle1" color="textPrimary">
-                                <Typography variant="body2" component="span" color={"gray"}>
-                                    Contact:
-                                </Typography>{' '}
-                                joe.spagnuolo@uxbly.com
-                            </Typography>
-                            <Button variant="text">Edit</Button>
-                        </Box>
-                        <Divider sx={{ my: 2 }} />
-                        <Box display="flex" justifyContent="space-between" alignItems="center">
-                            <Typography variant="subtitle1" color="textPrimary">
-                                <Typography variant="body2" component="span" color={"gray"}>
-                                    Ship to:
-                                </Typography>{' '}
-                                Via Firenze 23, 92023, Campobello di  Licata AG, Italia
-                            </Typography>
-                            <Button variant="text">Edit</Button>
-                        </Box>
-                        <Divider sx={{ my: 2 }} />
-                        <Box display="flex" justifyContent="space-between" alignItems="center">
-                            <Typography variant="subtitle1" color="textPrimary">
-                                <Typography variant="body2" component="span" color={"gray"}>
-                                    Method:
-                                </Typography>{' '}
-                                Standart Shipping - <Typography variant="body2" component="span" color="textPrimary">FREE</Typography>
-                            </Typography>
-                            <Button variant="text">Edit</Button>
-                        </Box>
+                    <Box sx={{ textAlign: "center" }}>
+                        <CheckCircleOutlineRoundedIcon sx={{ color: "green", width: "150px", height: "150px", margin: "0 auto" }} />
                     </Box>
-                    <Box >
-                        <Typography variant="h6" color="textPrimary">Payment Method</Typography>
-                        <Box mt={2}>
-                            <Box>
-                                <RadioGroup
-                                    aria-label="subscription"
-                                    name="subscription"
-                                >
-                                    <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ marginLeft: 1 }}>
-                                        <FormControlLabel value="gopay" control={<Radio />} label="GOPAY" />
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/308px-Gopay_logo.svg.png" alt="" width={50} />
-                                    </Box>
-                                    <Box display="flex" justifyContent="space-between" alignItems="center" sx={{ marginLeft: 1 }}>
-                                        <FormControlLabel value="qris" control={<Radio />} label="QRIS" />
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_QRIS.svg/300px-Logo_QRIS.svg.png" alt="" width={50} />
-                                    </Box>
-                                    <Divider sx={{ my: 2 }} />
-                                </RadioGroup>
-                            </Box>
-                        </Box>
+                    <Box textAlign={"center"} sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ mb: 1 }}>Thank you for your order</Typography>
                     </Box>
-                    <Box sx={{ display: "flex", justifyContent: "space-between", mt: 3 }}>
-                        <Button variant="text" onClick={handleBack}>Back to shipping</Button>
-                        <Button variant="contained" onClick={handlePayment}>Pay now</Button>
+                    <Box textAlign={"center"} sx={{ mb: 5 }}>
+                        <Typography variant="body1" fontSize={12} sx={{ mb: 1 }}>Your order number is #123456789</Typography>
+                    </Box>
+                    <Box><Typography variant="body2" fontSize={16} sx={{ mb: 5 }}> Thank you Joe for buying Candleaf. The nature is grateful to you. Now that your order is confirmed it will be ready to ship in 2 days. Please check your inbox in the future for your order updates.</Typography>
+                    </Box>
+                    <Box textAlign={"center"} sx={{ mb: 3 }}>
+                        <Button variant="contained" onClick={handleHome}>Back to Home</Button>
+                    </Box>
+                    <Box textAlign={"center"}>
+                        <Button variant="text" onClick={handlePayment}>View Order</Button>
                     </Box>
                 </Box>
 
@@ -143,4 +105,4 @@ const Payment = () => {
     )
 }
 
-export default Payment
+export default Thanks

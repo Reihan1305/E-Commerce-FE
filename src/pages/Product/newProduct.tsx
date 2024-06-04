@@ -400,7 +400,7 @@ const NewProduct = () => {
         {showVariants && (
           <>
             <Box sx={{ display: "flex", gap: 1, mt: 2 }}>
-              
+
               <Button
                 variant="outlined"
                 sx={{

@@ -29,13 +29,26 @@ const Category = () => {
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             console.log('Category added:', response.data);
-            dispatch(getCategoryAsync());
+            dispatch(getCategoryAsync()); //dispatch untuk memanggil ulang categoryAsync
             setCategoryName('');
         } catch (error) {
             console.error('Error adding category:', error);
         }
     };
 
+    const handleDelete = async (id: number) => {
+        try {
+            const token = localStorage.getItem("token");
+            const response = await axios.delete(
+                `http://localhost:3000/categories/${id}`,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            console.log('Category deleted:', response.data);
+            dispatch(getCategoryAsync()); //dispatch untuk memanggil ulang categoryAsync
+        } catch (error) {
+            console.error('Error deleting category:', error);
+        }
+    }
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: theme.palette.common.black,
@@ -85,7 +98,7 @@ const Category = () => {
                                             {row.name}
                                         </TableCell>
                                         <TableCell align="center">{row.product.length}</TableCell>
-                                        <TableCell align="right" ><Button>< Delete /></Button>  </TableCell>
+                                        <TableCell align="right" ><Button onClick={() => handleDelete(row.id)}>< Delete /></Button>  </TableCell>
                                     </TableRow>
                                 ))
                             ) : (

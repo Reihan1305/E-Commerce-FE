@@ -11,15 +11,25 @@ import Home from "../pages/Home";
 import Location from "../pages/Setting/component/Location";
 
 export const sellerRoutes: RouteObject[] = [
+    // {
+    //     index: true,
+    //     path: "/dashboard",
+    //     element: <Home />,
+    // },
     {
-        index: true,
-        element: <Home />,
+        path: "dashboard",
+        children: [
+            {
+                index: true,
+                element: <Home />,
+            },
+        ]
     },
     {
         path: "product",
         children: [
             {
-                index :true,
+                index: true,
                 element: <Product />
             },
             {
@@ -60,7 +70,7 @@ export const sellerRoutes: RouteObject[] = [
                 element: <Setting />
             }, {
                 path: "location",
-                element:<Location/>
+                element: <Location />
             }
 
         ]

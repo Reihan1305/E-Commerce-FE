@@ -14,7 +14,6 @@ import {
   Autocomplete,
   Switch,
   FormControlLabel,
-  ToggleButton,
 } from "@mui/material";
 import { useState } from "react";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
@@ -22,16 +21,15 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { DeleteOutlineOutlined, TextSnippet } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import ModalVarian from "./atom/modalVarian";
-import ButtonSize from "./atom/sizeButton";
-
 import React from "react";
+import ImageProduct from "./atom/imageProduct";
 
 const NewProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenSize, setIsOpenSize] = useState<boolean>(false);
   const [selected, setSelected] = React.useState(false);
- 
+
   const handleCategoryChange = (event: SelectChangeEvent<string[]>) => {
     setSelectedCategories(event.target.value as string[]);
   };
@@ -142,9 +140,9 @@ const NewProduct = () => {
           sx={{ flex: 1, mr: 1, mb: 3 }}
         />
         <Typography variant="body2" sx={{ mb: 1 }}>
-          Foto Produk
+          Foto Produkk
         </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+        {/* <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
           <Box
             sx={{
               display: "flex",
@@ -300,7 +298,7 @@ const NewProduct = () => {
               </Typography>
             </IconButton>
           </Box>
-        </Box>
+        </Box> */}
       </Box>
       <Box
         sx={{
@@ -539,12 +537,12 @@ const NewProduct = () => {
             <Typography variant="body2" sx={{}}>
               Kamu dapat mengatur harga, stok,SKU sekaligus
             </Typography>
-           
-              <TextSnippet />
-              Atur Sekaligus
-            <ModalVarian  />
+
+            <TextSnippet />
+            Atur Sekaligus
+            <ModalVarian />
           </Box>
-          
+
 
           <Box
             sx={{
@@ -778,9 +776,9 @@ const NewProduct = () => {
         </Box>
       </Box>
 
-{/* button Size */}
+      {/* button Size */}
 
-  <Box
+      <Box
         display={isOpenSize ? "block" : "none"}
         sx={{
           bgcolor: isOpenSize ? "white" : "blue",
@@ -796,7 +794,7 @@ const NewProduct = () => {
             mb: 2,
           }}
         >
-           Warna <span style={{ color: "red" }}> * </span>
+          Warna <span style={{ color: "red" }}> * </span>
         </Typography>
         <Autocomplete
           multiple
@@ -884,7 +882,7 @@ const NewProduct = () => {
             mb: 2,
           }}
         >
-           Size <span style={{ color: "red" }}> * </span>
+          Size <span style={{ color: "red" }}> * </span>
         </Typography>
         <Autocomplete
           multiple
@@ -925,12 +923,12 @@ const NewProduct = () => {
             <Typography variant="body2" sx={{}}>
               Kamu dapat mengatur harga, stok,SKU sekaligus
             </Typography>
-           
-              <TextSnippet />
-              Atur Sekaligus
-            <ModalVarian  />
+
+            <TextSnippet />
+            Atur Sekaligus
+            <ModalVarian />
           </Box>
-          
+
 
           <Box
             sx={{
@@ -1167,478 +1165,478 @@ const NewProduct = () => {
           </Box>
         </Box>
         <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-            }}
-          >
-            <Typography variant="h6" sx={{ color: "black" }}>
-              Sage-L{" "}
-            </Typography>
-            <FormControlLabel
-              control={<Switch sx={{ m: 1 }} defaultChecked />}
-              label="Aktif"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+          }}
+        >
+          <Typography variant="h6" sx={{ color: "black" }}>
+            Sage-L{" "}
+          </Typography>
+          <FormControlLabel
+            control={<Switch sx={{ m: 1 }} defaultChecked />}
+            label="Aktif"
+          />
+          {/* <span style={{ color: "red" }}> * </span>  */}
+        </Box>
+
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 59,
+            p: 1,
+          }}
+        >
+          <Typography>
+            Harga <span style={{ color: "red" }}> * </span>
+          </Typography>
+          <Typography>
+            Stok Produk <span style={{ color: "red" }}> * </span>
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2.5,
+            p: 1,
+            mb: 2,
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
             />
-            {/* <span style={{ color: "red" }}> * </span>  */}
           </Box>
 
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 59,
-              p: 1,
-            }}
-          >
-            <Typography>
-              Harga <span style={{ color: "red" }}> * </span>
-            </Typography>
-            <Typography>
-              Stok Produk <span style={{ color: "red" }}> * </span>
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2.5,
-              p: 1,
-              mb: 2,
-            }}
-          >
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 44,
-              p: 1,
-            }}
-          >
-            <Typography>SKU (Stok Keeping Unit)</Typography>
-            <Typography>Berat Produk</Typography>
-          </Box>
-
-
-
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">Gram</InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-
-          
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-            }}
-          >
-            <Typography variant="h6" sx={{ color: "black" }}>
-              Hitam-S{" "}
-            </Typography>
-            <FormControlLabel
-              control={<Switch sx={{ m: 1 }} defaultChecked />}
-              label="Aktif"
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end"></InputAdornment>
+                ),
+              }}
             />
-            {/* <span style={{ color: "red" }}> * </span>  */}
           </Box>
+        </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 59,
-              p: 1,
-            }}
-          >
-            <Typography>
-              Harga <span style={{ color: "red" }}> * </span>
-            </Typography>
-            <Typography>
-              Stok Produk <span style={{ color: "red" }}> * </span>
-            </Typography>
-          </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 44,
+            p: 1,
+          }}
+        >
+          <Typography>SKU (Stok Keeping Unit)</Typography>
+          <Typography>Berat Produk</Typography>
+        </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2.5,
-              p: 1,
-              mb: 2,
-            }}
-          >
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
 
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 44,
-              p: 1,
-            }}
-          >
-            <Typography>SKU (Stok Keeping Unit)</Typography>
-            <Typography>Berat Produk</Typography>
-          </Box>
 
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start">Gram</InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-            }}
-          >
-            <Typography variant="h6" sx={{ color: "black" }}>
-              Hitam-M{" "}
-            </Typography>
-            <FormControlLabel
-              control={<Switch sx={{ m: 1 }} defaultChecked />}
-              label="Aktif"
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
             />
-            {/* <span style={{ color: "red" }}> * </span>  */}
           </Box>
 
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 59,
-              p: 1,
-            }}
-          >
-            <Typography>
-              Harga <span style={{ color: "red" }}> * </span>
-            </Typography>
-            <Typography>
-              Stok Produk <span style={{ color: "red" }}> * </span>
-            </Typography>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2.5,
-              p: 1,
-              mb: 2,
-            }}
-          >
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 44,
-              p: 1,
-            }}
-          >
-            <Typography>SKU (Stok Keeping Unit)</Typography>
-            <Typography>Berat Produk</Typography>
-          </Box>
-
-
-
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">Gram</InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "start",
-            }}
-          >
-            <Typography variant="h6" sx={{ color: "black" }}>
-              Hitam-M{" "}
-            </Typography>
-            <FormControlLabel
-              control={<Switch sx={{ m: 1 }} defaultChecked />}
-              label="Aktif"
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Gram</InputAdornment>
+                ),
+              }}
             />
-            {/* <span style={{ color: "red" }}> * </span>  */}
+          </Box>
+        </Box>
+
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+          }}
+        >
+          <Typography variant="h6" sx={{ color: "black" }}>
+            Hitam-S{" "}
+          </Typography>
+          <FormControlLabel
+            control={<Switch sx={{ m: 1 }} defaultChecked />}
+            label="Aktif"
+          />
+          {/* <span style={{ color: "red" }}> * </span>  */}
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 59,
+            p: 1,
+          }}
+        >
+          <Typography>
+            Harga <span style={{ color: "red" }}> * </span>
+          </Typography>
+          <Typography>
+            Stok Produk <span style={{ color: "red" }}> * </span>
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2.5,
+            p: 1,
+            mb: 2,
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
           </Box>
 
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 59,
-              p: 1,
-            }}
-          >
-            <Typography>
-              Harga <span style={{ color: "red" }}> * </span>
-            </Typography>
-            <Typography>
-              Stok Produk <span style={{ color: "red" }}> * </span>
-            </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 44,
+            p: 1,
+          }}
+        >
+          <Typography>SKU (Stok Keeping Unit)</Typography>
+          <Typography>Berat Produk</Typography>
+        </Box>
+
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">Gram</InputAdornment>
+                ),
+              }}
+            />
           </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 2.5,
-              p: 1,
-              mb: 2,
-            }}
-          >
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
 
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+          }}
+        >
+          <Typography variant="h6" sx={{ color: "black" }}>
+            Hitam-M{" "}
+          </Typography>
+          <FormControlLabel
+            control={<Switch sx={{ m: 1 }} defaultChecked />}
+            label="Aktif"
+          />
+          {/* <span style={{ color: "red" }}> * </span>  */}
+        </Box>
+
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 59,
+            p: 1,
+          }}
+        >
+          <Typography>
+            Harga <span style={{ color: "red" }}> * </span>
+          </Typography>
+          <Typography>
+            Stok Produk <span style={{ color: "red" }}> * </span>
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2.5,
+            p: 1,
+            mb: 2,
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
           </Box>
 
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "between",
-              gap: 44,
-              p: 1,
-            }}
-          >
-            <Typography>SKU (Stok Keeping Unit)</Typography>
-            <Typography>Berat Produk</Typography>
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 44,
+            p: 1,
+          }}
+        >
+          <Typography>SKU (Stok Keeping Unit)</Typography>
+          <Typography>Berat Produk</Typography>
+        </Box>
+
+
+
+
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
           </Box>
 
-
-
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
-            <Box sx={{ flex: 1 }}>
-              <TextField
-                placeholder="Rp"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="start"></InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
-
-            <Box sx={{ flex: 0.5 }}>
-              <TextField
-                placeholder="masukkan jumlah stok"
-                variant="outlined"
-                size="small"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">Gram</InputAdornment>
-                  ),
-                }}
-              />
-            </Box>
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Gram</InputAdornment>
+                ),
+              }}
+            />
           </Box>
-  </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "start",
+          }}
+        >
+          <Typography variant="h6" sx={{ color: "black" }}>
+            Hitam-M{" "}
+          </Typography>
+          <FormControlLabel
+            control={<Switch sx={{ m: 1 }} defaultChecked />}
+            label="Aktif"
+          />
+          {/* <span style={{ color: "red" }}> * </span>  */}
+        </Box>
+
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 59,
+            p: 1,
+          }}
+        >
+          <Typography>
+            Harga <span style={{ color: "red" }}> * </span>
+          </Typography>
+          <Typography>
+            Stok Produk <span style={{ color: "red" }}> * </span>
+          </Typography>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 2.5,
+            p: 1,
+            mb: 2,
+          }}
+        >
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "between",
+            gap: 44,
+            p: 1,
+          }}
+        >
+          <Typography>SKU (Stok Keeping Unit)</Typography>
+          <Typography>Berat Produk</Typography>
+        </Box>
+
+
+
+
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+          <Box sx={{ flex: 1 }}>
+            <TextField
+              placeholder="Rp"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start"></InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+
+          <Box sx={{ flex: 0.5 }}>
+            <TextField
+              placeholder="masukkan jumlah stok"
+              variant="outlined"
+              size="small"
+              fullWidth
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">Gram</InputAdornment>
+                ),
+              }}
+            />
+          </Box>
+        </Box>
+      </Box>
 
       <Box
         sx={{

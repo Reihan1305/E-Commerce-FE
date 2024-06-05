@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -11,6 +11,8 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { SET_LOGOUT } from "../../store/slice/auth";
 import { useAppDispatch } from "../../store";
+import { NotificationsRounded, SearchRounded } from '@mui/icons-material';
+import { TextField, InputAdornment } from '@mui/material';
 
 const NavbarItem = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -52,107 +54,173 @@ const NavbarItem = () => {
         dispatch(SET_LOGOUT());
     }
 
+    // count notif
+    const [countNotif, setCountNotif] = useState<number>(100)
+    let countNotifString = `${countNotif}`
+    if (countNotif >= 100) countNotifString = "99+"
+
+    // count cart
+    const [countCart, setCountCart] = useState<number>(30)
+    let countCartString = `${countCart}`
+    if (countCart >= 100) countCartString = "99+"
+
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" color="transparent" elevation={0} sx={{ paddingLeft: 25, paddingRight: 25 }}>
-                <Toolbar>
-                    <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={handleClick}>
-                        <img src="https://img.freepik.com/free-vector/bird-colorful-gradient-design-vector_343694-2506.jpg?size=338&ext=jpg&ga=GA1.1.2082370165.1717027200&semt=ais_user" alt="Candleaf Logo" style={{ height: '40px', marginRight: '10px' }} />
-                        <Typography variant="h6">
-                            Candleaf
+        <AppBar
+            position="fixed"
+            sx={{
+                bgcolor: "white"
+            }}
+        >
+            <Toolbar
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                }}
+            >
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center"
+                    }}
+                >
+                    {/* logo */}
+                    <Box
+                        sx={{
+                            cursor: 'pointer'
+                        }}
+                        onClick={handleClick}
+                    >
+                        <Typography
+                            variant="h5"
+                            sx={{
+                                fontWeight: 800
+                            }}
+                        >
+                            Lakoe
                         </Typography>
                     </Box>
-                    <Box sx={{ flexGrow: 8, display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                        <Typography
-                            variant="body1"
-                            component="div"
-                            sx={{ margin: '0 10px', position: 'relative' }}
-                            onMouseEnter={handleCategoryMenuOpen}
-                            onMouseLeave={handleCategoryMenuClose}
+                </Box>
+
+                {/* button icon */}
+
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center"
+                    }}
+                >
+                    {/* search bar */}
+                    <TextField
+                        placeholder="Search"
+                        variant="outlined"
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchRounded />
+                                </InputAdornment>
+                            ),
+                        }}
+                        size='small'
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: 50,
+                                paddingX: 2,
+                                marginRight: 3
+                            },
+                        }}
+                    />
+
+                    {/* cart */}
+                    <IconButton sx={{ position: "relative" }}>
+                        <ShoppingCartIcon fontSize='large' />
+                        <Box
+                            sx={{
+                                width: 24,
+                                maxWidth: 200,
+                                height: 24,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                position: "absolute",
+                                top: 0,
+                                right: 0,
+                                paddingX: "3px",
+                                bgcolor: "red",
+                                borderRadius: 50
+                            }}
                         >
-                            Category
-                            <Menu
-                                id="category-menu"
-                                anchorEl={categoryAnchorEl}
-                                open={Boolean(categoryAnchorEl)}
-                                onClose={handleCategoryMenuClose}
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
+                            <Typography
+                                sx={{
+                                    fontSize: "12px",
+                                    color: "white"
                                 }}
                             >
-                                <MenuItem onMouseEnter={handleSubMenuOpen} onMouseLeave={handleSubMenuClose}>
-                                    Fashion
-                                    <Menu
-                                        id="sub-category-menu"
-                                        anchorEl={subCategoryAnchorEl}
-                                        open={Boolean(subCategoryAnchorEl)}
-                                        onClose={handleSubMenuClose}
-                                        anchorOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'right',
-                                        }}
-                                        transformOrigin={{
-                                            vertical: 'top',
-                                            horizontal: 'left',
-                                        }}
-                                    >
-                                        <MenuItem onClick={handleClose}>Kemeja</MenuItem>
-                                        <MenuItem onClick={handleClose}>Celana</MenuItem>
-                                        <MenuItem onClick={handleClose}>Sepatu</MenuItem>
-                                    </Menu>
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>Rumah Tangga</MenuItem>
-                                <MenuItem onClick={handleClose}>Jawir</MenuItem>
-                            </Menu>
-                        </Typography>
-                        <Typography variant="body1" component="div" sx={{ margin: '0 10px' }}>
-                            About
-                        </Typography>
-                        <Typography variant="body1" component="div" sx={{ margin: '0 10px' }}>
-                            Contact us
-                        </Typography>
-                    </Box>
-                    <IconButton
-                        size="large"
-                        edge="end"
-                        color="inherit"
-                        aria-label="account of current user"
-                        aria-controls="menu-appbar"
-                        aria-haspopup="true"
-                        onClick={handleMenu}
-                    >
-                        <AccountCircle />
+                                {countCartString}
+                            </Typography>
+                        </Box>
                     </IconButton>
-                    <IconButton size="large" edge="end" color="inherit">
-                        <ShoppingCartIcon />
+
+                    {/* notif */}
+                    <IconButton sx={{ position: "relative" }}>
+                        <NotificationsRounded fontSize='large' />
+                        <Box
+                            sx={{
+                                width: 24,
+                                maxWidth: 200,
+                                height: 24,
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                position: "absolute",
+                                top: 0,
+                                right: 0,
+                                paddingX: "3px",
+                                bgcolor: "red",
+                                borderRadius: 50
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    fontSize: "12px",
+                                    color: "white"
+                                }}
+                            >
+                                {countNotifString}
+                            </Typography>
+                        </Box>
                     </IconButton>
-                    <Menu
-                        id="menu-appbar"
-                        anchorEl={anchorEl}
-                        anchorOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'right',
-                        }}
-                        open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                    >
-                        <MenuItem onClick={handleClose}>Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>My account</MenuItem>
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                    </Menu>
-                </Toolbar>
-            </AppBar>
-        </Box>
+
+                    <IconButton onClick={handleMenu}>
+                        <AccountCircle fontSize='large' />
+                    </IconButton>
+                </Box>
+
+                {/* menu popup */}
+                <Menu
+                    id="menu-appbar"
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    sx={{
+                        top: 45
+                    }}
+                    open={Boolean(anchorEl)}
+                    onClose={handleClose}
+                >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                </Menu>
+            </Toolbar>
+        </AppBar>
     );
 }
 

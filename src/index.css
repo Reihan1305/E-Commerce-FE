@@ -15,3 +15,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.shipment-swal {
+  z-index: 9999;
+}

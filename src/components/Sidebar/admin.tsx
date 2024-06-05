@@ -1,8 +1,6 @@
 import {
     Home,
     HomeOutlined,
-    PersonSearch,
-    PersonSearchOutlined,
     LocalShipping,
     CreateNewFolder,
     Event,

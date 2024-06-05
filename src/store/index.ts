@@ -1,10 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import authReducer from "./slice/auth";
+import categoryReducer from "./slice/categorySlice";
+import courierReducer from "./slice/courierSlice";
+import decorationReducer from "./slice/decorationSlice";
 
 const store = configureStore({
    reducer: {
       auth: authReducer,
+      category: categoryReducer,
+      courier: courierReducer,
+      decoration: decorationReducer,
    },
 });
 

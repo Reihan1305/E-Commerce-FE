@@ -1786,4 +1786,4 @@ const size = [
   { size: "XL" },
   { size: "XXL" },
 
-]
+];

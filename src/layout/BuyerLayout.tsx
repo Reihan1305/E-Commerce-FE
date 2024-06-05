@@ -1,13 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useAppSelector } from "../store";
-import Navbar from "../components/Navbar";
-import Hero from "../pages/Buyer/components/Hero";
-import Products from "../pages/Buyer/components/Products";
-import Testimonial from "../pages/Buyer/components/Testimonial";
-import Popular from "../pages/Buyer/components/Popular";
-import Footer from "../components/Footer";
-import { profile } from "console";
-import { stat } from "fs";
 
 const BuyerLayout = () => {
 
@@ -21,7 +13,6 @@ const BuyerLayout = () => {
    if (!isLogin) {
       return <Navigate to="/auth/login" />;
    }
-
    if(profile.rolesId === 2){
       return <Navigate to={"/seller"} />
    }else if(profile.rolesId === 3){

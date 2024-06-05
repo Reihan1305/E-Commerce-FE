@@ -25,12 +25,10 @@ const Setting = () => {
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <TabList onChange={handleChange}>
               <Tab  sx={{fontSize:"medium", fontWeight:"700"}} label="Informasi" value="1" />
-              <Tab  sx={{fontSize:"medium", fontWeight:"700"}} label="Lokasi" value="2" />
               <Tab  sx={{fontSize:"medium", fontWeight:"700"}} label="Template Pesan" value="3" />
             </TabList>
           </Box>
           <TabPanel value="1"><Information/></TabPanel>
-          <TabPanel value="2"><Location/></TabPanel>
           <TabPanel value="3"><TemplateMessage/></TabPanel>
         </TabContext>
       </Box>

@@ -18,7 +18,7 @@ import { useAppDispatch } from "../../store";
 const MENU = [
     {
         name: "Dashboard",
-        path: "/seller",
+        path: "/seller/",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
@@ -39,7 +39,23 @@ const MENU = [
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,
         },
-    },
+    },{
+        name:"Setting",
+        path:"/seller/setting",
+        icon:{
+            active:<SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive:<SettingsOutlined fontSize="large" />
+        },
+        children:[
+            {
+            name:"Atur Toko",
+            path:"/seller/setting/store"
+            },{
+            name:"Lokasi",
+            path:"/seller/setting/location"
+            }
+        ]
+    }
 
 ];
 
@@ -61,6 +77,8 @@ const MenuItem = () => {
                             alignItems={"center"}
                             sx={{ gap: 2 }}
                         >
+                            {!item.children ?
+                            <Box display={"flex"} justifyContent={"center"} gap={1}>
                             {isActive ? item.icon.active : item.icon.nonActive}{" "}
                             <Typography
                                 sx={{
@@ -68,107 +86,60 @@ const MenuItem = () => {
                                     color: isActive ? "#0086B4" : "black",
                                     fontWeight: isActive ? "700" : "400"
                                 }}
-                            >
+                                >
                                 {item.name}
                             </Typography>
+                            </Box>:
+                            <Accordion sx={{ boxShadow: "none", left: "-15px" }}>
+                            <AccordionSummary
+            
+                                expandIcon={<ArrowDropDownIcon />}
+                            >
+                                <Box display={"flex"} justifyContent={"center"} gap={1}>
+                                {isActive ? item.icon.active : item.icon.nonActive}{" "}
+                                <Typography
+                                sx={{
+                                    fontSize: "20px",
+                                    color: isActive ? "#0086B4" : "black",
+                                    fontWeight: isActive ? "700" : "400"
+                                }}
+                                >
+                                {item.name}
+                            </Typography>
+                            </Box>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                {item.children.map((item)=>(
+                                    <NavLink to={item.path} style={{ textDecoration: "none" }}>
+                                    {({ isActive }) => (
+                                        <Box
+                                            color={"#000"}
+                                            marginBottom={"20px"}
+                                            display={"flex"}
+                                            alignItems={"center"}
+                                            sx={{ gap: 2 }}>
+                                            {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
+                                            <Typography
+                                                sx={{
+                                                    fontSize: "15px",
+                                                    color: isActive ? "#0086B4" : "black",
+                                                    fontWeight: isActive ? "700" : "500"
+                                                }}
+                                            >
+                                                {item.name}
+                                            </Typography>
+                                        </Box>
+                                    )}
+                                </NavLink>
+                                ))}
+                            </AccordionDetails>
+                        </Accordion>
+                            }
                         </Box>
                     )}
                 </NavLink>
             ))}
-            <Accordion sx={{ boxShadow: "none", left: "-15px" }}>
-                <AccordionSummary
-
-                    expandIcon={<ArrowDropDownIcon />}
-                >
-                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
-                        {({ isActive }) => (
-                            <Box
-
-                                color={"#000"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                sx={{ gap: 2 }}
-                            >
-                                {isActive ? <SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} /> : <SettingsOutlined fontSize="large" />}
-                                <Typography
-                                    sx={{
-                                        fontSize: "20px",
-                                        color: isActive ? "#0086B4" : "black",
-                                        fontWeight: isActive ? "700" : "400"
-                                    }}
-                                >
-                                    Setting
-                                </Typography>
-                            </Box>
-                        )}
-                    </NavLink>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <NavLink to={"/seller/setting/store"} style={{ textDecoration: "none" }}>
-                        {({ isActive }) => (
-                            <Box
-                                color={"#000"}
-                                marginBottom={"20px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                sx={{ gap: 2 }}>
-                                {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
-                                <Typography
-                                    sx={{
-                                        fontSize: "15px",
-                                        color: isActive ? "#0086B4" : "black",
-                                        fontWeight: isActive ? "700" : "500"
-                                    }}
-                                >
-                                    Atur Toko
-                                </Typography>
-                            </Box>
-                        )}
-                    </NavLink>
-                    <NavLink to={"/seller/setting/shiping"} style={{ textDecoration: "none" }}>
-                        {({ isActive }) => (
-                            <Box
-                                color={"#000"}
-                                marginBottom={"20px"}
-                                display={"flex"}
-                                alignItems={"center"}
-                                sx={{ gap: 2 }}>
-                                {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
-                                <Typography
-                                    sx={{
-                                        fontSize: "15px",
-                                        color: isActive ? "#0086B4" : "black",
-                                        fontWeight: isActive ? "700" : "500"
-                                    }}
-                                >
-                                    Pengiriman
-                                </Typography>
-                            </Box>
-                        )}
-                    </NavLink>
-                    <NavLink to={"/seller/setting/paymentMetode"} style={{ textDecoration: "none" }}>
-                        {({ isActive }) => (
-                            <Box
-                                color={"#000"}
-                                display={"flex"}
-                                marginBottom={"20px"}
-                                alignItems={"center"}
-                                sx={{ gap: 2 }}>
-                                {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
-                                <Typography
-                                    sx={{
-                                        fontSize: "15px",
-                                        color: isActive ? "#0086B4" : "black",
-                                        fontWeight: isActive ? "700" : "500"
-                                    }}
-                                >
-                                    Metode Pembayaran
-                                </Typography>
-                            </Box>
-                        )}
-                    </NavLink>
-                </AccordionDetails>
-            </Accordion>
+            
             <Box>
                 <Button onClick={handleLogout}><Typography>Logout</Typography></Button>
             </Box>

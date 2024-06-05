@@ -17,7 +17,12 @@ export const useRegisterFunction = ({ }: IProps) => {
     const onSubmit: SubmitHandler<IRegisterForm> = (data) => {
         console.log(data);
         dispatch(registerAsync(data));
-        Navigate("/auth/login")
+        if(data.rolesId === 2){
+            Navigate("/auth/createStore")
+        }else{
+
+            Navigate("/auth/login")
+        }    
     };
 
     const onErrorSubmit: SubmitErrorHandler<IRegisterForm> = (data) => {

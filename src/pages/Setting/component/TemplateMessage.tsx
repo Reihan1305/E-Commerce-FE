@@ -1,8 +1,8 @@
 import { Box, Typography,Button, IconButton } from '@mui/material'
 import React from 'react'
-import ModalCreateMessage from './atom/ModalCreateMessage'
-import ModalEditMessage from './atom/ModalEditMessage';
-import ModalDeleteMessage from './atom/ModalDeleteMessage';
+import ModalCreateMessage from './atom/message/ModalCreateMessage'
+import ModalEditMessage from './atom/message/ModalEditMessage';
+import ModalDeleteMessage from './atom/message/ModalDeleteMessage';
 
 const messageTemplates = [
   {

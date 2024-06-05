@@ -5,13 +5,18 @@ import { useAppSelector } from "../store";
 import Home from "../pages/Home";
 
 const SellerLayout = () => {
-    const { isLogin } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+    const { isLogin ,profile} = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
         isLogin: state.auth.isLogin,
         profile: state.auth.profile
     }))
-    console.log(isLogin)
+    console.log(profile)
     if (!isLogin) {
         return <Navigate to="/auth/login" />;
+    }
+    if(profile.rolesId === 1){
+        return <Navigate to={"/buyer"} />
+    }else if(profile.rolesId === 3){
+        return <Navigate to={"/admin"} />
     }
 
     return (

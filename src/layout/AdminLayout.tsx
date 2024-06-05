@@ -5,14 +5,20 @@ import { useAppSelector } from "../store";
 import Chart from "../pages/Admin";
 
 const SellerLayout = () => {
-    const { isLogin } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+    const { isLogin,profile } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
         isLogin: state.auth.isLogin,
         profile: state.auth.profile
     }))
-
+    
     if (!isLogin) {
         return <Navigate to="/auth/login" />;
     }
+
+    if(profile.rolesId === 2){
+        return <Navigate to={"/seller"} />
+     }else if(profile.rolesId === 1){
+        return <Navigate to={"/buyer"}/>
+     }
     return (
         <>
             <Box className="container">

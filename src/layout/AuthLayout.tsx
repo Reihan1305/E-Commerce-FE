@@ -8,7 +8,8 @@ const AuthLayout = () => {
         isLogin: state.auth.isLogin,
         profile: state.auth.profile
     }))
-
+    console.log(profile);
+    
     if (isLogin) {
         if (profile.rolesId === 1) {
             return <Navigate to={"/buyer"} />;

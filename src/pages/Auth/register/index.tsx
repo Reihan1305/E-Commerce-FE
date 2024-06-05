@@ -10,7 +10,8 @@ import { useAppSelector } from "../../../store";
 import useRegisterValidation, { IRegisterForm } from "../../../lib/api/validation/useRegisterValidation";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const defaultTheme = createTheme();
 const Register = () => {
@@ -24,159 +25,175 @@ const Register = () => {
         console.log(authState);
     }, [authState]);
 
-    const handleButton = () => {
-        navigate('/auth/login');
-    }
-
-    const handleSuccess = () => {
-        Swal.fire({
-            title: 'Success!',
-            text: 'Register Success',
-            icon: 'success',
-            confirmButtonText: 'Login'
-        }).then(() => {
-            navigate('/auth/login');
+    const handleSuccess = (data: IRegisterForm) => {
+        toast.success('Register Success', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            onClose: () => {
+                setTimeout(() => {
+                    if (data.rolesId === 2) {
+                        navigate("/auth/createStore");
+                    } else {
+                        navigate('/auth/login');
+                    }
+                }, 3000);
+            }
         });
     }
 
     const handleSubmitForm = async (data: IRegisterForm) => {
         try {
             await onSubmit(data);
-            handleSuccess();
+            handleSuccess(data);
         } catch (error) {
             onErrorSubmit(error as any);
+            toast.error('Register Failed', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
         }
     }
 
+    const handleButton = () => {
+        navigate('/auth/login');
+    }
+
     return (
-        <>
-            <ThemeProvider theme={defaultTheme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5" sx={{ color: "black" }}>
-                            Sign Up Lakoe
-                        </Typography>
-                        <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(handleSubmitForm)}>
-                            <Grid container spacing={2} gap={2}>
-                                <Controller
-                                    control={control}
-                                    name="name"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            label="name"
-                                            fullWidth
-                                            color="success"
-                                            sx={{ borderColor: "white" }}
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <ToastContainer />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5" sx={{ color: "black" }}>
+                        Sign Up Lakoe
+                    </Typography>
+                    <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit(handleSubmitForm)}>
+                        <Grid container spacing={2} gap={2}>
+                            <Controller
+                                control={control}
+                                name="name"
+                                render={({ field, fieldState }) => (
+                                    <TextField
+                                        label="name"
+                                        fullWidth
+                                        color="success"
+                                        sx={{ borderColor: "white" }}
+                                        {...field}
+                                        helperText={fieldState.error?.message}
+                                        error={Boolean(fieldState.error)}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="email"
+                                render={({ field, fieldState }) => (
+                                    <TextField
+                                        label="email"
+                                        fullWidth
+                                        color="success"
+                                        sx={{ borderColor: "white" }}
+                                        {...field}
+                                        helperText={fieldState.error?.message}
+                                        error={Boolean(fieldState.error)}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="phone"
+                                render={({ field, fieldState }) => (
+                                    <TextField
+                                        label="phone"
+                                        color="success"
+                                        fullWidth
+                                        type='number'
+                                        sx={{ borderColor: "white" }}
+                                        {...field}
+                                        helperText={fieldState.error?.message}
+                                        error={Boolean(fieldState.error)}
+                                    />
+                                )}
+                            />
+                            <Controller
+                                name="rolesId"
+                                control={control}
+                                defaultValue={1}
+                                render={({ field, fieldState }) => (
+                                    <FormControl fullWidth error={Boolean(fieldState.error)}>
+                                        <InputLabel id="rolesId-label">rolesId</InputLabel>
+                                        <Select
+                                            labelId="rolesId-label"
+                                            id="rolesId"
+                                            label="rolesId"
                                             {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                        />
-                                    )}
-                                />
-                                <Controller
-                                    control={control}
-                                    name="email"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            label="email"
-                                            fullWidth
-                                            color="success"
-                                            sx={{ borderColor: "white" }}
-                                            {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                        />
-                                    )}
-                                />
-                                <Controller
-                                    control={control}
-                                    name="phone"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            label="phone"
-                                            color="success"
-                                            fullWidth
-                                            type='number'
-                                            sx={{ borderColor: "white" }}
-                                            {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                        />
-                                    )}
-                                />
-                                <Controller
-                                    name="rolesId"
-                                    control={control}
-                                    defaultValue={1}
-                                    render={({ field, fieldState }) => (
-                                        <FormControl fullWidth error={Boolean(fieldState.error)}>
-                                            <InputLabel id="rolesId-label">rolesId</InputLabel>
-                                            <Select
-                                                labelId="rolesId-label"
-                                                id="rolesId"
-                                                label="rolesId"
-                                                {...field}
-                                            >
-                                                <MenuItem value={1}>Buyer</MenuItem>
-                                                <MenuItem value={2}>Seller</MenuItem>
-                                                <MenuItem value={3}>Admin</MenuItem>
-                                            </Select>
-                                            {fieldState.error && (
-                                                <FormHelperText>{fieldState.error.message}</FormHelperText>
-                                            )}
-                                        </FormControl>
-                                    )}
-                                />
-                                <Controller
-                                    control={control}
-                                    name="password"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            label="password"
-                                            color="success"
-                                            type='password'
-                                            fullWidth
-                                            sx={{ borderColor: "white" }}
-                                            {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                        />
-                                    )}
-                                />
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
-                                >
-                                    Sign Up
+                                        >
+                                            <MenuItem value={1}>Buyer</MenuItem>
+                                            <MenuItem value={2}>Seller</MenuItem>
+                                            <MenuItem value={3}>Admin</MenuItem>
+                                        </Select>
+                                        {fieldState.error && (
+                                            <FormHelperText>{fieldState.error.message}</FormHelperText>
+                                        )}
+                                    </FormControl>
+                                )}
+                            />
+                            <Controller
+                                control={control}
+                                name="password"
+                                render={({ field, fieldState }) => (
+                                    <TextField
+                                        label="password"
+                                        color="success"
+                                        type='password'
+                                        fullWidth
+                                        sx={{ borderColor: "white" }}
+                                        {...field}
+                                        helperText={fieldState.error?.message}
+                                        error={Boolean(fieldState.error)}
+                                    />
+                                )}
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign Up
+                            </Button>
+                        </Grid>
+                        <Grid container justifyContent="flex-end">
+                            <Grid item>
+                                <Button onClick={handleButton}>
+                                    <Typography variant="body2" fontSize={10}>
+                                        Already have an account? Sign in
+                                    </Typography>
                                 </Button>
                             </Grid>
-                            <Grid container justifyContent="flex-end">
-                                <Grid item>
-                                    <Button onClick={handleButton}>
-                                        <Typography variant="body2" fontSize={10}>
-                                            Already have an account? Sign in
-                                        </Typography>
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </Box>
+                        </Grid>
                     </Box>
-                </Container>
-            </ThemeProvider>
-        </>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 };
 

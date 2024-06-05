@@ -10,11 +10,9 @@ import { IconButton, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-interface ModalDeleteMessageProps {
-    title: string;
-  }
+
   
-  export default function ModalDeleteMessage({ title }: ModalDeleteMessageProps) {
+  export default function DeleteLocationModal() {
   const [open, setOpen] = React.useState(false);
   const [messageDetail, setMessageDetail] = React.useState('');
 
@@ -59,7 +57,7 @@ interface ModalDeleteMessageProps {
           }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px" }}>
               <Typography variant="h6" fontWeight={700}>
-                Ubah Template Pesan
+                Hapus Alamat
               </Typography>
               <IconButton onClick={handleClose}>
                 <HighlightOffRoundedIcon />
@@ -68,8 +66,8 @@ interface ModalDeleteMessageProps {
             <Box sx={{ paddingX: "10px", display: "flex", flexDirection: "column", gap: "10px" }}>
               <Box>
                 <Typography variant='body1' fontWeight={500}>
-                Apakah kamu yakin untuk menghapus {<Typography variant='body2' fontWeight={700}>{title} ?</Typography>}
-                Sebab, kamu tidak akan dapat mengembalikan template pesan yang sudah dihapus.
+                Apakah kamu yakin untuk menghapus {<Typography variant='body2' fontWeight={700}> ?</Typography>}
+                , kamu tidak akan dapat mengembalikan alamat yang sudah dihapus.
                 </Typography>
               </Box>
             </Box>

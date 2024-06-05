@@ -6,18 +6,28 @@ import Products from "../pages/Buyer/components/Products";
 import Testimonial from "../pages/Buyer/components/Testimonial";
 import Popular from "../pages/Buyer/components/Popular";
 import Footer from "../components/Footer";
+import { profile } from "console";
+import { stat } from "fs";
 
 const BuyerLayout = () => {
 
    // const isLogin = useAppSelector((state) => state.auth.isLogin);
    // console.log(isLogin);
-   const { isLogin } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+   const { isLogin ,profile} = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
       isLogin: state.auth.isLogin,
+      profile: state.auth.profile
    }))
 
    if (!isLogin) {
       return <Navigate to="/auth/login" />;
    }
+
+   if(profile.rolesId === 2){
+      return <Navigate to={"/seller"} />
+   }else if(profile.rolesId === 3){
+      return <Navigate to={"/admin"}/>
+   }
+   
    return (
       <>
          <Outlet />

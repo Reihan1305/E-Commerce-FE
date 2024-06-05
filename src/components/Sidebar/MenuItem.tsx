@@ -18,7 +18,7 @@ import { useAppDispatch } from "../../store";
 const MENU = [
     {
         name: "Dashboard",
-        path: "/seller/dashboard",
+        path: "/seller/",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
@@ -51,11 +51,8 @@ const MENU = [
             name:"Atur Toko",
             path:"/seller/setting/store"
             },{
-                name:"Pengiriman",
-                path:"/seller/setting/shiping"
-            },{
-                name:"Pembayaran",
-                path:"/seller/setting/paymentMetode"
+            name:"Lokasi",
+            path:"/seller/setting/location"
             }
         ]
     }

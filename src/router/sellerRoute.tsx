@@ -1,4 +1,4 @@
-import { RouteObject } from "react-router-dom";
+import { Navigate, RouteObject } from "react-router-dom";
 import Product from "../pages/Product";
 import NewProduct from "../pages/Product/newProduct";
 import ButtonVarian from "../pages/Product/buttonVarian";
@@ -8,19 +8,18 @@ import OrderPage from "../pages/Order";
 import DetailOrder from "../pages/Order/component/detailOrder";
 import Setting from "../pages/Setting";
 import Home from "../pages/Home";
-
+import Location from "../pages/Setting/component/Location";
 
 export const sellerRoutes: RouteObject[] = [
     {
         index: true,
-        path:"dashboard",
         element: <Home />,
     },
     {
         path: "product",
         children: [
             {
-                index: true,
+                index :true,
                 element: <Product />
             },
             {
@@ -60,9 +59,8 @@ export const sellerRoutes: RouteObject[] = [
                 path: "store",
                 element: <Setting />
             }, {
-                path: "shiping"
-            }, {
-                path: "paymentMetode"
+                path: "location",
+                element:<Location/>
             }
 
         ]

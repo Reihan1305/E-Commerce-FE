@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateRounded';
 import React from 'react'
+import OperationsHoursModal from './atom/operationsHourModal';
 
 const Information = () => {
     const [inputValue, setInputValue] = React.useState('');
@@ -98,7 +99,7 @@ const Information = () => {
           Simpan
         </Button>
       </Box>
-      <Box paddingY="20px">
+      <Box paddingY="20px" >
       <Typography variant="h6" fontWeight={700}>
         Logo Toko
       </Typography>
@@ -169,6 +170,29 @@ const Information = () => {
         Ukuran optimal 300 x 300 piksel dengan Besar file: Maksimum 10 Megabytes.
 Ekstensi file yang diperbolehkan: JPG, JPEG, PNG
         </Typography>
+      <Box sx={{ paddingTop:"20px", display: "flex",flexDirection:"column", justifyContent: "flex-start", mt: 2 ,borderTop:"1px solid grey",gap:"10px"}}>
+        <Box sx={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+        <Typography  variant="h6" fontWeight={700}>
+          Jam Operasional
+        </Typography> 
+        <OperationsHoursModal closeTime='10:00' day='Senin' openTime='16:00' status='buka' key={"1"}/>
+
+        </Box>
+        <Box>
+          <Typography fontWeight={500}>
+            Hari    : senin - sabtu
+          </Typography>
+          <Typography fontWeight={500}>
+            Buka jam : 08:00        
+          </Typography>
+          <Typography fontWeight={500}>
+            Tutup Jam : 16:00            
+          </Typography>
+          <Typography fontWeight={500}>
+            status : Buka
+          </Typography>
+        </Box>
+      </Box>  
       </Box>
   )
 }

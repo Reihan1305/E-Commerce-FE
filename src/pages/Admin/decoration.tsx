@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { getDecorationAsync } from '../../store/async/decorationAsync';
 import { Delete } from '@mui/icons-material';
 import axios from 'axios';
-import { getCourierAsync } from '../../store/async/courierAsync';
+import React from 'react';
 
 const Decoration = () => {
     const [decorationName, setDecorationName] = useState<string>('');
@@ -88,16 +88,31 @@ const Decoration = () => {
                     <TableHead>
                         <TableRow>
                             <StyledTableCell align='left'>Type</StyledTableCell>
-                            <StyledTableCell sx={{ marginX: 2, width: "100px" }} >Aksi</StyledTableCell>
+                            <StyledTableCell align='right'>Aksi</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {decoration && decoration.length > 0 ? (
                             decoration.map((row) => (
-                                <TableRow key={row.type}>
-                                    <TableCell align="left">{row.type}</TableCell>
-                                    <TableCell align="right" ><Button onClick={() => handleDelete(row.id)}>< Delete /></Button>  </TableCell>
-                                </TableRow>
+                                <React.Fragment key={row.id}>
+                                    <TableRow>
+                                        <TableCell align="left">{row.type}</TableCell>
+                                        <TableCell align="right">
+                                            <Button onClick={() => handleDelete(row.id)}>
+                                                <Delete />
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell colSpan={2} align="center">
+                                            <img
+                                                src={"https://images.unsplash.com/photo-1575936123452-b67c3203c357"}
+                                                alt={row.type}
+                                                style={{ width: '580px', height: '300px', objectFit: 'cover' }}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                </React.Fragment>
                             ))
                         ) : (
                             <TableRow>
@@ -107,6 +122,7 @@ const Decoration = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
+
         </Box>
     );
 };

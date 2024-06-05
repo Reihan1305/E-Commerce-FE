@@ -18,7 +18,7 @@ import { useAppDispatch } from "../../store";
 const MENU = [
     {
         name: "Dashboard",
-        path: "/seller/",
+        path: "/seller/dashboard",
         icon: {
             active: <Home fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <HomeOutlined fontSize="large" />,
@@ -39,20 +39,20 @@ const MENU = [
             active: <ShoppingBagRounded fontSize="large" style={{ fill: "#0086B4" }} />,
             nonActive: <ShoppingBagOutlined fontSize="large" />,
         },
-    },{
-        name:"Setting",
-        path:"/seller/setting",
-        icon:{
-            active:<SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />,
-            nonActive:<SettingsOutlined fontSize="large" />
+    }, {
+        name: "Setting",
+        path: "/seller/setting",
+        icon: {
+            active: <SettingsRounded fontSize="large" style={{ fill: "#0086B4" }} />,
+            nonActive: <SettingsOutlined fontSize="large" />
         },
-        children:[
+        children: [
             {
-            name:"Atur Toko",
-            path:"/seller/setting/store"
-            },{
-            name:"Lokasi",
-            path:"/seller/setting/location"
+                name: "Atur Toko",
+                path: "/seller/setting/store"
+            }, {
+                name: "Lokasi",
+                path: "/seller/setting/location"
             }
         ]
     }
@@ -78,68 +78,68 @@ const MenuItem = () => {
                             sx={{ gap: 2 }}
                         >
                             {!item.children ?
-                            <Box display={"flex"} justifyContent={"center"} gap={1}>
-                            {isActive ? item.icon.active : item.icon.nonActive}{" "}
-                            <Typography
-                                sx={{
-                                    fontSize: "20px",
-                                    color: isActive ? "#0086B4" : "black",
-                                    fontWeight: isActive ? "700" : "400"
-                                }}
-                                >
-                                {item.name}
-                            </Typography>
-                            </Box>:
-                            <Accordion sx={{ boxShadow: "none", left: "-15px" }}>
-                            <AccordionSummary
-            
-                                expandIcon={<ArrowDropDownIcon />}
-                            >
                                 <Box display={"flex"} justifyContent={"center"} gap={1}>
-                                {isActive ? item.icon.active : item.icon.nonActive}{" "}
-                                <Typography
-                                sx={{
-                                    fontSize: "20px",
-                                    color: isActive ? "#0086B4" : "black",
-                                    fontWeight: isActive ? "700" : "400"
-                                }}
-                                >
-                                {item.name}
-                            </Typography>
-                            </Box>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                {item.children.map((item)=>(
-                                    <NavLink to={item.path} style={{ textDecoration: "none" }}>
-                                    {({ isActive }) => (
-                                        <Box
-                                            color={"#000"}
-                                            marginBottom={"20px"}
-                                            display={"flex"}
-                                            alignItems={"center"}
-                                            sx={{ gap: 2 }}>
-                                            {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
+                                    {isActive ? item.icon.active : item.icon.nonActive}{" "}
+                                    <Typography
+                                        sx={{
+                                            fontSize: "20px",
+                                            color: isActive ? "#0086B4" : "black",
+                                            fontWeight: isActive ? "700" : "400"
+                                        }}
+                                    >
+                                        {item.name}
+                                    </Typography>
+                                </Box> :
+                                <Accordion sx={{ boxShadow: "none", left: "-15px" }}>
+                                    <AccordionSummary
+
+                                        expandIcon={<ArrowDropDownIcon />}
+                                    >
+                                        <Box display={"flex"} justifyContent={"center"} gap={1}>
+                                            {isActive ? item.icon.active : item.icon.nonActive}{" "}
                                             <Typography
                                                 sx={{
-                                                    fontSize: "15px",
+                                                    fontSize: "20px",
                                                     color: isActive ? "#0086B4" : "black",
-                                                    fontWeight: isActive ? "700" : "500"
+                                                    fontWeight: isActive ? "700" : "400"
                                                 }}
                                             >
                                                 {item.name}
                                             </Typography>
                                         </Box>
-                                    )}
-                                </NavLink>
-                                ))}
-                            </AccordionDetails>
-                        </Accordion>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        {item.children.map((item) => (
+                                            <NavLink to={item.path} style={{ textDecoration: "none" }}>
+                                                {({ isActive }) => (
+                                                    <Box
+                                                        color={"#000"}
+                                                        marginBottom={"20px"}
+                                                        display={"flex"}
+                                                        alignItems={"center"}
+                                                        sx={{ gap: 2 }}>
+                                                        {isActive ? <CircleIcon fontSize="small" style={{ fill: "#0086B4" }} /> : <CircleIcon fontSize="small" style={{ fill: "white" }} />}
+                                                        <Typography
+                                                            sx={{
+                                                                fontSize: "20px",
+                                                                color: isActive ? "#0086B4" : "black",
+                                                                fontWeight: isActive ? "700" : "500"
+                                                            }}
+                                                        >
+                                                            {item.name}
+                                                        </Typography>
+                                                    </Box>
+                                                )}
+                                            </NavLink>
+                                        ))}
+                                    </AccordionDetails>
+                                </Accordion>
                             }
                         </Box>
                     )}
                 </NavLink>
             ))}
-            
+
             <Box>
                 <Button onClick={handleLogout}><Typography>Logout</Typography></Button>
             </Box>

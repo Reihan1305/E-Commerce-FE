@@ -21,6 +21,7 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import AddIcon from "@mui/icons-material/Add";
 import ModalVarian from "./atom/modalVarian";
 import { TextSnippet } from "@mui/icons-material";
+import ImageProduct from "./atom/imageProduct";
 
 const NewProduct = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -202,7 +203,7 @@ const NewProduct = () => {
         <Typography variant="body2" sx={{ mb: 1 }}>
           Foto Produk
         </Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
+        {/* <Box sx={{ display: "flex", alignItems: "center", gap: 2.5, p: 1 }}>
           <Box
             sx={{
               display: "flex",
@@ -358,7 +359,9 @@ const NewProduct = () => {
               </Typography>
             </IconButton>
           </Box>
-        </Box>
+        </Box> */}
+        <ImageProduct />
+
       </Box>
 
       <Box

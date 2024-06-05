@@ -1,29 +1,34 @@
-import { Box, Button, Card, CardContent, Typography } from "@mui/material"
+import React from 'react';
+import { Box, Button, Card, CardContent, CardMedia, Typography, CardActions, Grid } from '@mui/material';
 
 const Hero = () => {
-
     return (
-        <>
-            <Box
-                sx={{
-                    width: "100%",
-                    height: "500px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    overflow: "hidden"
-                }}
-            >
-                <img 
-                    src="https://img.freepik.com/free-photo/orange-copy-space-background-with-sale-idea_23-2148305925.jpg?t=st=1717140472~exp=1717144072~hmac=e1bdf160f339e45119bef322dc5fe8987f22d2d9d9d1aafcfd934436488ebc80&w=1380" 
-                    alt="" 
-                    style={{ 
-                        width: '100%',
-                    }} 
-                />
-            </Box>
-        </>
-    )
+
+        <Box sx={{ flexGrow: 1, padding: 2, paddingTop: "80px" }} >
+            <Grid container spacing={2}>
+                {[1, 2, 3, 4].map((item) => (
+                    <Grid item xs={12} sm={6} md={3} key={item}>
+                        <Card sx={{ maxWidth: 400 }}>
+                            <CardMedia
+                                component="img"
+                                alt="green iguana"
+                                height="140"
+                                image="https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                            />
+                            <CardContent>
+                                <Typography variant="body2" color="text.secondary">
+                                    Lizards are
+                                </Typography>
+                                <Typography gutterBottom variant="h5" component="div">
+                                    Cat
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                ))}
+            </Grid>
+        </Box>
+    );
 }
 
-export default Hero
+export default Hero;

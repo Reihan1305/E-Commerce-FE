@@ -1,10 +1,8 @@
-import { Box, Typography, Button, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Typography, Button, FormControl, FormControlLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, FormLabel, Accordion, AccordionDetails, AccordionSummary } from '@mui/material'
+import { useState } from 'react'
 import Navbar from '../../../components/Navbar'
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, ExpandMore, LocalMall, Remove, ShoppingCart } from '@mui/icons-material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import Footer from '../../../components/Footer';
 import { useNavigate } from 'react-router-dom';
 
 const DetailProduct = () => {
@@ -21,130 +19,290 @@ const DetailProduct = () => {
         }
     };
 
-    const [subscription, setSubscription] = useState('one-time');
-    const [deliveryInterval, setDeliveryInterval] = useState('4 weeks');
-
-    const handleSubscriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSubscription(event.target.value);
-    };
-
-    const handleIntervalChange = (event: SelectChangeEvent) => {
-        setDeliveryInterval(event.target.value);
-    };
-
     const handleClick = () => {
         navigate('/buyer/cart');
+    }
+
+    const image = [
+        { image: "https://images.unsplash.com/photo-1654570818480-54524bf0186b" },
+        { image: "https://images.unsplash.com/photo-1654570407658-dc06d6ae45c2" },
+        { image: "https://images.unsplash.com/photo-1657364890995-1ec4bb3aefcf" },
+    ]
+
+    const size = [
+        {
+            size: "S",
+            price: "50000"
+        },
+        {
+            size: "M",
+            price: "70000"
+        },
+        {
+            size: "L",
+            price: "95000"
+        },
+        {
+            size: "XL",
+            price: "110000"
+        },
+        {
+            size: "Oversize",
+            price: "140000"
+        },
+    ]
+
+    const color = [
+        { color: "Black" },
+        { color: "White" },
+        { color: "Sage" },
+    ]
+
+    const [selectedSize, setSelectedSize] = useState("")
+    const [selectedPrice, setSelectedPrice] = useState(size[0].price)
+    const [selectedColor, setSelectedColor] = useState("")
+
+    const handleChangeSize = (e: any) => {
+        setSelectedSize(e.target.value)
+        const selectedSizeData = size.find((item) => item.size === e.target.value);
+        setSelectedPrice(selectedSizeData?.price!)
+    }
+
+    const handleChangeColor = (e: any) => {
+        setSelectedColor(e.target.value)
     }
 
     return (
         <>
             <Navbar />
-            <Box display="flex" justifyContent="center" p={2}>
-                <Box display="flex" flexDirection="column" alignItems="center" mx={1} width={582}>
-                    <img src="https://www.mavis.co.id/uploads/images/blog/dummy%20(1).jpg" alt="Gambar Kiri" width={582} />
-                    <Typography variant="h6" mt={2} textAlign={"center"} fontWeight="bold">
-                        All hand-made with natural soy wax, Candleaf is made for your pleasure moments.
-                    </Typography>
-                    <Box display="flex" flexDirection="row" alignItems="center" gap={1} mt={2}>
-                        <LocalShippingIcon />
-                        <Typography variant="body1" color={"green"} fontWeight={"bold"}>
-                            FREE SHIPPING
-                        </Typography>
+            <Box
+                sx={{
+                    display: "flex",
+                    gap: 2,
+                    p: 2,
+                    mt: 10
+                }}
+            >
+                <Box>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            width: "500px",
+                            height: "500px",
+                            borderRadius: "10px",
+                            overflow: "hidden"
+                        }}
+                    >
+                        {image.map((item) => (
+                            <img
+                                src={item.image}
+                                width={"100%"}
+                            />
+                        ))}
                     </Box>
                 </Box>
 
-                <Box display="flex" flexDirection="column" mx={1} width={582}>
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+
+                    }}
+                >
+                    {/* title */}
                     <Typography variant="h5" mt={2} fontWeight={"bold"}>
-                        Spiced Mint Candleaf®
+                        Kaos polos
                     </Typography>
-                    <Box display="flex" mt={2}>
-                        <Box display="flex" flexDirection="column" width="25%">
-                            <Typography variant="h6" fontWeight="bold" color={"green"}>
-                                $9.99
-                            </Typography>
-                            <Typography variant="body2" mt={2}>
-                                Quantity
-                            </Typography>
-                            <Box display="flex" alignItems="center" border={1} borderColor="green" width={130} mt={1}>
-                                <Button onClick={handleIncrement} style={{ minWidth: 'auto', color: 'green' }}>
-                                    <Add />
+
+                    <Box
+                        sx={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "space-between"
+                        }}
+                    >
+                        <Typography>Category: Clothing</Typography>
+                    </Box>
+
+                    {/* description */}
+                    <Box sx={{ mt: 3 }}>
+                        <Typography>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque mollitia sint illum impedit blanditiis, optio ipsum voluptates praesentium sequi, alias molestias accusamus recusandae aliquam ea quia voluptatum. Corrupti, sunt vero!
+                        </Typography>
+                    </Box>
+
+                    {/* variant */}
+                    <Box>
+                        <Accordion
+                            sx={{
+                                boxShadow: "none",
+                            }}
+                        >
+                            <AccordionSummary
+                                expandIcon={<ExpandMore sx={{ fill: "#0086B4" }} />}
+                                sx={{
+                                    width: "150px",
+                                    color: "#0086B4",
+                                    fontWeight: 600,
+                                    p: 0
+                                }}
+                            >
+                                Select Variant
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <Box
+                                    sx={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        gap: 2,
+                                        border: "2px solid black",
+                                        borderRadius: "10px",
+                                        p: 2
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            gap: 2
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                width: "100px",
+                                                overflow: "hidden"
+                                            }}
+                                        >
+                                            <img
+                                                src="https://images.unsplash.com/photo-1657364890995-1ec4bb3aefcf"
+                                                width={"100%"}
+                                                style={{
+                                                    borderRadius: "5px"
+                                                }}
+                                            />
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                display: "flex",
+                                                flexDirection: "column"
+                                            }}
+                                        >
+                                            <Typography>Size: {selectedSize}</Typography>
+                                            <Typography>Color: {selectedColor}</Typography>
+                                        </Box>
+                                    </Box>
+
+                                    <FormControl>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Size</FormLabel>
+                                        <RadioGroup
+                                            row
+                                            name="size"
+                                            onChange={handleChangeSize}
+                                        >
+                                            {size.map((item) => (
+                                                <FormControlLabel value={item.size} control={<Radio />} label={item.size} />
+                                            ))}
+                                        </RadioGroup>
+                                    </FormControl>
+
+                                    <FormControl>
+                                        <FormLabel id="demo-row-radio-buttons-group-label">Color</FormLabel>
+                                        <RadioGroup
+                                            row
+                                            name="color"
+                                            onChange={handleChangeColor}
+                                        >
+                                            {color.map((item) => (
+                                                <FormControlLabel value={item.color} control={<Radio />} label={item.color} />
+                                            ))}
+                                        </RadioGroup>
+                                    </FormControl>
+                                </Box>
+                            </AccordionDetails>
+                        </Accordion>
+                    </Box>
+
+                    {/* action */}
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 2
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between"
+                            }}
+                        >
+                            <Typography sx={{ fontWeight: "bold" }}>Rp {selectedPrice}</Typography>
+                            <Box
+                                sx={{
+                                    display: "flex",
+                                    gap: 2,
+                                    justifyContent: "start",
+                                    alignItems: "center",
+                                    border: "1px solid black"
+                                }}
+                            >
+                                <Button
+                                    onClick={handleDecrement}
+                                    sx={{
+                                        borderRight: "1px solid black",
+                                        borderRadius: 0,
+                                        p: 0
+                                    }}
+                                >
+                                    <Typography sx={{ fontWeight: "bold" }}>-</Typography>
                                 </Button>
-                                <Typography variant="h6" mx={2}>
-                                    {quantity}
-                                </Typography>
-                                <Button onClick={handleDecrement} style={{ minWidth: 'auto', color: 'gray' }}>
-                                    <Remove />
+
+                                <Typography>{quantity}</Typography>
+
+                                <Button
+                                    onClick={handleIncrement}
+                                    sx={{
+                                        borderLeft: "1px solid black",
+                                        borderRadius: 0,
+                                        p: 0
+                                    }}
+                                >
+                                    <Typography sx={{ fontWeight: "bold" }}>+</Typography>
                                 </Button>
                             </Box>
                         </Box>
-                        <Box display="flex" flexDirection="column" alignItems="center" width="75%">
-                            <FormControl component="fieldset">
-                                <RadioGroup
-                                    aria-label="subscription"
-                                    name="subscription"
-                                    value={subscription}
-                                    onChange={handleSubscriptionChange}
-                                >
-                                    <FormControlLabel value="one-time" control={<Radio />} label="One time purchase" sx={{ marginLeft: 1 }} />
-                                    <Box border={1} borderColor="grey.300" borderRadius={2} p={2} mt={2}>
-                                        <FormControlLabel value="subscribe" control={<Radio />} label="Subscribe and delivery every" />
-                                        <Select
-                                            value={deliveryInterval}
-                                            onChange={handleIntervalChange}
-                                            displayEmpty
-                                            inputProps={{ 'aria-label': 'Without label' }}
-                                            sx={{ ml: 2, height: 30 }}
-                                        >
-                                            <MenuItem value="1 week">1 week</MenuItem>
-                                            <MenuItem value="2 weeks">2 weeks</MenuItem>
-                                            <MenuItem value="3 weeks">3 weeks</MenuItem>
-                                            <MenuItem value="4 weeks">4 weeks</MenuItem>
-                                        </Select>
-                                        <Typography variant="body2" mt={2}>
-                                            Subscribe now and get the 10% of discount on every recurring order. The discount will be applied at checkout. <a href="#">See details</a>
-                                        </Typography>
-                                    </Box>
-                                </RadioGroup>
-                            </FormControl>
-                            <Button variant="contained" color="success" fullWidth sx={{ mt: 5, gap: 1 }} onClick={handleClick}>
-                                <ShoppingCartOutlinedIcon />
-                                <Typography variant="body2" color={"white"}> + Add to cart</Typography>
+
+                        <Box
+                            sx={{
+                                width: "100%",
+                                display: "flex",
+                                gap: 2
+                            }}
+                        >
+                            <Button
+                                variant='contained'
+                                endIcon={<LocalMall />}
+                                sx={{
+                                    width: "50%"
+                                }}
+                            >
+                                BUY NOW
+                            </Button>
+
+                            <Button
+                                variant='contained'
+                                endIcon={<ShoppingCart />}
+                                onClick={handleClick}
+                                sx={{
+                                    width: "50%"
+                                }}
+                            >
+                                ADD TO CART
                             </Button>
                         </Box>
                     </Box>
-                    <Box border={1} borderColor="grey.300" borderRadius={2} p={2} mt={5}>
-                        <Typography variant="body2" color={"gray"}>
-                            <Typography variant="subtitle1" component="span" color="textPrimary">
-                                Wax:
-                            </Typography>{' '}
-                            Top grade Soy wax that delivers a smoke less, consistent burn
-                        </Typography>
-                        <Typography variant="body2" color={"gray"}>
-                            <Typography variant="subtitle1" component="span" color="textPrimary">
-                                Fragrance:
-                            </Typography>{' '}
-                            Premium quality ingredients with natural essential oils
-                        </Typography>
-                        <Typography variant="body2" color={"gray"}>
-                            <Typography variant="subtitle1" component="span" color="textPrimary">
-                                Burning Time:
-                            </Typography>{' '}
-                            70-75 hours{' '}
-                            <Typography variant="subtitle1" component="span" color="textPrimary">
-                                Dimension:
-                            </Typography>{' '}
-                            10cm x 5cm{' '}
-                            <Typography variant="subtitle1" component="span" color="textPrimary">
-                                Weight:
-                            </Typography>{' '}
-                            400g
-                        </Typography>
-                    </Box>
                 </Box>
             </Box >
-            <Box sx={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
-                <Footer />
-            </Box>
         </>
     )
 }

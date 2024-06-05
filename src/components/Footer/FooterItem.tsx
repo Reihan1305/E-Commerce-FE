@@ -1,85 +1,62 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { Divider } from '@mui/material';
+import { Instagram, LocalPhoneOutlined, MailOutlined } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
 const FooterItem = () => {
     return (
         <Box
-            component="footer"
             sx={{
-                py: 3,
-                px: 2,
-                mt: 5,
-                backgroundColor: "#272727",
-                textAlign: 'center',
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                bgcolor: "#0086B4",
+                mt: 4,
+                p: 2,
+                px: 4
             }}
         >
-            <Box sx={{ justifyContent: "center", width: "1200px", margin: "0 auto" }}>
-                <Divider sx={{ backgroundColor: "white", mb: 2, mt: 5 }} />
+            <Box>
+                <Typography
+                    sx={{
+                        fontSize: "2rem",
+                        fontWeight: "bold",
+                    }}
+                >
+                    Lakoe
+                </Typography>
+                <Typography>#1 e-commerce in the universe</Typography>
+            </Box>
 
-                <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-                    {/* Box Logo dan Deskripsi */}
-                    <Box sx={{ flex: 4, textAlign: "left" }}>
-                        <Box sx={{ display: "flex", alignItems: "center" }}>
-                            <img src="https://dejabru.ca/wp-content/uploads/2020/07/services_1.png" alt="Logo" width={75} />
-                            <Typography variant="h4" color="white" fontWeight={"bold"}>
-                                Candleaf
-                            </Typography>
-                        </Box>
-                        <Box sx={{ width: 250, textAlign: "left", mt: 2 }}>
-                            <Typography variant="body1" color="white">
-                                Your natural candle made for your home and for your wellness.
-                            </Typography>
-                        </Box>
-                    </Box>
+            <Box>
+                <Typography>© 2024 Lakoe & Team . All Rights Reserved</Typography>
+            </Box>
 
-                    {/* Box Discovery */}
-                    <Box sx={{ flex: 1, textAlign: "left" }}>
-                        <Typography variant="h6" color="green">
-                            Discovery
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            New season
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Most searched
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Most selled
-                        </Typography>
-                    </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2
+                }}
+            >
+                <Typography>Contact Us</Typography>
+                <Box
+                    sx={{
+                        display: "flex",
+                        gap: 2
+                    }}
+                >
+                    <Link to={"https://instagram.com"}>
+                        <Instagram sx={{ fill: "black" }} />
+                    </Link>
 
-                    {/* Box About */}
-                    <Box sx={{ flex: 1, textAlign: "left" }}>
-                        <Typography variant="h6" color="green">
-                            About
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Help
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Shipping
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Affiliate
-                        </Typography>
-                    </Box>
+                    <Link to={""}>
+                        <MailOutlined sx={{ fill: "black" }} />
+                    </Link>
 
-                    {/* Box Info */}
-                    <Box sx={{ flex: 1, textAlign: "left" }}>
-                        <Typography variant="h6" color="green">
-                            Info
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Contact us
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Privacy Policies
-                        </Typography>
-                        <Typography variant="body1" color="white">
-                            Terms & Conditions
-                        </Typography>
-                    </Box>
+                    <Link to={""}>
+                        <LocalPhoneOutlined sx={{ fill: "black" }} />
+                    </Link>
                 </Box>
             </Box>
         </Box>

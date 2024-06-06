@@ -8,6 +8,12 @@ export interface IRegisterForm {
   password: string;
   phone: string;
   rolesId: number;
+  nameStore: string;
+  slogan: string ;
+  description: string ;
+  domain: string ;
+  logoAttachment: any;
+  bannerAttachment: any;
 }
 
 const useRegisterValidation = () => {
@@ -16,18 +22,40 @@ const useRegisterValidation = () => {
     name: "",
     password: "",
     phone: "",
-    rolesId: -1,
+    rolesId: 1, // Set a valid default value
+    nameStore: "",
+    slogan: "",
+    description: "",
+    domain: "",
+    logoAttachment: null, // Default value for icon
+    bannerAttachment: null // Default value for banner
   };
 
   const schema = yup.object().shape({
-    email: yup.string().email().required("Tolong masukkan email"),
-    name: yup.string().required("Kolom name tidak boleh kosong"),
+    email: yup.string().email("Email tidak valid").required("Tolong masukkan email"),
+    name: yup.string().required("Kolom nama tidak boleh kosong"),
     password: yup
       .string()
-      .required("tolong isi emailnya cok")
-      .min(8, "Password must be at least 8 characters"),
+      .required("Tolong masukkan password")
+      .min(8, "Password minimal 8 karakter"),
     phone: yup.string().required("Tolong masukkan nomor telepon"),
-    rolesId: yup.number().required("Tolong pilih role"),
+    rolesId: yup.number().required("Tolong pilih role").oneOf([1, 2, 3], "Role tidak valid"),
+    nameStore: yup.string().nullable(),
+    slogan: yup.string().max(48, "Slogan maksimal 48 karakter").nullable(),
+    description: yup.string().max(200, "Deskripsi maksimal 200 karakter").nullable(),
+    domain: yup.string().nullable(),
+    logoAttachment: yup.mixed().test("fileType", "Unsupported File Format", (value) => {
+      if (value && value instanceof File) {
+        return ["image/jpeg", "image/png", "image/gif"].includes(value.type);
+      }
+      return true; // If no file is uploaded, validation passes
+    }).nullable(),
+    bannerAttachment: yup.mixed().test("fileType", "Unsupported File Format", (value) => {
+      if (value && value instanceof File) {
+        return ["image/jpeg", "image/png", "image/gif"].includes(value.type);
+      }
+      return true; // If no file is uploaded, validation passes
+    }).nullable(),
   });
 
   return useForm<IRegisterForm>({

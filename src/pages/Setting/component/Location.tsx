@@ -7,6 +7,7 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import EditLocationAltRoundedIcon from "@mui/icons-material/EditLocationAltRounded";
 import EditLocationModal from "./atom/location/editLocationModal";
 import DeleteLocationModal from "./atom/location/deleteLocationModal";
+import EditCoordinatModal from "./atom/location/editKoordinatModal";
 
 const DummyLocation = [
   {
@@ -31,13 +32,17 @@ const DummyLocation = [
     namaLokasi: "Fesyen Store 3",
     alamatUtama: false,
     alamat: "Jl. Elang, No. 4, Sawah lama, Ciputat, Tangerang Selatan",
-    kotaKecamatan: "Kota Tangerang Selatan, Kec. Ciputat",
+    kotaKecamatan: "Tangerang Selatan",
     kodePos: "15413",
   },
 ];
 
 function Location() {
   const [open, setOpen] = React.useState(false);
+  const [openCoordinatModal, setOpenCoordinatModal] = React.useState(false)
+
+  const  handleOpenCoordinat = () => setOpenCoordinatModal(true);
+  const  handleCloseCoordinat = () => setOpenCoordinatModal(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -140,16 +145,21 @@ function Location() {
                           </Typography>
                         </Box>
                       ) : (
-                        <Box sx={{ display: "flex" }}>
-                          <LocationOffIcon />{" "}
-                          <Typography>Belum Pinpoint</Typography>
-                        </Box>
+                        <>
+                        <Button sx={{padding:"0"}} onClick={handleOpenCoordinat}>
+                          <Box sx={{ display: "flex" }}>
+                            <LocationOffIcon style={{fill:"black"}}/>{" "}
+                            <Typography variant="body2">Belum Pinpoint</Typography>
+                          </Box>
+                        </Button>
+                        <EditCoordinatModal open={openCoordinatModal} handleClose={handleCloseCoordinat} kabupaten={item.kotaKecamatan}/>
+                        </>
                       )}
                     </Typography>
                   </Box>
                 </Box>
               </Box>
-              <Box>
+              <Box sx={{display:"flex",justifyContent:"start",alignItems:"start"}}>
                 <EditLocationModal />
                 <DeleteLocationModal/>
               </Box>

@@ -16,6 +16,8 @@ import useLoginValidation from '../../../lib/api/validation/useLoginValidation';
 import { useLoginFunction } from './functions/loginFunction';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const defaultTheme = createTheme();
 
@@ -35,88 +37,81 @@ export default function Login() {
     }
 
     return (
-        <>
-            <ThemeProvider theme={defaultTheme}>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box
-                        sx={{
-                            marginTop: 8,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5" sx={{ color: "black" }}>
-                            Sign in Lakoe
-                        </Typography>
-                        <form>
-
-                            <Box>
-                                <Controller
-                                    control={control}
-                                    name="email"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            fullWidth
-                                            label="Email"
-                                            color="success"
-                                            sx={{ borderColor: "white" }}
-                                            {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                            style={{ marginBottom: "10px" }}
-                                        />
-                                    )}
-                                />
-                                <Controller
-                                    control={control}
-                                    name="password"
-                                    render={({ field, fieldState }) => (
-                                        <TextField
-                                            fullWidth
-                                            label="Password"
-                                            color="success"
-                                            type="password"
-                                            sx={{ borderColor: "white" }}
-                                            {...field}
-                                            helperText={fieldState.error?.message}
-                                            error={Boolean(fieldState.error)}
-                                        />
-                                    )}
-                                />
-                                <Box>
-
-                                    <Box>
-                                        <FormControlLabel
-                                            control={<Checkbox value="remember" color="primary" />}
-                                            label="Remember me"
-                                            sx={{ color: "black" }}
-                                        />
-                                    </Box>
-                                </Box>
-                                <Button
-                                    type="submit"
+        <ThemeProvider theme={defaultTheme}>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <ToastContainer />
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5" sx={{ color: "black" }}>
+                        Sign in Lakoe
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit(onSubmit, onErrorSubmit)} noValidate sx={{ mt: 1 }}>
+                        <Controller
+                            control={control}
+                            name="email"
+                            render={({ field, fieldState }) => (
+                                <TextField
                                     fullWidth
-                                    variant="contained"
-                                    onClick={handleSubmit(onSubmit, onErrorSubmit)}
-                                    sx={{ mt: 3, mb: 2 }}
-                                >
-                                    Sign In
-                                </Button>
-                            </Box>
-                        </form>
+                                    label="Email"
+                                    color="success"
+                                    sx={{ borderColor: "white", mb: 2 }}
+                                    {...field}
+                                    helperText={fieldState.error?.message}
+                                    error={Boolean(fieldState.error)}
+                                />
+                            )}
+                        />
+                        <Controller
+                            control={control}
+                            name="password"
+                            render={({ field, fieldState }) => (
+                                <TextField
+                                    fullWidth
+                                    label="Password"
+                                    color="success"
+                                    type="password"
+                                    sx={{ borderColor: "white", mb: 2 }}
+                                    {...field}
+                                    helperText={fieldState.error?.message}
+                                    error={Boolean(fieldState.error)}
+                                />
+                            )}
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                            sx={{ color: "black" }}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Sign In
+                        </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Button onClick={handleButton}><Typography variant="body2" fontSize={10}>Don't have an account? Sign Up</Typography></Button>
+                                <Button onClick={handleButton}>
+                                    <Typography variant="body2" fontSize={10}>
+                                        Don't have an account? Sign Up
+                                    </Typography>
+                                </Button>
                             </Grid>
                         </Grid>
                     </Box>
-                </Container >
-            </ThemeProvider >
-        </>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }

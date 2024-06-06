@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IProduct } from "../../types/app";
-import { getProduct } from "../../lib/api/call/products";
+import { getProduct, deleteProduct } from "../../lib/api/call/products";
 
 export const getProductsAsync = createAsyncThunk<
     IProduct[],
@@ -15,3 +15,12 @@ export const getProductsAsync = createAsyncThunk<
         return rejectWithValue("error");
     }
 })
+
+export const deleteProductAsync = createAsyncThunk(
+    'products/deleteProduct',
+    async (productId: string, { dispatch }) => {
+        await deleteProductAsync(productId);
+        // Setelah penghapusan berhasil, kembalikan ID produk yang dihapus
+        return productId;
+    }
+);

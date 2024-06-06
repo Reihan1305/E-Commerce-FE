@@ -1,17 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { IProduct } from './../../types/app';
-import { toggleProductActive } from '../../lib/api/call/products';
+import { toggleProductActive, deleteProduct } from '../../lib/api/call/products';
 import { getProductsAsync } from "../../store/async/productsAsync";
 
 const initialState: { products: IProduct[] } = {
-    products: [] as IProduct[],
+    products: [],
 };
 
-export const toggleProductActiveAsync = createAsyncThunk(
+export const toggleProductActiveAsync = createAsyncThunk<IProduct, { id: string; isActive: boolean }>(
     'products/toggleProductActiveAsync',
-    async (product: IProduct, { rejectWithValue }) => {
+    async ({ id, isActive }, { rejectWithValue }) => {
         try {
-            const updatedProduct = await toggleProductActive(product.id, product.isActive);
+            const updatedProduct = await toggleProductActive(id, isActive);
             return updatedProduct;
         } catch (error: any) {
             if (error.response && error.response.status === 401) {
@@ -21,7 +21,17 @@ export const toggleProductActiveAsync = createAsyncThunk(
         }
     }
 );
-
+export const deleteProductAsync = createAsyncThunk<string, string>(
+    'products/deleteProduct',
+    async (productId, { rejectWithValue }) => {
+        try {
+            await deleteProduct(productId);
+            return productId;
+        } catch (error: any) {
+            return rejectWithValue(error.message);
+        }
+    }
+);
 
 const productSlice = createSlice({
     name: 'products',
@@ -42,9 +52,11 @@ const productSlice = createSlice({
                 product.id === action.payload.id ? action.payload : product
             );
         });
-
         builder.addCase(toggleProductActiveAsync.rejected, (state, action) => {
             console.error('Failed to toggle product active status:', action.payload);
+        });
+        builder.addCase(deleteProductAsync.fulfilled, (state, action) => {
+            state.products = state.products.filter(product => product.id !== action.payload);
         });
     },
 });

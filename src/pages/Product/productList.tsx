@@ -4,7 +4,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { toggleProductActiveAsync } from '../../store/slice/productsSlice';
+import { toggleProductActiveAsync, deleteProductAsync } from '../../store/slice/productsSlice'; // Import fungsi deleteProductAsync
 import { getProductsAsync } from '../../store/async/productsAsync';
 import ProductItem from './productItem';
 import { IProduct } from './../../types/app';
@@ -57,6 +57,11 @@ const ProductList = () => {
         dispatch(toggleProductActiveAsync(product));
     };
 
+    // Fungsi untuk menghapus produk
+    const handleDelete = (productId: string) => {
+        dispatch(deleteProductAsync(productId));
+    };
+
     const handleFilterStatusChange = (status: 'semua' | 'aktif' | 'nonaktif') => {
         setFilterStatus(status);
     };
@@ -82,91 +87,94 @@ const ProductList = () => {
     }
 
     return (
-        <Box sx={{ mt: 5 }}>
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                <Typography variant="h5">Daftar Produk</Typography>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    sx={{ borderRadius: 50 }}
-                    onClick={() => navigate('/seller/product/newProduct')}
-                >
-                    <AddCircleOutlineOutlinedIcon /> Tambah Produk
-                </Button>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                {['semua', 'aktif', 'nonaktif'].map(status => (
+        <>
+            <Box sx={{ mt: 5 }}>
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
+                    <Typography variant="h5">Daftar Produk</Typography>
                     <Button
-                        key={status}
-                        variant="text"
+                        variant="contained"
                         color="primary"
-                        onClick={() => handleFilterStatusChange(status as 'semua' | 'aktif' | 'nonaktif')}
-                        sx={{ borderBottom: filterStatus === status ? '2px solid' : 'none' }}
+                        sx={{ borderRadius: 50 }}
+                        onClick={() => navigate('/seller/product/newProduct')}
                     >
-                        {status.charAt(0).toUpperCase() + status.slice(1)}
+                        <AddCircleOutlineOutlinedIcon /> Tambah Produk
                     </Button>
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+                    {['semua', 'aktif', 'nonaktif'].map(status => (
+                        <Button
+                            key={status}
+                            variant="text"
+                            color="primary"
+                            onClick={() => handleFilterStatusChange(status as 'semua' | 'aktif' | 'nonaktif')}
+                            sx={{ borderBottom: filterStatus === status ? '2px solid' : 'none' }}
+                        >
+                            {status.charAt(0).toUpperCase() + status.slice(1)}
+                        </Button>
+                    ))}
+                </Box>
+                <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
+                    <TextField
+                        placeholder="Cari Produk"
+                        variant="outlined"
+                        size="small"
+                        value={searchTerm}
+                        onChange={handleSearchTermChange}
+                        sx={{ flex: 1, mr: 1 }}
+                        InputProps={{
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <SearchOutlinedIcon sx={{ color: "gray" }} />
+                                </InputAdornment>
+                            ),
+                        }}
+                    />
+                    <FormControl variant="outlined" size='small' sx={{ flex: 1, minWidth: 120, mr: 2 }}>
+                        <InputLabel>Semua Kategori</InputLabel>
+                        <Select
+                            label="Semua Kategori"
+                            multiple
+                            value={selectedCategories}
+                            onChange={handleCategoryChange}
+                            renderValue={(selected) => selected.join(', ')}
+                        >
+                            {['basic', 'premium', 'limited'].map(category => (
+                                <MenuItem key={category} value={category}>
+                                    <Checkbox checked={selectedCategories.includes(category)} />
+                                    <Typography>{category.charAt(0).toUpperCase() + category.slice(1)}</Typography>
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                    <FormControl variant="outlined" size='small' sx={{ flex: 1, minWidth: 120 }}>
+                        <InputLabel>Urutkan</InputLabel>
+                        <Select label="Urutkan" value={sortBy} onChange={handleSortByChange}>
+                            <MenuItem value=""><em>None</em></MenuItem>
+                            {['terakhirdiubah', 'terlaris', 'kurangdiminati', 'termahal', 'termurah', 'stokterbanyak', 'stokterkecil'].map(option => (
+                                <MenuItem key={option} value={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </Box >
+                <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, mr: 1 }}>
+                    <Typography variant="h5">{finalProducts.length} Produk</Typography>
+                    <Typography variant="body1">
+                        Pilih Semua
+                        <Checkbox checked={isAllChecked} onChange={handleAllChecked} />
+                    </Typography>
+                </Box>
+                {finalProducts.map((product, index) => (
+                    <ProductItem
+                        key={index}
+                        {...product}
+                        checked={checkedItems[index]}
+                        onChange={() => handleItemChecked(index)}
+                        onToggleActive={() => handleToggleActive(product)}
+                        onDelete={() => handleDelete(product.id)}
+                    />
                 ))}
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
-                <TextField
-                    placeholder="Cari Produk"
-                    variant="outlined"
-                    size="small"
-                    value={searchTerm}
-                    onChange={handleSearchTermChange}
-                    sx={{ flex: 1, mr: 1 }}
-                    InputProps={{
-                        startAdornment: (
-                            <InputAdornment position="start">
-                                <SearchOutlinedIcon sx={{ color: "gray" }} />
-                            </InputAdornment>
-                        ),
-                    }}
-                />
-                <FormControl variant="outlined" size='small' sx={{ flex: 1, minWidth: 120, mr: 2 }}>
-                    <InputLabel>Semua Kategori</InputLabel>
-                    <Select
-                        label="Semua Kategori"
-                        multiple
-                        value={selectedCategories}
-                        onChange={handleCategoryChange}
-                        renderValue={(selected) => selected.join(', ')}
-                    >
-                        {['basic', 'premium', 'limited'].map(category => (
-                            <MenuItem key={category} value={category}>
-                                <Checkbox checked={selectedCategories.includes(category)} />
-                                <Typography>{category.charAt(0).toUpperCase() + category.slice(1)}</Typography>
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <FormControl variant="outlined" size='small' sx={{ flex: 1, minWidth: 120 }}>
-                    <InputLabel>Urutkan</InputLabel>
-                    <Select label="Urutkan" value={sortBy} onChange={handleSortByChange}>
-                        <MenuItem value=""><em>None</em></MenuItem>
-                        {['terakhirdiubah', 'terlaris', 'kurangdiminati', 'termahal', 'termurah', 'stokterbanyak', 'stokterkecil'].map(option => (
-                            <MenuItem key={option} value={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
             </Box >
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2, mr: 1 }}>
-                <Typography variant="h5">{finalProducts.length} Produk</Typography>
-                <Typography variant="body1">
-                    Pilih Semua
-                    <Checkbox checked={isAllChecked} onChange={handleAllChecked} />
-                </Typography>
-            </Box>
-            {finalProducts.map((product, index) => (
-                <ProductItem
-                    key={index}
-                    {...product}
-                    checked={checkedItems[index]}
-                    onChange={() => handleItemChecked(index)}
-                    onToggleActive={() => handleToggleActive(product)}
-                />
-            ))}
-        </Box >
+        </>
     );
 };
 

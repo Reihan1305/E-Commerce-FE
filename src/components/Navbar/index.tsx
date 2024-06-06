@@ -11,9 +11,10 @@ const Navbar = () => {
                 display: "flex",
                 flexDirection: "column",
                 height: "100%",
+
             }}
         >
-            <Box borderBottom={1} borderColor="divider">
+            <Box borderBottom={1} borderColor="divider" sx={{ bgcolor: "#0086B4" }}>
                 <NavbarItem />
             </Box>
         </Box>

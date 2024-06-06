@@ -1,8 +1,13 @@
 import { Box, Button, TextField, Typography, IconButton } from '@mui/material';
 import AddPhotoAlternateRoundedIcon from '@mui/icons-material/AddPhotoAlternateRounded';
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const CreateStore = () => {
+  const location = useLocation();
+  const userData = location.state; // Menerima state dari navigasi
+  console.log(userData);
+  
   const [icon, setIcon] = useState(null);
   const [banner, setBanner] = useState(null);
 

@@ -23,6 +23,8 @@ const style = {
   boxShadow: 24,
   p: 4,
   borderRadius: 2,
+  maxHeight: "95vh", // Set maximum height
+  overflowY: "auto"
 };
 
 interface AddLocationModalProps {
@@ -34,7 +36,7 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({
   open,
   handleClose,
 }) => {
-  const [provinsi, setProvinsi] = useState(Provinsi);
+  const [provinsi, _] = useState(Provinsi);
   const [locationName, setLocationName] = useState("");
   const [selectedOption, setSelectedOption] = useState<{
     value: string;
@@ -55,6 +57,7 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({
   const [markerPosition, setMarkerPosition] = useState<[number, number]>([
     0, 0,
   ]);
+  const [isMainLocation,setIsMainLocation] = useState<boolean>(false)
 
   useEffect(() => {
     if (provinsi.length === 0) return; // Make sure provinsi is not empty
@@ -157,6 +160,13 @@ const AddLocationModal: React.FC<AddLocationModalProps> = ({
           options={postalCode}
           sx={{ width: "100%", marginTop: "10px" }}
           renderInput={(params) => <TextField {...params} label="Kode Post" />}
+        />
+        <Autocomplete
+          disablePortal
+          options={[{ label: "Ya", value: true }, { label: "Tidak", value: false }]}
+          sx={{ width: "100%", marginTop: "10px" }}
+          renderInput={(params) => <TextField {...params} label="Lokasi Utama" />}
+          onChange={(event, value) => setIsMainLocation(value)}
         />
         <TextField
           fullWidth

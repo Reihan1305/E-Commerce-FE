@@ -5,32 +5,60 @@ const product = [
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
     {
         name: 'Spiced Mint',
         price: 99.99,
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png',
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    },
+    {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    },
+    {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    },
+    {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    },
+    {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    }, {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
+    }, {
+        name: 'Spiced Mint',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797',
     },
 
 ];
@@ -47,7 +75,7 @@ const Products = () => {
     return (
         <>
             <Box sx={{ mb: 5 }}>
-                <Typography variant="h5" sx={{ textAlign: 'center', mt: 5 }}>
+                <Typography variant="h3" fontWeight={700} sx={{ textAlign: 'center', mt: 5, color: '#0086B4' }}>
                     Products
                 </Typography>
                 <Typography variant="body1" sx={{ textAlign: 'center', mt: 1 }}>
@@ -62,7 +90,7 @@ const Products = () => {
                             height="140"
                             image={product.image}
                             alt={product.name}
-                            sx={{ objectFit: 'contain', backgroundColor: 'lightgray' }}
+                            sx={{ objectFit: 'cover', backgroundColor: 'lightgray' }}
                         />
                         <CardContent>
                             <Typography variant="h6">{product.name}</Typography>

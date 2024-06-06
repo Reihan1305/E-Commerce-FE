@@ -21,15 +21,16 @@ const FooterItem = () => {
                     sx={{
                         fontSize: "2rem",
                         fontWeight: "bold",
+                        color: "white",
                     }}
                 >
                     Lakoe
                 </Typography>
-                <Typography>#1 e-commerce in the universe</Typography>
+                <Typography sx={{ color: "white" }}>#1 e-commerce in the universe</Typography>
             </Box>
 
-            <Box>
-                <Typography>© 2024 Lakoe & Team . All Rights Reserved</Typography>
+            <Box  >
+                <Typography sx={{ color: "white" }}>© 2024 Lakoe & Team . All Rights Reserved</Typography>
             </Box>
 
             <Box
@@ -39,7 +40,7 @@ const FooterItem = () => {
                     gap: 2
                 }}
             >
-                <Typography>Contact Us</Typography>
+                <Typography sx={{ color: "white" }}>Contact Us</Typography>
                 <Box
                     sx={{
                         display: "flex",
@@ -47,15 +48,15 @@ const FooterItem = () => {
                     }}
                 >
                     <Link to={"https://instagram.com"}>
-                        <Instagram sx={{ fill: "black" }} />
+                        <Instagram sx={{ fill: "white" }} />
                     </Link>
 
                     <Link to={""}>
-                        <MailOutlined sx={{ fill: "black" }} />
+                        <MailOutlined sx={{ fill: "white" }} />
                     </Link>
 
                     <Link to={""}>
-                        <LocalPhoneOutlined sx={{ fill: "black" }} />
+                        <LocalPhoneOutlined sx={{ fill: "white" }} />
                     </Link>
                 </Box>
             </Box>

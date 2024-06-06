@@ -1,22 +1,17 @@
-import { Typography } from '@mui/material'
-import React from 'react'
+import { Box } from '@mui/material'
 import Footer from '../../../components/Footer'
 import Navbar from '../../../components/Navbar'
 import Hero from '../components/Hero'
-import Popular from '../components/Popular'
 import Products from '../components/Products'
-import Testimonial from '../components/Testimonial'
 
 const Home = () => {
     return (
-        <>
+        <Box >
             <Navbar />
             <Hero />
             <Products />
-            {/* <Testimonial /> */}
-            <Popular />
             <Footer />
-        </>
+        </Box>
     )
 }
 

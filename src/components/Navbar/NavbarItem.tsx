@@ -8,16 +8,16 @@ import Menu from '@mui/material/Menu';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Box from '@mui/material/Box';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { SET_LOGOUT } from "../../store/slice/auth";
 import { useAppDispatch } from "../../store";
 import { NotificationsRounded, SearchRounded } from '@mui/icons-material';
 import { TextField, InputAdornment } from '@mui/material';
-
 const NavbarItem = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [categoryAnchorEl, setCategoryAnchorEl] = React.useState(null);
     const [subCategoryAnchorEl, setSubCategoryAnchorEl] = React.useState(null);
+
 
     const handleMenu = (event: any) => {
         setAnchorEl(event.currentTarget);
@@ -48,6 +48,9 @@ const NavbarItem = () => {
         navigate('/buyer');
     };
 
+    const handleClickCart = () => {
+        navigate('/buyer/keranjang');
+    };
     const dispatch = useAppDispatch();
 
     const handleLogout = () => {
@@ -75,7 +78,8 @@ const NavbarItem = () => {
                 sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: "center"
+                    alignItems: "center",
+                    bgcolor: "#E0E0E0",
                 }}
             >
                 <Box
@@ -87,17 +91,20 @@ const NavbarItem = () => {
                     {/* logo */}
                     <Box
                         sx={{
+                            display: "flex",
+                            alignItems: "center",
                             cursor: 'pointer'
                         }}
                         onClick={handleClick}
                     >
+                        <img style={{ width: 35 }} src="../../../public/liberalerna.svg" alt="" />
                         <Typography
                             variant="h5"
                             sx={{
                                 fontWeight: 800
                             }}
                         >
-                            Lakoe
+                            AKOE
                         </Typography>
                     </Box>
                 </Box>
@@ -134,6 +141,7 @@ const NavbarItem = () => {
                     {/* cart */}
                     <IconButton sx={{ position: "relative" }}>
                         <ShoppingCartIcon fontSize='large' />
+
                         <Box
                             sx={{
                                 width: 24,
@@ -149,6 +157,7 @@ const NavbarItem = () => {
                                 bgcolor: "red",
                                 borderRadius: 50
                             }}
+                            onClick={handleClickCart}
                         >
                             <Typography
                                 sx={{

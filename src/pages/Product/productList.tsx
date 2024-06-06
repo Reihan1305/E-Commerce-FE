@@ -13,7 +13,7 @@ import * as utils from './utils';
 const ProductList = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { products, loading, error } = useAppSelector((state) => state.products);
+    const { products } = useAppSelector((state) => state.products);
     const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [sortBy, setSortBy] = useState<string>("");
@@ -79,14 +79,6 @@ const ProductList = () => {
         finalProducts = finalProducts.filter(product => product.isActive);
     } else if (filterStatus === 'nonaktif') {
         finalProducts = finalProducts.filter(product => !product.isActive);
-    }
-
-    if (loading) {
-        return <Typography>Loading...</Typography>;
-    }
-
-    if (error) {
-        return <Typography>Error: {error}</Typography>;
     }
 
     return (

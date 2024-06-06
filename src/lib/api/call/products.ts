@@ -11,3 +11,13 @@ export const getProduct = async () => {
         },
     });
 }
+
+export const toggleProductActive = async (id: string, isActive: boolean): Promise<IProduct> => {
+    const response = await API.patch<IProduct>(`/products/${id}`, { isActive }, {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+    });
+    return response.data;
+};
+

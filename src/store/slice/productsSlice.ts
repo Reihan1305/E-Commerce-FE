@@ -1,52 +1,50 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { IProduct } from './../../types/app';
-import { API } from '../../lib/api';
+import { toggleProductActive } from '../../lib/api/call/products';
 import { getProductsAsync } from "../../store/async/productsAsync";
 
-interface ProductState {
-    products: IProduct[];
-    loading: boolean;
-    error: string | null;
-}
-
-const initialState: ProductState = {
-    products: [],
-    loading: false,
-    error: null,
+const initialState: { products: IProduct[] } = {
+    products: [] as IProduct[],
 };
 
-// export const getProductsAsync = createAsyncThunk('products/getProductsAsync', async () => {
-//     const response = await API.get<IProduct[]>('/products');
-//     return response.data;
-// });
+export const toggleProductActiveAsync = createAsyncThunk(
+    'products/toggleProductActiveAsync',
+    async (product: IProduct, { rejectWithValue }) => {
+        try {
+            const updatedProduct = await toggleProductActive(product.id, product.isActive);
+            return updatedProduct;
+        } catch (error: any) {
+            if (error.response && error.response.status === 401) {
+                console.error('Unauthorized: Please check your credentials or token.');
+            }
+            return rejectWithValue(error.response?.data || 'An error occurred');
+        }
+    }
+);
 
-export const toggleProductActiveAsync = createAsyncThunk('products/toggleProductActiveAsync', async (product: IProduct) => {
-    const response = await API.patch(`/products/${product.id}`, { isActive: !product.isActive });
-    return response.data;
-});
 
 const productSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        builder.addCase(getProductsAsync.pending, (state) => {
-            state.loading = true;
-        });
-        builder.addCase(getProductsAsync.fulfilled, (state, action: PayloadAction<IProduct[]>) => {
-            state.loading = false;
+        builder.addCase(getProductsAsync.fulfilled, (state, action) => {
             state.products = action.payload;
         });
-        builder.addCase(getProductsAsync.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.error.message || 'Failed to fetch products';
+        builder.addCase(getProductsAsync.pending, (_, action) => {
+            console.log("pending", action);
         });
-        builder.addCase(toggleProductActiveAsync.fulfilled, (state, action: PayloadAction<IProduct>) => {
-            const updatedProduct = action.payload;
-            const index = state.products.findIndex(product => product.id === updatedProduct.id);
-            if (index !== -1) {
-                state.products[index] = updatedProduct;
-            }
+        builder.addCase(getProductsAsync.rejected, (_, action) => {
+            console.log("rejected", action);
+        });
+        builder.addCase(toggleProductActiveAsync.fulfilled, (state, action) => {
+            state.products = state.products.map(product =>
+                product.id === action.payload.id ? action.payload : product
+            );
+        });
+
+        builder.addCase(toggleProductActiveAsync.rejected, (state, action) => {
+            console.error('Failed to toggle product active status:', action.payload);
         });
     },
 });

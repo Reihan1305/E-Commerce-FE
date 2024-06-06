@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Box, Checkbox, Typography, Button, Switch, Modal, TextField } from '@mui/material';
+import React from 'react';
+import { Box, Checkbox, Typography, Button, Switch } from '@mui/material';
 import { IProduct } from './../../types/app';
 
 interface ProductItemProps extends IProduct {

@@ -6,7 +6,6 @@ import DetailsOrder from "../pages/Buyer/DetailsOrder";
 import Thanks from "../pages/Buyer/Thanks";
 import Order from "../pages/Buyer/Order";
 import Home from "../pages/Buyer/Home";
-import Keranjang from "../pages/Buyer/Keranjang";
 
 export const buyerRoutes: RouteObject[] = [
 
@@ -39,8 +38,8 @@ export const buyerRoutes: RouteObject[] = [
       element: <Thanks />
    },
    {
-      path: "keranjang",
-      element: <Keranjang />
+      path: "cart",
+      element: <Cart />
    }
 ];
 

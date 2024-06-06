@@ -5,7 +5,7 @@ const BuyerLayout = () => {
 
    // const isLogin = useAppSelector((state) => state.auth.isLogin);
    // console.log(isLogin);
-   const { isLogin ,profile} = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
+   const { isLogin, profile } = useAppSelector((state: { auth: { isLogin: any; profile: { rolesId: number } } }) => ({
       isLogin: state.auth.isLogin,
       profile: state.auth.profile
    }))
@@ -13,12 +13,12 @@ const BuyerLayout = () => {
    if (!isLogin) {
       return <Navigate to="/auth/login" />;
    }
-   if(profile.rolesId === 2){
-      return <Navigate to={"/seller"} />
-   }else if(profile.rolesId === 3){
-      return <Navigate to={"/admin"}/>
+   if (profile.rolesId === 2) {
+      return <Navigate to={"/seller/dashboard"} />
+   } else if (profile.rolesId === 3) {
+      return <Navigate to={"/admin"} />
    }
-   
+
    return (
       <>
          <Outlet />

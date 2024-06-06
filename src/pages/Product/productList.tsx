@@ -3,26 +3,27 @@ import { Typography, Button, Checkbox, Box, TextField, FormControl, InputLabel, 
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { toggleProductActiveAsync } from '../../store/slice/productsSlice';
+import { getProductsAsync } from '../../store/async/productsAsync';
 import ProductItem from './productItem';
-import { IProduct } from './interfaceProduct';
+import { IProduct } from './../../types/app';
 import * as utils from './utils';
 
 const ProductList = () => {
     const navigate = useNavigate();
-    const initialProducts: IProduct[] = [
-        { name: 'KAOS BASIC COTTON KENARI - DUSTY ROSE', price: 55000, stock: 15, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic', lastUpdated: '2024-01-01', popularity: 50 },
-        { name: 'KAOS BASIC - FRAGILE SPROUT TOBRUT TOBAT BRUTAL XIXIXIXIXIXIXI', price: 64500, stock: 20, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic', lastUpdated: '2024-02-01', popularity: 30 },
-        { name: 'KAOS BASIC POLOS - BUBLE GUM', price: 55000, stock: 2, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'basic', lastUpdated: '2024-03-01', popularity: 70 },
-        { name: 'CREWNECK BASIC - BLACK', price: 180000, stock: 29, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: true, category: 'premium', lastUpdated: '2024-01-15', popularity: 90 },
-        { name: 'KAOS BASIC COTTON KENARI - BRONZE GREEN', price: 55000, stock: 25, sku: '0219AKD192', image: 'https://via.placeholder.com/150', isActive: false, category: 'basic', lastUpdated: '2024-04-01', popularity: 40 }
-    ];
-    const [products, setProducts] = useState<IProduct[]>(initialProducts);
-    const [checkedItems, setCheckedItems] = useState<boolean[]>(new Array(initialProducts.length).fill(false));
+    const dispatch = useAppDispatch();
+    const { products, loading, error } = useAppSelector((state) => state.products);
+    const [checkedItems, setCheckedItems] = useState<boolean[]>([]);
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [sortBy, setSortBy] = useState<string>("");
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [filterStatus, setFilterStatus] = useState<'aktif' | 'nonaktif' | 'semua'>('semua');
+
+    useEffect(() => {
+        dispatch(getProductsAsync());
+    }, [dispatch]);
 
     useEffect(() => {
         setCheckedItems(new Array(products.length).fill(false));
@@ -52,8 +53,8 @@ const ProductList = () => {
         setSearchTerm(event.target.value);
     };
 
-    const handleToggleActive = (index: number) => {
-        utils.toggleProductActive(index, products, setProducts, finalProducts);
+    const handleToggleActive = (product: IProduct) => {
+        dispatch(toggleProductActiveAsync(product));
     };
 
     const handleFilterStatusChange = (status: 'semua' | 'aktif' | 'nonaktif') => {
@@ -64,13 +65,12 @@ const ProductList = () => {
         const searchTermLowerCase = searchTerm.toLowerCase();
         return (
             product.name.toLowerCase().includes(searchTermLowerCase) ||
-            product.category.toLowerCase().includes(searchTermLowerCase) ||
-            product.sku.toLowerCase().includes(searchTermLowerCase)
+            product.categorie.toLowerCase().includes(searchTermLowerCase)
         );
     });
 
     const filteredAndCategorizedProducts = selectedCategories.length > 0
-        ? filteredProducts.filter(product => selectedCategories.includes(product.category))
+        ? filteredProducts.filter(product => selectedCategories.includes(product.categorie))
         : filteredProducts;
 
     let finalProducts = utils.sortedProducts(filteredAndCategorizedProducts, sortBy);
@@ -79,6 +79,14 @@ const ProductList = () => {
         finalProducts = finalProducts.filter(product => product.isActive);
     } else if (filterStatus === 'nonaktif') {
         finalProducts = finalProducts.filter(product => !product.isActive);
+    }
+
+    if (loading) {
+        return <Typography>Loading...</Typography>;
+    }
+
+    if (error) {
+        return <Typography>Error: {error}</Typography>;
     }
 
     return (
@@ -163,7 +171,7 @@ const ProductList = () => {
                     {...product}
                     checked={checkedItems[index]}
                     onChange={() => handleItemChecked(index)}
-                    onToggleActive={() => handleToggleActive(index)}
+                    onToggleActive={() => handleToggleActive(product)}
                 />
             ))}
         </Box >

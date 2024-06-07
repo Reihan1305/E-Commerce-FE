@@ -4,6 +4,7 @@ import authReducer from "./slice/auth";
 import categoryReducer from "./slice/categorySlice";
 import courierReducer from "./slice/courierSlice";
 import decorationReducer from "./slice/decorationSlice";
+import productsReducer from "./slice/productsSlice";
 
 const store = configureStore({
    reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
       category: categoryReducer,
       courier: courierReducer,
       decoration: decorationReducer,
+      products: productsReducer
    },
 });
 

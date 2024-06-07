@@ -4,7 +4,7 @@ import Footer from '../../../components/Footer';
 import { Box, Typography, Grid, Checkbox, Button } from '@mui/material';
 import { ICart } from './interfaceCart';
 
-const Cart = ({ checked, onChange, onToggleActive }: ICart & { checked: boolean, onChange: () => void, onToggleActive: () => void }) => {
+const Keranjang = ({ checked, onChange, onToggleActive }: ICart & { checked: boolean, onChange: () => void, onToggleActive: () => void }) => {
     return (
         <Box>
             <Navbar />
@@ -44,4 +44,4 @@ const Cart = ({ checked, onChange, onToggleActive }: ICart & { checked: boolean,
     );
 };
 
-export default Cart;
+export default Keranjang;

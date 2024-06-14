@@ -1,13 +1,11 @@
-
-
 import { AxiosResponse } from "axios";
 import { API } from "..";
-import { IProfile } from "../../../types/app";
+import { IStore } from "../../../types/app";
 
-type ProfileResponse = AxiosResponse<IProfile>;
+type StoreResponse = AxiosResponse<IStore>;
 
-export const getProfile = async () => {
-    return await API.get<ProfileResponse>("users/profileLogin", {
+export const getStoreLogin = async () => {
+    return await API.get<StoreResponse>("store/user", {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

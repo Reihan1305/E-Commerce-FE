@@ -1,16 +1,16 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IProfile } from "../../types/app";
-import { getProfile } from "../../lib/api/call/profile";
+import { IStore } from "../../types/app";
+import { getStoreLogin } from "../../lib/api/call/store";
 
-export const getProfileAsync = createAsyncThunk<
-    IProfile,
+export const getStoreLoginAsync = createAsyncThunk<
+    IStore,
     void,
     { rejectValue: string }
->("users/profileLogin", async (_, { rejectWithValue }) => {
+>("users/storeLogin", async (_, { rejectWithValue }) => {
     try {
-        const { data } = await getProfile();
+        const { data } = await getStoreLogin();
         console.log("data", data);
-        return data.data
+        return data
     } catch (error) {
         return rejectWithValue("error");
     }

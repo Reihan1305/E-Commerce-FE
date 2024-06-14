@@ -58,7 +58,7 @@ export interface IStore {
     userId:string;
     BankAccounts:IBankAccount[];
     Locations:ILocation[];
-    operationHours:IOperationHours;
+    OperationHours:IOperationHours;
     product:IProducts[];
     messageTemplates:IMessageTemplates[];
     storeOnDecorations:IStoreOnDecorations[];
@@ -112,4 +112,13 @@ export interface IMessageTemplates{
     content:string;
 }
 
-export interface IStoreOnDecorations{}
+export interface IStoreOnDecorations{
+    storeId :string;
+    decorationId:string;
+    decoration:decoration[]
+}
+
+export interface decoration{
+    id:string;
+    type:string
+}

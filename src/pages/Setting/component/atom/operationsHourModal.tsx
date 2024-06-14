@@ -9,21 +9,18 @@ import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import { EditNoteRounded } from '@mui/icons-material';
 import { IconButton, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import Autocomplete from '@mui/material/Autocomplete';
+import { IOperationHours } from '../../../../types/app';
 
 interface Iprops {
-    day: string,
-    openTime: string,
-    closeTime: string,
-    status: string,
-    // Add any other necessary props
+    OperationsHours :IOperationHours
 }
 
-export default function OperationsHoursModal ({ day, openTime, closeTime, status }: Iprops) {
+export default function OperationsHoursModal ({OperationsHours}: Iprops) {
      const [open, setOpen] = React.useState(false);
-     const [selectedDays, setSelectedDays] = React.useState<string[]>(day.split(',')); // Split the days if already selected multiple days
-     const [openTimeValue, setOpenTimeValue] = React.useState(openTime);
-     const [closeTimeValue, setCloseTimeValue] = React.useState(closeTime);
-     const [statusValue, setStatusValue] = React.useState(status);
+     const [selectedDays, setSelectedDays] = React.useState<string[]>(OperationsHours.day.split(',')); // Split the days if already selected multiple days
+     const [openTimeValue, setOpenTimeValue] = React.useState(OperationsHours.openAt);
+     const [closeTimeValue, setCloseTimeValue] = React.useState(OperationsHours.closeAt);
+     const [statusValue, setStatusValue] = React.useState(OperationsHours.isOff);
 
      const handleOpen = () => setOpen(true);
      const handleClose = () => setOpen(false);
@@ -141,7 +138,7 @@ export default function OperationsHoursModal ({ day, openTime, closeTime, status
                 <InputLabel>Status</InputLabel>
                 <Select
                   value={statusValue}
-                  onChange={(e) => setStatusValue(e.target.value as string)}
+                  onChange={(e) => setStatusValue(e.target.value == "buka" ? false : true)}
                 >
                   <MenuItem value="Buka">Buka</MenuItem>
                   <MenuItem value="Tutup">Tutup</MenuItem>

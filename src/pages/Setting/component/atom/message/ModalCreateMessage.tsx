@@ -11,9 +11,10 @@ import { IconButton, TextField } from '@mui/material';
 export default function ModalCreateMessage() {
   const [open, setOpen] = React.useState(false);
   const [messageDetail, setMessageDetail] = React.useState('');
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
 
   const handleInsertPlaceholder = (placeholder:string) => {
     setMessageDetail((prev) => prev + `[${placeholder}]`);

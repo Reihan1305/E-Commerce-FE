@@ -4,6 +4,7 @@ import authReducer from "./slice/auth";
 import categoryReducer from "./slice/categorySlice";
 import courierReducer from "./slice/courierSlice";
 import decorationReducer from "./slice/decorationSlice";
+import storeLoginReducer from "./slice/storeLoginSlice";
 import productsReducer from "./slice/productsSlice";
 
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
       category: categoryReducer,
       courier: courierReducer,
       decoration: decorationReducer,
+      storeLogin:storeLoginReducer
       products: productsReducer
    },
 });

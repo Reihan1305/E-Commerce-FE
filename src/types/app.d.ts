@@ -121,4 +121,48 @@ export interface IStoreOnDecorations{
 export interface decoration{
     id:string;
     type:string
+=======
+export interface IProduct {
+    id: string
+    name: string
+    description: string
+    isActive: boolean
+    size: string
+    minimumOrder: number
+    storeId: string
+    categorie: string
+    variants: IVariant[]
+    productAttachments: IProductAttachment[]
+}
+
+export interface IVariant {
+    id: string
+    name: string
+    isActive: boolean
+    productId: string
+    variantOptions: IVariantOptions[]
+}
+
+export interface IVariantOptions {
+    id: string
+    name: string
+    variantId: string
+    variantOptionValues: IVariantOptionValues[]
+}
+
+export interface IVariantOptionValues {
+    id: string
+    sku: string
+    weight: string
+    stock: number
+    price: number
+    isActive: boolean
+    CartItem: CartItem[]
+    variantOptionId: string
+}
+
+export interface IProductAttachment {
+    id: string
+    attachmnetsUrl: string
+    productId: string
 }
